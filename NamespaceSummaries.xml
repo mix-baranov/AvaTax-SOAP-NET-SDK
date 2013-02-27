@@ -1,0 +1,6 @@
+	    <namespaces>
+	        <namespace name="Avalara.AvaTax.Adapter">The namespace that contains the base classes and common classes used by the Address Service and the Tax Service.</namespace>
+	        <namespace name="Avalara.AvaTax.Adapter.AddressService">The namespace with all the necessary classes for interacting with the Address Validation functionality of the service.  The AddressSvc class is the starting point when using this namespace.</namespace>
+	        <namespace name="Avalara.AvaTax.Adapter.TaxService">The namespace with all the necessary classes for interacting with the Tax Calculation functionality of the service, including getting taxes for a document, posting and committing the document, canceling a document, searching the tax history, and retrieving reconciliation information.  The TaxSvc class is the starting point when using this namespace.</namespace>
+			<namespace name="Avalara.AvaTax.Adapter.AvaCert2Service">The namespace with all the necessary classes for interacting with the AvaCert functionality of the service.  The AvaCert2Svc class is the starting point when using this namespace.</namespace>
+	    </namespaces>

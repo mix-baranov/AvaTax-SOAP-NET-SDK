@@ -1,0 +1,2171 @@
+// Generated .IDL file (by the OLE/COM Object Viewer)
+// 
+// typelib filename: Avalara.AvaTax.Adapter.tlb
+
+[
+  uuid(CEA8B82E-C9CB-4B4D-9575-F96C63D6C789),
+  version(4.1),
+  helpstring("Avalara AvaTax Adapter 4.1")
+]
+library Avalara_AvaTax_Adapter
+{
+    // TLib :     // TLib : Common Language Runtime Library : {BED7F4EA-1A96-11D2-8F08-00A0C9A6186D}
+    importlib("mscorlib.tlb");
+    // TLib : OLE Automation : {00020430-0000-0000-C000-000000000046}
+    importlib("STDOLE2.TLB");
+
+    // Forward declare all types defined in this typelib
+    interface _BaseSvc;
+    interface _AddressSvc;
+    interface _Address;
+    interface _BaseArrayList;
+    interface _Addresses;
+    interface _BaseResult;
+    interface _ValidateResult;
+    interface _ReadOnlyArrayList;
+    interface _ValidAddresses;
+    interface _ValidAddress;
+    interface _BaseRequest;
+    interface _ValidateRequest;
+    interface _TaxSvc;
+    interface _Line;
+    interface _Lines;
+    interface _TaxDetail;
+    interface _TaxDetails;
+    interface _TaxLine;
+    interface _TaxLines;
+    interface _GetTaxRequest;
+    interface _ReconcileTaxHistoryRequest;
+    interface _CancelTaxRequest;
+    interface _CommitTaxRequest;
+    interface _PostTaxRequest;
+    interface _GetTaxHistoryRequest;
+    interface _CancelTaxResult;
+    interface _CommitTaxResult;
+    interface _GetTaxResult;
+    interface _GetTaxResults;
+    interface _ReconcileTaxHistoryResult;
+    interface _PostTaxResult;
+    interface _GetTaxHistoryResult;
+    interface _AvaTaxException;
+    interface _Messages;
+    interface _Message;
+    interface _PingResult;
+    interface _IsAuthorizedResult;
+    interface _Profile;
+    interface _RequestSecurity;
+    interface _ServiceConfig;
+
+    [
+      uuid(DDA8D331-69AD-4651-9134-0E585D4170BE),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseSvc")
+    ]
+    coclass BaseSvc {
+        [default] interface _BaseSvc;
+        interface _Object;
+        interface IDisposable;
+    };
+
+    [
+      uuid(671C83F8-CAFD-4D9E-A82D-15D5C11CA59C),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.AddressSvc")
+    ]
+    coclass AddressSvc {
+        [default] interface _AddressSvc;
+        interface _BaseSvc;
+        interface _Object;
+        interface IDisposable;
+    };
+
+    [
+      uuid(02931530-9ACF-4626-959A-B888DD391BB7),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.Address")
+    ]
+    coclass Address {
+        [default] interface _Address;
+        interface _Object;
+    };
+
+    [
+      uuid(8419E559-1D1A-4335-A6C5-0B85BC54D7E3),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseArrayList")
+    ]
+    coclass BaseArrayList {
+        [default] interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(7C519D0B-2C65-40C0-8B96-F8EC0F074647),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.Addresses")
+    ]
+    coclass Addresses {
+        [default] interface _Addresses;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(15EEBF10-7C11-4923-846A-0AAA46661A78),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseResult")
+    ]
+    coclass BaseResult {
+        [default] interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(72BF8A20-A7D3-4275-BF09-5075FCEC95A2),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidateResult")
+    ]
+    coclass ValidateResult {
+        [default] interface _ValidateResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(81307774-3891-443C-AC58-2A6F77CDDE48),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.ReadOnlyArrayList")
+    ]
+    coclass ReadOnlyArrayList {
+        [default] interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(492CE337-6695-4BB5-9A55-11EFC384378E),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidAddresses")
+    ]
+    coclass ValidAddresses {
+        [default] interface _ValidAddresses;
+        interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(B37F7CBF-F6F8-4459-91F6-51D8E70B9241),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidAddress")
+    ]
+    coclass ValidAddress {
+        [default] interface _ValidAddress;
+        interface _Object;
+    };
+
+    [
+      uuid(02DE912C-71FF-49C7-A103-C55ABA8BD7D3),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseRequest")
+    ]
+    coclass BaseRequest {
+        [default] interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(5EA2FC77-8DE7-45B5-84AE-C0F9FE2D1041),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidateRequest")
+    ]
+    coclass ValidateRequest {
+        [default] interface _ValidateRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    typedef [uuid(06996B63-5543-42A1-9878-16FC0A11895A), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.TextCase")    
+]
+    enum {
+        TextCase_Default = 0,
+        TextCase_Upper = 1,
+        TextCase_Mixed = 2
+    } TextCase;
+
+    [
+      uuid(0535ECB9-6753-4CFA-AF79-50292069DE90),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxSvc")
+    ]
+    coclass TaxSvc {
+        [default] interface _TaxSvc;
+        interface _BaseSvc;
+        interface _Object;
+        interface IDisposable;
+    };
+
+    [
+      uuid(F848EF54-CFEE-4D44-A45C-56626A1F2C65),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.Line")
+    ]
+    coclass Line {
+        [default] interface _Line;
+        interface _Object;
+    };
+
+    [
+      uuid(70911C94-A0DF-49D7-984D-972B6528E803),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.Lines")
+    ]
+    coclass Lines {
+        [default] interface _Lines;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(86885A2B-BDFC-46C1-9DAF-FC5950D758EB),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxDetail")
+    ]
+    coclass TaxDetail {
+        [default] interface _TaxDetail;
+        interface _Object;
+    };
+
+    [
+      uuid(BAE3A4C5-1682-43EA-A8E0-553BC10C81E8),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxDetails")
+    ]
+    coclass TaxDetails {
+        [default] interface _TaxDetails;
+        interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(B1AF846D-6A20-402C-9F63-5ACB5FD92187),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxLine")
+    ]
+    coclass TaxLine {
+        [default] interface _TaxLine;
+        interface _Object;
+    };
+
+    [
+      uuid(011E30DC-45B6-4F43-80CB-5BB2CD44F3E9),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxLines")
+    ]
+    coclass TaxLines {
+        [default] interface _TaxLines;
+        interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(1933CA1C-C141-4329-9152-8BB732338F7B),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxRequest")
+    ]
+    coclass GetTaxRequest {
+        [default] interface _GetTaxRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(A70B42E3-F0F6-45D8-BBA3-10B81A9BBFA8),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryRequest")
+    ]
+    coclass ReconcileTaxHistoryRequest {
+        [default] interface _ReconcileTaxHistoryRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(55C0F34C-81F3-4CBC-B08C-65B82FCD6476),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CancelTaxRequest")
+    ]
+    coclass CancelTaxRequest {
+        [default] interface _CancelTaxRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(678D112B-8A29-4091-BC7E-B63BD6668391),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CommitTaxRequest")
+    ]
+    coclass CommitTaxRequest {
+        [default] interface _CommitTaxRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(679D1B84-33CA-4A09-9D3A-7C39148EB224),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.PostTaxRequest")
+    ]
+    coclass PostTaxRequest {
+        [default] interface _PostTaxRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(55685354-441E-49DB-B40C-C0BE91199F14),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryRequest")
+    ]
+    coclass GetTaxHistoryRequest {
+        [default] interface _GetTaxHistoryRequest;
+        interface _BaseRequest;
+        interface _Object;
+    };
+
+    [
+      uuid(0951227B-70C7-441D-A244-943065CA9A17),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CancelTaxResult")
+    ]
+    coclass CancelTaxResult {
+        [default] interface _CancelTaxResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(2A390235-8A88-4007-B9D7-79BD9C89DC0D),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CommitTaxResult")
+    ]
+    coclass CommitTaxResult {
+        [default] interface _CommitTaxResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(3DBEAF92-0FD1-4DFF-9C63-5A3320A98D75),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxResult")
+    ]
+    coclass GetTaxResult {
+        [default] interface _GetTaxResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(77B2FFC2-AC46-4CC8-98FF-3C569D087127),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxResults")
+    ]
+    coclass GetTaxResults {
+        [default] interface _GetTaxResults;
+        interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(6A85C8A1-1B9F-44B2-8188-E56C09CD4F58),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryResult")
+    ]
+    coclass ReconcileTaxHistoryResult {
+        [default] interface _ReconcileTaxHistoryResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(E345D911-30A2-41C9-9CD2-1DA9697AE938),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.PostTaxResult")
+    ]
+    coclass PostTaxResult {
+        [default] interface _PostTaxResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(30E7392D-D0A9-44C5-929E-F92B71E788CD),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryResult")
+    ]
+    coclass GetTaxHistoryResult {
+        [default] interface _GetTaxHistoryResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    typedef [uuid(6D625CCB-9A61-40D4-A8E5-9A1F13FDBD3D), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.DetailLevel")    
+]
+    enum {
+        DetailLevel_Summary = 0,
+        DetailLevel_Document = 1,
+        DetailLevel_Line = 2,
+        DetailLevel_Tax = 3
+    } DetailLevel;
+
+    typedef [uuid(AC8D836C-6061-4405-BAE9-A415D99F7B37), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.DocumentType")    
+]
+    enum {
+        DocumentType_SalesOrder = 0,
+        DocumentType_SalesInvoice = 1,
+        DocumentType_PurchaseOrder = 2,
+        DocumentType_PurchaseInvoice = 3
+    } DocumentType;
+
+    typedef [uuid(CAD5511B-459C-410F-9F56-843319EBCE69), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CancelCode")    
+]
+    enum {
+        CancelCode_Unspecified = 0,
+        CancelCode_PostFailed = 1,
+        CancelCode_DocDeleted = 2
+    } CancelCode;
+
+    typedef [uuid(1CE2AC91-F931-4B94-9A52-36968064696D), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.JurisdictionType")    
+]
+    enum {
+        JurisdictionType_Unspecified = 0,
+        JurisdictionType_State = 1,
+        JurisdictionType_County = 2,
+        JurisdictionType_City = 3,
+        JurisdictionType_Special = 4
+    } JurisdictionType;
+
+    typedef [uuid(8018DA60-08AA-4468-81B2-F79CBF58A197), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.DocStatus")    
+]
+    enum {
+        DocStatus_Temporary = 0,
+        DocStatus_Saved = 1,
+        DocStatus_Posted = 2,
+        DocStatus_Committed = 3,
+        DocStatus_Cancelled = 4,
+        DocStatus_Any = -1
+    } DocStatus;
+
+    typedef [uuid(2B41D1E0-8D2E-45D0-A175-C827031989FD), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxType")    
+]
+    enum {
+        TaxType_Sales = 1,
+        TaxType_Use = 2
+    } TaxType;
+
+    [
+      uuid(C48C1DDE-5931-42AF-931B-BCEB15BD4250),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AvaTaxException")
+    ]
+    coclass AvaTaxException {
+        [default] interface _AvaTaxException;
+        interface _Exception;
+        interface _Object;
+        interface ISerializable;
+    };
+
+    [
+      uuid(CAB0FC14-8859-4BDA-8940-83D87861896B),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Messages")
+    ]
+    coclass Messages {
+        [default] interface _Messages;
+        interface _ReadOnlyArrayList;
+        interface _BaseArrayList;
+        interface _Object;
+    };
+
+    [
+      uuid(003A7D15-DA5B-47BA-8037-7C912A2AD4CE),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Message")
+    ]
+    coclass Message {
+        [default] interface _Message;
+        interface _Object;
+    };
+
+    typedef [uuid(FDB3DFC7-E562-4A7E-B440-9F28A74D76D5), version(1.0)    ,
+    custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.SeverityLevel")    
+]
+    enum {
+        SeverityLevel_Success = 0,
+        SeverityLevel_Warning = 1,
+        SeverityLevel_Error = 2,
+        SeverityLevel_Exception = 3
+    } SeverityLevel;
+
+    [
+      uuid(B755C197-6859-449D-B164-E932B39D9E79),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.PingResult")
+    ]
+    coclass PingResult {
+        [default] interface _PingResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(0A5D20C8-6A08-4C0E-8633-7B39795C1B3C),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.IsAuthorizedResult")
+    ]
+    coclass IsAuthorizedResult {
+        [default] interface _IsAuthorizedResult;
+        interface _BaseResult;
+        interface _Object;
+    };
+
+    [
+      uuid(18BA2DA0-6BD1-4E19-8F09-907C3A7EEDB1),
+      version(1.0),
+      noncreatable,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Profile")
+    ]
+    coclass Profile {
+        [default] interface _Profile;
+        interface _Object;
+    };
+
+    [
+      uuid(74C759D9-DF1F-4705-A932-449F1787A09E),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.RequestSecurity")
+    ]
+    coclass RequestSecurity {
+        [default] interface _RequestSecurity;
+        interface _Object;
+    };
+
+    [
+      uuid(41F15B2C-B07C-4223-9B1E-F21C5C98E801),
+      version(1.0),
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.ServiceConfig")
+    ]
+    coclass ServiceConfig {
+        [default] interface _ServiceConfig;
+        interface _Object;
+    };
+
+    [
+      odl,
+      uuid(D575065D-4DB8-3D4C-B863-F7D68456773B),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseSvc")    
+
+    ]
+    interface _BaseSvc : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Profile([out, retval] _Profile** pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Configuration([out, retval] _ServiceConfig** pRetVal);
+        [id(0x00000080)]
+        HRESULT Dispose();
+    };
+
+    [
+      odl,
+      uuid(965AF73F-7688-3080-AFDB-F11B90F930E3),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.AddressSvc")    
+
+    ]
+    interface _AddressSvc : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Profile([out, retval] _Profile** pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Configuration([out, retval] _ServiceConfig** pRetVal);
+        [id(0x00000080)]
+        HRESULT Dispose();
+        [id(0x0000001e)]
+        HRESULT Ping(
+                        [in] BSTR Message, 
+                        [out, retval] _PingResult** pRetVal);
+        [id(0x0000001f)]
+        HRESULT IsAuthorized(
+                        [in] BSTR operations, 
+                        [out, retval] _IsAuthorizedResult** pRetVal);
+        [id(0x00000020)]
+        HRESULT Validate(
+                        [in] _ValidateRequest* ValidateRequest, 
+                        [out, retval] _ValidateResult** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(C716BAA0-91EF-30D9-ACE7-52C919E6FFB8),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.Address")    
+
+    ]
+    interface _Address : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x0000001e)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x0000001f)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000020)]
+        HRESULT Clone([out, retval] _Address** pRetVal);
+        [id(0x00000021), propget]
+        HRESULT Line1([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT Line1([in] BSTR pRetVal);
+        [id(0x00000022), propget]
+        HRESULT Line2([out, retval] BSTR* pRetVal);
+        [id(0x00000022), propput]
+        HRESULT Line2([in] BSTR pRetVal);
+        [id(0x00000023), propget]
+        HRESULT Line3([out, retval] BSTR* pRetVal);
+        [id(0x00000023), propput]
+        HRESULT Line3([in] BSTR pRetVal);
+        [id(0x00000024), propget]
+        HRESULT City([out, retval] BSTR* pRetVal);
+        [id(0x00000024), propput]
+        HRESULT City([in] BSTR pRetVal);
+        [id(0x00000025), propget]
+        HRESULT Region([out, retval] BSTR* pRetVal);
+        [id(0x00000025), propput]
+        HRESULT Region([in] BSTR pRetVal);
+        [id(0x00000026), propget]
+        HRESULT PostalCode([out, retval] BSTR* pRetVal);
+        [id(0x00000026), propput]
+        HRESULT PostalCode([in] BSTR pRetVal);
+        [id(0x00000027), propget]
+        HRESULT Country([out, retval] BSTR* pRetVal);
+        [id(0x00000027), propput]
+        HRESULT Country([in] BSTR pRetVal);
+    };
+
+    [
+      odl,
+      uuid(CD3DE0F4-B949-355F-9159-D6B3C50069D1),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseArrayList")    
+
+    ]
+    interface _BaseArrayList : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(2894A791-577A-3E09-9578-22CB1BC81D71),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.Addresses")    
+
+    ]
+    interface _Addresses : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(0x0000001e)]
+        HRESULT Add([in] _Address* Address);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _Address** pRetVal);
+        [id(0x0000001f)]
+        HRESULT Clear();
+    };
+
+    [
+      odl,
+      uuid(0D5686DD-E6ED-3ABD-A24D-DB7236D9EE25),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseResult")    
+
+    ]
+    interface _BaseResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(34DA67D0-88AD-3A6C-B32F-872F20F6147E),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidateResult")    
+
+    ]
+    interface _ValidateResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT Addresses([out, retval] _ValidAddresses** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(14CC358F-2CA0-3B7F-B67B-98EEA74CEB59),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.ReadOnlyArrayList")    
+
+    ]
+    interface _ReadOnlyArrayList : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(4E0E0C08-D4DA-31EB-B4B3-05E166C482E4),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidAddresses")    
+
+    ]
+    interface _ValidAddresses : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _ValidAddress** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(8996E072-E20B-389C-8E30-7265624A269E),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidAddress")    
+
+    ]
+    interface _ValidAddress : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT AddressCode([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Line1([out, retval] BSTR* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Line2([out, retval] BSTR* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Line3([out, retval] BSTR* pRetVal);
+        [id(0x00000019), propget]
+        HRESULT Line4([out, retval] BSTR* pRetVal);
+        [id(0x0000001a), propget]
+        HRESULT City([out, retval] BSTR* pRetVal);
+        [id(0x0000001b), propget]
+        HRESULT Region([out, retval] BSTR* pRetVal);
+        [id(0x0000001c), propget]
+        HRESULT PostalCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001d), propget]
+        HRESULT County([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT Country([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT FipsCode([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propget]
+        HRESULT CarrierRoute([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propget]
+        HRESULT PostNet([out, retval] BSTR* pRetVal);
+        [id(0x00000022), propget]
+        HRESULT AddressType([out, retval] BSTR* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(E3F3CD26-11AC-309E-A679-416CF882637B),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.BaseRequest")    
+
+    ]
+    interface _BaseRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(9F556F2B-E6F4-3645-A938-0A996AF84CB9),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AddressService.ValidateRequest")    
+
+    ]
+    interface _ValidateRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Address([out, retval] _Address** pRetVal);
+        [id(0x00000014), propputref]
+        HRESULT Address([in] _Address* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT TextCase([out, retval] TextCase* pRetVal);
+        [id(0x00000015), propput]
+        HRESULT TextCase([in] TextCase pRetVal);
+    };
+
+    [
+      odl,
+      uuid(91D745E3-2546-351C-B6BB-B4ABB21778A7),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxSvc")    
+
+    ]
+    interface _TaxSvc : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Profile([out, retval] _Profile** pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Configuration([out, retval] _ServiceConfig** pRetVal);
+        [id(0x00000080)]
+        HRESULT Dispose();
+        [id(0x0000001e)]
+        HRESULT Ping(
+                        [in] BSTR Message, 
+                        [out, retval] _PingResult** pRetVal);
+        [id(0x0000001f)]
+        HRESULT IsAuthorized(
+                        [in] BSTR operations, 
+                        [out, retval] _IsAuthorizedResult** pRetVal);
+        [id(0x00000020)]
+        HRESULT GetTax(
+                        [in] _GetTaxRequest* GetTaxRequest, 
+                        [out, retval] _GetTaxResult** pRetVal);
+        [id(0x00000021)]
+        HRESULT GetTaxHistory(
+                        [in] _GetTaxHistoryRequest* GetTaxHistoryRequest, 
+                        [out, retval] _GetTaxHistoryResult** pRetVal);
+        [id(0x00000022)]
+        HRESULT PostTax(
+                        [in] _PostTaxRequest* PostTaxRequest, 
+                        [out, retval] _PostTaxResult** pRetVal);
+        [id(0x00000023)]
+        HRESULT CommitTax(
+                        [in] _CommitTaxRequest* CommitTaxRequest, 
+                        [out, retval] _CommitTaxResult** pRetVal);
+        [id(0x00000024)]
+        HRESULT CancelTax(
+                        [in] _CancelTaxRequest* CancelTaxRequest, 
+                        [out, retval] _CancelTaxResult** pRetVal);
+        [id(0x00000026)]
+        HRESULT ReconcileTaxHistory(
+                        [in] _ReconcileTaxHistoryRequest* ReconcileTaxHistoryRequest, 
+                        [out, retval] _ReconcileTaxHistoryResult** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(36142C21-212D-3D10-862F-B03070426F88),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.Line")    
+
+    ]
+    interface _Line : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000015), propget]
+        HRESULT OriginAddress([out, retval] _Address** pRetVal);
+        [id(0x00000015), propputref]
+        HRESULT OriginAddress([in] _Address* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT DestinationAddress([out, retval] _Address** pRetVal);
+        [id(0x00000016), propputref]
+        HRESULT DestinationAddress([in] _Address* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT No([out, retval] BSTR* pRetVal);
+        [id(0x00000017), propput]
+        HRESULT No([in] BSTR pRetVal);
+        [id(0x00000018), propget]
+        HRESULT ItemCode([out, retval] BSTR* pRetVal);
+        [id(0x00000018), propput]
+        HRESULT ItemCode([in] BSTR pRetVal);
+        [id(0x00000019), propget]
+        HRESULT TaxCode([out, retval] BSTR* pRetVal);
+        [id(0x00000019), propput]
+        HRESULT TaxCode([in] BSTR pRetVal);
+        [id(0x0000001a), propget]
+        HRESULT Qty([out, retval] CURRENCY* pRetVal);
+        [id(0x0000001a), propput]
+        HRESULT Qty([in] CURRENCY pRetVal);
+        [id(0x0000001c), propget]
+        HRESULT Amount([out, retval] CURRENCY* pRetVal);
+        [id(0x0000001c), propput]
+        HRESULT Amount([in] CURRENCY pRetVal);
+        [id(0x0000001d), propget]
+        HRESULT Discounted([out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x0000001d), propput]
+        HRESULT Discounted([in] VARIANT_BOOL pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT RevAcct([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT RevAcct([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT Ref1([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT Ref1([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT Ref2([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT Ref2([in] BSTR pRetVal);
+        [id(0x00000021), propget]
+        HRESULT ExemptionNo([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT ExemptionNo([in] BSTR pRetVal);
+    };
+
+    [
+      odl,
+      uuid(A9A2D3BF-6CBB-392F-86F9-90D50C29E32A),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.Lines")    
+
+    ]
+    interface _Lines : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(0x0000001e)]
+        HRESULT Add([in] _Line* Line);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _Line** pRetVal);
+        [id(0x0000001f)]
+        HRESULT Clear();
+        [id(0x00000020)]
+        HRESULT GetItemByNo(
+                        [in] BSTR lineNo, 
+                        [out, retval] _Line** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(ACDF9B64-545B-304B-9C11-29F657F77607),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxDetail")    
+
+    ]
+    interface _TaxDetail : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT JurisdictionType([out, retval] JurisdictionType* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT FipsCode([out, retval] BSTR* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT TaxType([out, retval] TaxType* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Base([out, retval] CURRENCY* pRetVal);
+        [id(0x00000018), propget]
+        HRESULT Rate([out, retval] CURRENCY* pRetVal);
+        [id(0x00000019), propget]
+        HRESULT Tax([out, retval] CURRENCY* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(FADC975D-AE8D-337C-9098-3257DE277D5F),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxDetails")    
+
+    ]
+    interface _TaxDetails : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _TaxDetail** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(3F571175-F207-3662-9EE5-1520231D9027),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxLine")    
+
+    ]
+    interface _TaxLine : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT No([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT TaxCode([out, retval] BSTR* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Discount([out, retval] CURRENCY* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Base([out, retval] CURRENCY* pRetVal);
+        [id(0x00000018), propget]
+        HRESULT Rate([out, retval] CURRENCY* pRetVal);
+        [id(0x00000019), propget]
+        HRESULT Tax([out, retval] CURRENCY* pRetVal);
+        [id(0x0000001a), propget]
+        HRESULT TaxDetails([out, retval] _TaxDetails** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(AD799FBF-E2ED-3A47-99DE-CD361237C4FB),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.TaxLines")    
+
+    ]
+    interface _TaxLines : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _TaxLine** pRetVal);
+        [id(0x00000028)]
+        HRESULT GetItemByNo(
+                        [in] BSTR lineNo, 
+                        [out, retval] _TaxLine** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(065E0203-9ADF-3209-881C-7FC338B17398),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxRequest")    
+
+    ]
+    interface _GetTaxRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT OriginAddress([out, retval] _Address** pRetVal);
+        [id(0x0000001f), propputref]
+        HRESULT OriginAddress([in] _Address* pRetVal);
+        [id(0x00000020), propget]
+        HRESULT DestinationAddress([out, retval] _Address** pRetVal);
+        [id(0x00000020), propputref]
+        HRESULT DestinationAddress([in] _Address* pRetVal);
+        [id(0x00000021), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x00000022), propget]
+        HRESULT DocType([out, retval] DocumentType* pRetVal);
+        [id(0x00000022), propput]
+        HRESULT DocType([in] DocumentType pRetVal);
+        [id(0x00000023), propget]
+        HRESULT DocCode([out, retval] BSTR* pRetVal);
+        [id(0x00000023), propput]
+        HRESULT DocCode([in] BSTR pRetVal);
+        [id(0x00000024), propget]
+        HRESULT DocDate([out, retval] DATE* pRetVal);
+        [id(0x00000024), propput]
+        HRESULT DocDate([in] DATE pRetVal);
+        [id(0x00000025), propget]
+        HRESULT SalespersonCode([out, retval] BSTR* pRetVal);
+        [id(0x00000025), propput]
+        HRESULT SalespersonCode([in] BSTR pRetVal);
+        [id(0x00000026), propget]
+        HRESULT PurchaserCode([out, retval] BSTR* pRetVal);
+        [id(0x00000026), propput]
+        HRESULT PurchaserCode([in] BSTR pRetVal);
+        [id(0x00000027), propget]
+        HRESULT PurchaserType([out, retval] BSTR* pRetVal);
+        [id(0x00000027), propput]
+        HRESULT PurchaserType([in] BSTR pRetVal);
+        [id(0x00000028), propget]
+        HRESULT Discount([out, retval] CURRENCY* pRetVal);
+        [id(0x00000028), propput]
+        HRESULT Discount([in] CURRENCY pRetVal);
+        [id(0x00000029), propget]
+        HRESULT ExemptionNo([out, retval] BSTR* pRetVal);
+        [id(0x00000029), propput]
+        HRESULT ExemptionNo([in] BSTR pRetVal);
+        [id(0x0000002a), propget]
+        HRESULT Lines([out, retval] _Lines** pRetVal);
+        [id(0x0000002b), propget]
+        HRESULT DetailLevel([out, retval] DetailLevel* pRetVal);
+        [id(0x0000002b), propput]
+        HRESULT DetailLevel([in] DetailLevel pRetVal);
+    };
+
+    [
+      odl,
+      uuid(4FA83586-AE4C-390F-8583-58D3B5252FD0),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryRequest")    
+
+    ]
+    interface _ReconcileTaxHistoryRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT LastDocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT LastDocId([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT Reconciled([out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT Reconciled([in] VARIANT_BOOL pRetVal);
+    };
+
+    [
+      odl,
+      uuid(7DC9E115-6AB5-3E75-B225-F15F1687E49A),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CancelTaxRequest")    
+
+    ]
+    interface _CancelTaxRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT DocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT DocId([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT PurchaserCode([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT PurchaserCode([in] BSTR pRetVal);
+        [id(0x00000021), propget]
+        HRESULT DocCode([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT DocCode([in] BSTR pRetVal);
+        [id(0x00000022), propget]
+        HRESULT CancelCode([out, retval] CancelCode* pRetVal);
+        [id(0x00000022), propput]
+        HRESULT CancelCode([in] CancelCode pRetVal);
+    };
+
+    [
+      odl,
+      uuid(72B78F17-9008-3D0C-8ACE-9CBA1808E5DC),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CommitTaxRequest")    
+
+    ]
+    interface _CommitTaxRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT DocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT DocId([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT PurchaserCode([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT PurchaserCode([in] BSTR pRetVal);
+        [id(0x00000021), propget]
+        HRESULT DocCode([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT DocCode([in] BSTR pRetVal);
+    };
+
+    [
+      odl,
+      uuid(7F5318D3-3EB1-3C28-87F0-638A220A4403),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.PostTaxRequest")    
+
+    ]
+    interface _PostTaxRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT DocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT DocId([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT PurchaserCode([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT PurchaserCode([in] BSTR pRetVal);
+        [id(0x00000021), propget]
+        HRESULT DocCode([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT DocCode([in] BSTR pRetVal);
+        [id(0x00000022), propget]
+        HRESULT DocDate([out, retval] DATE* pRetVal);
+        [id(0x00000022), propput]
+        HRESULT DocDate([in] DATE pRetVal);
+        [id(0x00000023), propget]
+        HRESULT TotalAmount([out, retval] CURRENCY* pRetVal);
+        [id(0x00000023), propput]
+        HRESULT TotalAmount([in] CURRENCY pRetVal);
+        [id(0x00000024), propget]
+        HRESULT TotalTax([out, retval] CURRENCY* pRetVal);
+        [id(0x00000024), propput]
+        HRESULT TotalTax([in] CURRENCY pRetVal);
+    };
+
+    [
+      odl,
+      uuid(94099B5B-BA10-3C12-B3ED-CF9DED661CF6),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryRequest")    
+
+    ]
+    interface _GetTaxHistoryRequest : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT DocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001e), propput]
+        HRESULT DocId([in] BSTR pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT CompanyCode([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propput]
+        HRESULT CompanyCode([in] BSTR pRetVal);
+        [id(0x00000020), propget]
+        HRESULT PurchaserCode([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propput]
+        HRESULT PurchaserCode([in] BSTR pRetVal);
+        [id(0x00000021), propget]
+        HRESULT DocCode([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propput]
+        HRESULT DocCode([in] BSTR pRetVal);
+        [id(0x00000022), propget]
+        HRESULT DetailLevel([out, retval] DetailLevel* pRetVal);
+        [id(0x00000022), propput]
+        HRESULT DetailLevel([in] DetailLevel pRetVal);
+    };
+
+    [
+      odl,
+      uuid(9431E1AF-AFAA-3408-AD83-667905BFE53B),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CancelTaxResult")    
+
+    ]
+    interface _CancelTaxResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(4FCDDB0B-8742-3A2D-9FE0-51B22FB41E13),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.CommitTaxResult")    
+
+    ]
+    interface _CommitTaxResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(17F10BF7-6F63-353B-81EA-6C085554C477),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxResult")    
+
+    ]
+    interface _GetTaxResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT DocId([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT DocStatus([out, retval] DocStatus* pRetVal);
+        [id(0x00000020), propget]
+        HRESULT Reconciled([out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x00000021), propget]
+        HRESULT Timestamp([out, retval] DATE* pRetVal);
+        [id(0x00000023), propget]
+        HRESULT TotalAmount([out, retval] CURRENCY* pRetVal);
+        [id(0x00000024), propget]
+        HRESULT TotalBase([out, retval] CURRENCY* pRetVal);
+        [id(0x00000025), propget]
+        HRESULT TotalTax([out, retval] CURRENCY* pRetVal);
+        [id(0x00000026), propget]
+        HRESULT TaxLines([out, retval] _TaxLines** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(4D8932B2-5FF5-3147-AF55-BB1557AA64DD),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxResults")    
+
+    ]
+    interface _GetTaxResults : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _GetTaxResult** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(03C4D968-E531-34C9-A95E-17730F4E8CCD),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryResult")    
+
+    ]
+    interface _ReconcileTaxHistoryResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT GetTaxResults([out, retval] _GetTaxResults** pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT LastDocId([out, retval] BSTR* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(9BAEF592-1FA4-3886-BD44-9FAC5B228E4E),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.PostTaxResult")    
+
+    ]
+    interface _PostTaxResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(7262F2D8-72A0-39D8-B7B5-4EC1E57A7F12),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryResult")    
+
+    ]
+    interface _GetTaxHistoryResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT GetTaxRequest([out, retval] _GetTaxRequest** pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT GetTaxResult([out, retval] _GetTaxResult** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(45D2443F-ADD9-36EE-BE6E-4F418F2EC6E8),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.AvaTaxException")    
+
+    ]
+    interface _AvaTaxException : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT Message([out, retval] BSTR* pRetVal);
+        [id(0x60020005)]
+        HRESULT GetBaseException([out, retval] _Exception** pRetVal);
+        [id(0x60020006), propget]
+        HRESULT StackTrace([out, retval] BSTR* pRetVal);
+        [id(0x60020007), propget]
+        HRESULT HelpLink([out, retval] BSTR* pRetVal);
+        [id(0x60020007), propput]
+        HRESULT HelpLink([in] BSTR pRetVal);
+        [id(0x60020009), propget]
+        HRESULT Source([out, retval] BSTR* pRetVal);
+        [id(0x60020009), propput]
+        HRESULT Source([in] BSTR pRetVal);
+        [id(0x6002000b)]
+        HRESULT GetObjectData(
+                        [in] _SerializationInfo* info, 
+                        [in] StreamingContext context);
+        [id(0x6002000c), propget]
+        HRESULT InnerException([out, retval] _Exception** pRetVal);
+        [id(0x6002000d), propget]
+        HRESULT TargetSite([out, retval] _MethodBase** pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT RefersTo([out, retval] BSTR* pRetVal);
+        [id(0x00000020), propget]
+        HRESULT Details([out, retval] BSTR* pRetVal);
+        [id(0x00000021), propget]
+        HRESULT FaultCode([out, retval] IUnknown** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(70A404D7-BAA5-3588-A576-028F1E9B14ED),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Messages")    
+
+    ]
+    interface _Messages : IDispatch {
+        [id(0x60020000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0xfffffffc)]
+        HRESULT GetEnumerator([out, retval] IEnumVARIANT** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Count([out, retval] long* pRetVal);
+        [id(00000000), propget]
+        HRESULT Item(
+                        [in] long index, 
+                        [out, retval] _Message** pRetVal);
+    };
+
+    [
+      odl,
+      uuid(530502D4-EBF1-3417-9C77-8467C4B22FDE),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Message")    
+
+    ]
+    interface _Message : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Summary([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Details([out, retval] BSTR* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT HelpLink([out, retval] BSTR* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT RefersTo([out, retval] BSTR* pRetVal);
+        [id(0x00000018), propget]
+        HRESULT Severity([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000019), propget]
+        HRESULT Source([out, retval] BSTR* pRetVal);
+        [id(0x0000001a), propget]
+        HRESULT Name([out, retval] BSTR* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(1973E039-A7CE-3C82-9AAE-F448DB1EBC38),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.PingResult")    
+
+    ]
+    interface _PingResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT Version([out, retval] BSTR* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(EE97BA8C-0697-3C16-B6AD-578B13CE4F0A),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.IsAuthorizedResult")    
+
+    ]
+    interface _IsAuthorizedResult : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT TransactionId([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ResultCode([out, retval] SeverityLevel* pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Messages([out, retval] _Messages** pRetVal);
+        [id(0x0000001e), propget]
+        HRESULT operations([out, retval] BSTR* pRetVal);
+        [id(0x0000001f), propget]
+        HRESULT Expires([out, retval] DATE* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(7BB87E4E-6FF4-334E-9AA1-3EF019955EDD),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.Profile")    
+
+    ]
+    interface _Profile : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Name([out, retval] BSTR* pRetVal);
+        [id(0x00000014), propput]
+        HRESULT Name([in] BSTR pRetVal);
+        [id(0x00000015), propget]
+        HRESULT Client([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propput]
+        HRESULT Client([in] BSTR pRetVal);
+        [id(0x00000016), propget]
+        HRESULT Adapter([out, retval] BSTR* pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Machine([out, retval] BSTR* pRetVal);
+    };
+
+    [
+      odl,
+      uuid(1E1953FA-B7F0-315B-ADAC-9164841B8BEC),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.RequestSecurity")    
+
+    ]
+    interface _RequestSecurity : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Account([out, retval] BSTR* pRetVal);
+        [id(0x00000014), propput]
+        HRESULT Account([in] BSTR pRetVal);
+        [id(0x00000015), propget]
+        HRESULT License([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propput]
+        HRESULT License([in] BSTR pRetVal);
+        [id(0x00000016), propget]
+        HRESULT UserName([out, retval] BSTR* pRetVal);
+        [id(0x00000016), propput]
+        HRESULT UserName([in] BSTR pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Password([out, retval] BSTR* pRetVal);
+        [id(0x00000017), propput]
+        HRESULT Password([in] BSTR pRetVal);
+        [id(0x00000018), propget]
+        HRESULT Timeout([out, retval] long* pRetVal);
+        [id(0x00000018), propput]
+        HRESULT Timeout([in] long pRetVal);
+    };
+
+    [
+      odl,
+      uuid(37B6E4F8-4D00-3541-97BB-D5FD5435F651),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+        custom({0F21F359-AB84-41E8-9A78-36D110E6D2F9}, "Avalara.AvaTax.Adapter.ServiceConfig")    
+
+    ]
+    interface _ServiceConfig : IDispatch {
+        [id(00000000), propget,
+            custom({54FC8F55-38DE-4703-9C4E-250351302B1C}, "1")]
+        HRESULT ToString([out, retval] BSTR* pRetVal);
+        [id(0x60020001)]
+        HRESULT Equals(
+                        [in] VARIANT obj, 
+                        [out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x60020002)]
+        HRESULT GetHashCode([out, retval] long* pRetVal);
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x00000014), propget]
+        HRESULT Url([out, retval] BSTR* pRetVal);
+        [id(0x00000014), propput]
+        HRESULT Url([in] BSTR pRetVal);
+        [id(0x00000015), propget]
+        HRESULT ViaUrl([out, retval] BSTR* pRetVal);
+        [id(0x00000015), propput]
+        HRESULT ViaUrl([in] BSTR pRetVal);
+        [id(0x00000016), propget]
+        HRESULT RequestTimeout([out, retval] long* pRetVal);
+        [id(0x00000016), propput]
+        HRESULT RequestTimeout([in] long pRetVal);
+        [id(0x00000017), propget]
+        HRESULT Security([out, retval] _RequestSecurity** pRetVal);
+        [id(0x00000018), propget]
+        HRESULT TraceSoap([out, retval] VARIANT_BOOL* pRetVal);
+        [id(0x00000018), propput]
+        HRESULT TraceSoap([in] VARIANT_BOOL pRetVal);
+    };
+};

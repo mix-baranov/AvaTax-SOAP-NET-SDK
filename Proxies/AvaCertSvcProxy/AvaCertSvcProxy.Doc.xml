@@ -1,0 +1,53 @@
+﻿<adapter>
+  <proxy>
+    <AvaCertSvc>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.AvaCertSvc"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </AvaCertSvc>
+    <AddCustomerRequest>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.AddCustomerRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </AddCustomerRequest>
+    <AddCustomerResult>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.AddCustomerResult"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </AddCustomerResult>
+    <InitiateExemptCertRequest>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.InitiateExemptCertRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </InitiateExemptCertRequest>
+    <InitiateExemptCertResult>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.InitiateExemptCertResult"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </InitiateExemptCertResult>
+    <Customer>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.Customer"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </Customer>
+    <CommunicationMode>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.CommunicationMode"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </CommunicationMode>
+    <RequestType>
+      <summary>
+        Used by the adapter to communicate with AvaTax. Not intended for external use.
+        See the <see cref="Avalara.AvaTax.Adapter.AvaCertService.RequestType"/> class in the <see cref="Avalara.AvaTax.Adapter.AvaCertService"/> namespace.
+      </summary>
+    </RequestType>
+  </proxy>
+</adapter>
+

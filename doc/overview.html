@@ -1,0 +1,176 @@
+<html dir="ltr">
+	<head>
+		<title>Overview</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<xml></xml>
+		<link rel="stylesheet" type="text/css" href="MSDN.css">
+	</head>
+	<body id="bodyID" class="dtBODY">
+		<div id="nsbanner">
+			<div id="bannerrow1">
+				<table class="bannerparthead" cellspacing="0">
+					<tr id="hdr">
+						<td class="runninghead">Avalara AvaTax On-Demand Documentation</td>
+						<td class="product">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="TitleRow">
+				<h1 class="dtH1">Overview</h1>
+			</div>
+		</div>
+		<div id="nstext">
+			<p>
+				<a href="#requirements">REQUIREMENTS &amp; REDISTRIBUTABLES</a><br>
+				<a href="#updates">WHAT'S NEW</a><br>
+				<a href="#configuration">CONFIGURATION</a><br>
+				<a href="#gettingstarted">GETTING STARTED</a><br>
+				&nbsp;&nbsp;<a href="#comreg">Registering for COM</a><br>
+				&nbsp;&nbsp;<a href="#samplecode">Sample Code</a><br>
+			</p>
+			<br>
+			<p>
+				The Avalara AvaTax Adapter provides a local API for the AvaTax Web Services.
+			</p>
+			<p>
+				The SDK is installed by default to C:\Program Files\Avalara\AvaTax On Demand.
+			</p>
+			<p>
+				The installed SDK includes: <blockquote> <b>Avalara.AvaTax.Adapter.dll</b> (the 
+					access point for the web services),<br>
+					<b>Avalara.AvaTax.Adapter.chm</b> (this documentation),<br>
+					<b>Avalara.AvaTax.Adapter.dll.config</b> (an optional configuration file can be 
+					found at Program Files\Avalara\AvaTax On Demand\bin)</blockquote>
+			Except for the documentation, the above files should all be placed in the same 
+			directory.
+			<P></P>
+			<h2 class="dtH2"><a name="requirements"></a>REQUIREMENTS &amp; REDISTRIBUTABLES</h2>
+			<P><B>AvaTax Requirements</B></P>
+			<P>
+				The AvaTax Adapter runs on the <b>.NET Framework 2.0, 3.0 or 3.5</b>.<br>
+			</P>
+			<p>
+				<b><font color="red" size="1">Note: Installer will redirect you to URL for .NET 
+						Framework installation.</font></b></p>
+			<p>
+				You can download the .NET Framework installer from:&nbsp; <a target="_new" href="http://msdn.microsoft.com/en-us/netframework/default.aspx">
+					http://msdn.microsoft.com/en-us/netframework/default.aspx</a></p>
+			<p><b>AvaTax Redistributables</b></p>
+			<p>
+				bin\ Avalara.AvaTax.Adapter.dll<BR>
+				bin\ Avalara.AvaTax.Adapter.dll.config</p>
+			<p>
+				<h2 class="dtH2"><a name="updates"></a>WHAT’S NEW</h2>
+				For details concerning version updates, see <a href="updates.html">What’s New</a>
+			.
+			<P></P>
+			<h2 class="dtH2"><a name="configuration"></a>CONFIGURATION</h2>
+			<p>
+				Configuring the Adapter with the necessary properties to access the web 
+				services can be done programmatically, with a configuration file, or a 
+				combination of both.<br>
+				<br>
+				For more information about configuring the Adapter, see <a href="configuration.html">
+					About Configuration</a>.
+			</p>
+			<h2 class="dtH2"><a name="gettingstarted"></a>GETTING STARTED</h2>
+			<p>
+				This documentation file provides complete coverage of all the public classes 
+				and methods that make up the AvaTax API. The classes are grouped under three 
+				primary namespaces:<br>
+				<blockquote> <a href="Avalara.AvaTax.Adapter.html">Avalara.AvaTax.Adapter</a>: 
+					contains the base classes and common classes used within the Adapter - these 
+					are supporting classes only;<br>
+					<a href="Avalara.AvaTax.Adapter.AddressService.html">Avalara.AvaTax.Adapter.AddressService</a>: 
+					contains classes related to address and the Address web service - a good 
+					starting point is the <a href="Avalara.AvaTax.Adapter.AddressService.AddressSvc.html">
+						AddressSvc</a> class;<br>
+					<a href="Avalara.AvaTax.Adapter.TaxService.html">Avalara.AvaTax.Adapter.TaxService</a>: 
+					contains classes related to the tax calculation web service - a good starting 
+					point is the <a href="Avalara.AvaTax.Adapter.TaxService.TaxSvc.html">TaxSvc</a> 
+					class;<br>
+					<a href="Avalara.AvaTax.Adapter.AvaCert2Service.html">Avalara.AvaTax.Adapter.AvaCert2Service</a>: 
+					contains classes related to the AvaCert web service - a good starting 
+					point is the <a href="Avalara.AvaTax.Adapter.AvaCert2Service.AvaCert2Svc.html">AvaCert2Svc</a> 
+					class. </blockquote>
+			<P></P>
+			<h4 class="dtH4"><a name="comreg"></a>Registering for COM</h4>
+			<p>
+				Although the AvaTax Adapter uses the Microsoft.NET Framework, it was built with 
+				full support for COM clients in mind. If you wish to use the adapter from a 
+				COM-based language, you must first register it. Included in the SDK is a batch 
+				file named <b>register_for_com.bat</b>. Run the file to register the Adapter 
+				assembly as a Windows type library. Alternately, it can be registered from the 
+				command line. At a command prompt, navigate to the directory containing the 
+				Adapter DLL, and enter the following:
+				<pre class="code">regasm Avalara.AvaTax.Adapter.dll /tlb /codebase</pre>
+			<P></P>
+			<h4 class="dtH4"><a name="samplecode"></a>Sample Code</h4>
+			<p>
+				For a working example of the Address and Tax services, using the Adapter, check 
+				out the samples found in the SDK\Samples\ directory. There you will find two 
+				sets of samples, one written in Visual Basic 6 and the other in .NET's C#. 
+				Under each language's directory are two projects, one for <b>AddressSvc</b> and 
+				one for <b>TaxSvc</b>. One language's sample is identical to the other's, 
+				differing only in syntax and language-specific implementation.
+				<table class="dtTABLE">
+					<tr>
+						<th>
+							<b>Directory/File</b></th>
+						<th>
+							<b>Description</b></th>
+					</tr>
+					<tr>
+						<td>Avalara.AvaTax.Adapter.dll.config</td>
+						<td>A default configuration file. This file should be copied into the same 
+							directory as the Avalara.AvaTax.Adapter assembly. For the .NET Sample Projects, 
+							this is the <b>bin\debug</b> directory beneath each project directory. For the 
+							Visual Basic 6 sample projects, it should be placed in the SDK's top level <b>bin</b>
+							directory.</td>
+					</tr>
+					<tr>
+						<td>NET\AddressSvc\</td>
+						<td>Directory containing a sample project (<b>AddressSample.sln</b>) written in C#. 
+							It demonstrates how to use the Avalara.AvaTax.Adapter API to access the 
+							AutoAddress+ web service.</td>
+					</tr>
+					<tr>
+						<td>NET\TaxSvc\</td>
+						<td>Directory containing a sample project (<b>TaxSample.sln</b>) written in C#. It 
+							demonstrates how to use the Avalara.AvaTax.Adapter API to access the AvaTax web 
+							service.</td>
+					</tr>
+					<tr>
+						<td>VB6\AddressSvc\</td>
+						<td>Directory containing a sample project (<b>AddressSample.vbp</b>) written in 
+							Visual Basic 6. It demonstrates how to use the Avalara.AvaTax.Adapter API to 
+							access the Address web service.</td>
+					</tr>
+					<tr>
+						<td>VB6\TaxSvc\</td>
+						<td>Directory containing a sample project (<b>TaxSample.vbp</b>) written in Visual 
+							Basic 6. It demonstrates how to use the Avalara.AvaTax.Adapter API to access 
+							the AvaTax web service.</td>
+					</tr>
+				</table>
+			</p>
+			<h4 class="dtH4">See Also</h4>
+			<p>
+				<a href="configuration.html">About Configuration</a> | <a href="Avalara.AvaTax.Adapter.html">
+					Avalara.AvaTax.Adapter Namespace</a> | <a href="Avalara.AvaTax.Adapter.AddressService.html">
+					Avalara.AvaTax.Adapter.AddressService Namespace</a> | <a href="Avalara.AvaTax.Adapter.TaxService.html">
+					Avalara.AvaTax.Adapter.TaxService Namespace</a> | <a href="Avalara.AvaTax.Adapter.AvaCert2Service.html">
+					Avalara.AvaTax.Adapter.AvaCert2Service Namespace</a>
+			</p>
+			<hr>
+			<div id="footer">
+				<p>
+					<b>AVALARA CONFIDENTIAL</b><br>
+					© 2004 - 2011 Avalara, Inc.  All rights reserved.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

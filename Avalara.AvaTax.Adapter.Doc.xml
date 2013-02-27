@@ -1,0 +1,1206 @@
+<adapter>
+    <dispose>
+        <members name="Dispose">
+		    <summary>
+		    Allows chance for the object to clean up before going out of scope. Should be called immediately prior to destroying the object.
+		    </summary>
+        </members>
+    </dispose>
+	<common>
+	    <!-- common members used in more than one class -->
+	    <members name="Constructor">
+	        <summary>
+	        Initializes a new instance of the class.
+	        </summary>
+	    </members>
+	    <members name="InternalConstructor">
+	        <summary>
+	        Initializes a new instance of the class. Not creatable outside the assembly.
+	        </summary>
+	    </members>
+	    <members name="Finalize">
+	        <summary>
+	        Ensures that resources are freed and other cleanup operations are performed when 
+	        the garbage collector reclaims the object. 
+	        </summary>
+	    </members>
+		<members name="Ping">
+		    <summary>
+		    Verifies connectivity to the web service 
+		    and returns version information about the service.
+		    </summary>
+		    <param name="message">For future use</param>
+		    <remarks>
+		    This replaces TestConnection and is available on every service.
+		    </remarks>
+		</members>
+		<members name="IsAuthorized">
+            <summary>
+            Checks authentication of and authorization to one or more operations on the service.
+            </summary>
+            <param name="operations">A comma-delimited list of operation names.</param>
+            <example>
+            IsAuthorized("GetTax,PostTax")
+            </example>
+            <remarks>
+            This operation allows pre-authorization checking of any or all operations.  
+            It will return a comma delimited set of operation names which will be all or a subset
+            of the requested operation names.  For security, it will never return operation names
+            other than those requested (no phishing allowed).
+            </remarks>
+		</members>
+	</common>
+	<Password>
+	    <class>
+	        <summary>
+	        User Password contains password type and value.
+	        </summary>
+	    </class>
+	    <members name="Type">
+		    <summary>
+		    This is the type of password.
+		    </summary>
+	    </members>
+	    <members name="Value">
+		    <summary>
+		    This is password value.
+		    </summary>
+	    </members>
+	</Password>
+	<Security>
+	    <class>
+	        <summary>
+	        Security contains UsernameToken information.
+	        </summary>
+	    </class>
+	</Security>
+	<UsernameToken>
+	    <class>
+	        <summary>
+	        UsernameToken contains username and password information.
+	        </summary>
+	    </class>
+	    <members name="Username">
+		    <summary>
+		    This is name of the user.
+		    </summary>
+	    </members>
+	    <members name="Password">
+		    <summary>
+		    This is password of the user.
+		    </summary>
+	    </members>
+	</UsernameToken>
+	<BaseRequest>
+	    <class>
+	        <summary>
+	        All classes used to pass data into a web service method call must implement this base class.
+	        </summary>
+	    </class>
+	</BaseRequest>
+	<BaseResult>
+	    <class>
+	        <summary>
+	        The base class for result objects that return a ResultCode and Messages collection. Not creatable.
+	        </summary>
+	    </class>
+	    <members name="TransactionId">
+		    <summary>
+		    A unique Transaction ID identifying a specific request/response set.
+		    </summary>
+		    <remarks>
+		    This ID is useful when contacting Avalara Support with a question or problem concerning a transaction
+		    or group of transactions.
+		    </remarks>
+	    </members>
+	    <members name="ReferenceCode">
+		    <summary>
+		    This identifies the name of the entity that was created or modified by the transaction if applicable, else it is blank.
+		    </summary>
+	    </members>
+		<members name="ResultCode">
+		    <summary>
+		    Indicates the success (or <see cref="SeverityLevel"/>) of the operation.
+		    </summary>
+		    <remarks>
+		      If there are one or more <see cref="Avalara.AvaTax.Adapter.Message"/> objects in the result, 
+		      the ResultCode is set to the most severe of the messages' result codes.
+		    </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As Message
+If (oGetTaxResult.ResultCode &lt;&gt; SeverityLevel_Success) Then
+    For Each oMsg In oGetTaxResult.Messages
+        Debug.Print oMsg.Name
+    Next oMsg
+End If
+</code>
+<code>
+[C#]
+if (getTaxResult.ResultCode != SeverityLevel.Success)
+{
+    foreach (Message msg in getTaxResult.Messages)
+    {
+        Console.WriteLine(msg.Name);
+    }
+}
+</code>
+	        </example>
+		</members>
+		<members name="Messages">
+		    <summary>
+		    A collection of <see cref="Avalara.AvaTax.Adapter.Message"/> objects.
+		    </summary>
+		    <remarks>
+		    <seealso cref="BaseResult.ResultCode"/>
+		    </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As Message
+For Each oMsg In oGetTaxResult.Messages
+    Debug.Print oMsg.Name
+Next oMsg
+</code>
+<code>
+[C#]
+foreach (Message msg in getTaxResult.Messages)
+{
+    Console.WriteLine(msg.Name);
+}
+</code>
+	        </example>
+		</members>
+	</BaseResult>
+	<Messages>
+	    <class>
+	        <summary>
+	        A collection of zero or more <see cref="Message"/> objects returned as part of a method call's result object.
+	        </summary>
+	        <remarks>
+	        <seealso cref="BaseResult"/>
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As Message
+For Each oMsg In oGetTaxResult.Messages
+    Debug.Print oMsg.Name
+Next oMsg
+</code>
+<code>
+[C#]
+foreach (Message msg in getTaxResult.Messages)
+{
+    Console.WriteLine(msg.Name);
+}
+</code>
+	        </example>
+	    </class>
+	</Messages>
+	<Message>
+	    <class>
+	        <summary>
+	        Message class used in results and exceptions.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As Message
+For Each oMsg In oMessages
+    Debug.Print oMsg.Name
+Next oMsg
+</code>
+<code>
+[C#]
+foreach (Message msg in messages)
+{
+    Console.WriteLine(msg.Name);
+}
+</code>
+	        </example>
+	    </class>
+	    <members name="Summary">
+	        <summary>
+	        Gets the concise summary of the message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="Details">
+	        <summary>
+	        Gets the details of the message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="HelpLink">
+	        <summary>
+	        Gets the URL to help page for this message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="RefersTo">
+	        <summary>
+	        Gets the item the message refers to, if applicable.  Used to indicate a missing or incorrect value.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="Severity">
+	        <summary>
+	        Gets the Severity Level of the message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="Source">
+	        <summary>
+	        Gets the source of the message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	    <members name="Name">
+	        <summary>
+	        Gets the name of the message.
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </members>
+	</Message>
+	<SeverityLevel>
+	    <enum>
+	        <summary>
+	        Severity of the result <see cref="Message"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="BaseResult"/>
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As Message
+If (oGetTaxResult.ResultCode &lt;&gt; SeverityLevel_Success) Then
+    For Each oMsg In oGetTaxResult.Messages
+        Debug.Print oMsg.Name
+    Next oMsg
+End If
+</code>
+<code>
+[C#]
+if (getTaxResult.ResultCode != SeverityLevel.Success)
+{
+    foreach (Message msg in getTaxResult.Messages)
+    {
+        Console.WriteLine(msg.Name);
+    }
+}
+</code>
+	        </example>
+	    </enum>
+	    <members name="Success">
+	        <summary>
+	        Operation succeeded.
+	        </summary>
+	    </members>
+	    <members name="Warning">
+	        <summary>
+	        Warnings occurred, operation succeeded.
+	        </summary>
+	    </members>
+	    <members name="Error">
+	        <summary>
+	        Errors occurred, operation failed.
+	        </summary>
+	    </members>
+	    <members name="Exception">
+	        <summary>
+	        Unexpected exceptions occurred, operation failed.
+	        </summary>
+	    </members>
+	</SeverityLevel>
+	<LogLevel>
+	    <enum>
+        <summary>
+        Log level for logging adapter messages.
+        </summary>
+        <example>
+          <code>
+            [Visual Basic 6]
+            Dim oAddressSvc As AddressSvc
+            Set oAddressSvc = New AddressSvc
+            oAddressSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+            oAddressSvc.Configuration.LogLevel = LogLevel_DEBUG
+          </code>
+          <code>
+            [C#]
+            AddressSvc addressSvc = new AddressSvc();
+            addressSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+            addressSvc.Configuration.LogLevel = LogLevel.DEBUG;
+          </code>
+        </example>        
+	    </enum>
+	    <members name="NONE">
+	        <summary>
+	        Disable adapter logging.
+	        </summary>
+	    </members>
+	    <members name="DEBUG">
+	        <summary>
+	        Log adapter debug messages.
+	        </summary>
+	    </members>
+	    <members name="INFO">
+	        <summary>
+	        Log adapter informational messages.
+	        </summary>
+	    </members>
+	    <members name="WARNING">
+	        <summary>
+	        Log adapter warning messages.
+	        </summary>
+	    </members>
+	    <members name="ERROR">
+	        <summary>
+	        Log adapter error messages.
+	        </summary>
+	    </members>
+	    <members name="FATAL">
+	        <summary>
+	        Log adapter fatal messages.
+	        </summary>
+	    </members>
+	</LogLevel>
+	<PingResult>
+	    <class>
+		    <summary>
+		    Result information returned from the AddressSvc's <see cref="Avalara.AvaTax.Adapter.AddressService.AddressSvc.Ping"/> method and the TaxSvc's <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc.Ping"/> method.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddressSvc As AddressSvc
+Dim oResult As PingResult
+
+Set oAddressSvc = New AddressSvc
+Set oResult = oAddressSvc.Ping("")
+MsgBox "Result Code: " &amp; oResult.ResultCode &amp; vbCrLf &amp; _
+        "# Messages: " &amp; oResult.Messages.Count &amp; vbCrLf &amp; _
+        "Service Version: " &amp; oResult.Version, vbInformation, "Ping Result"
+</code>
+<code>
+[C#]
+AddressSvc addressSvc = new AddressSvc();
+PingResult result = addressSvc.Ping("");
+MessageBox.Show("Result Code: " + result.ResultCode.ToString() + "\r\n" +
+	"# Messages: " + result.Messages.Count + "\r\n" +
+	"Service Version: " + result.Version, "Ping Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+</code>
+		    </example>
+		</class>
+		<members name="Version">
+		    <summary>
+		    Version of the web service (e.g. 4.0.0.0)
+		    </summary>
+		</members>
+	</PingResult>
+	<IsAuthorizedResult>
+	    <class>
+		    <summary>
+		    Result information returned from the AddressSvc's <see cref="Avalara.AvaTax.Adapter.AddressService.AddressSvc.IsAuthorized"/> method and the TaxSvc's <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc.IsAuthorized"/> method.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddressSvc As AddressSvc
+Dim oResult As IsAuthorizedResult
+
+Set oAddressSvc = New AddressSvc
+Set oResult = oAddressSvc.IsAuthorized("GetTax,PostTax")
+MsgBox "Result Code: " &amp; oResult.ResultCode &amp;vbCrLf &amp; _
+        "# Messages: " &amp; oResult.Messages.Count &amp; vbCrLf &amp; _
+        "Expires: " &amp; oResult.Expires &amp; vbCrLf &amp; _
+        "Operations: " &amp; oResult.operations, vbInformation, "IsAuthorized Result"
+</code>
+<code>
+[C#]
+AddressSvc addressSvc = new AddressSvc();
+IsAuthorizedResult result = addressSvc.IsAuthorized("GetTax,PostTax");
+MessageBox.Show("Result Code: " + result.ResultCode.ToString() + "\r\n" +
+		"# Messages: " + result.Messages.Count + "\r\n" +
+		"Expires: " + result.Expires + "\r\n" +
+		"Operations: " + result.Operations, "IsAuthorized Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+</code>
+		    </example>
+		</class>
+		<members name="Operations">
+		    <summary>
+		    Authorized operations for the user
+		    </summary>
+		    <example>
+		    "GetTax,PostTax"
+		    </example>
+		    <remarks>
+		    This will contain a comma-delimited list of the requested operations the user is authorized to invoke.  
+		    For security, it will not return any operations other than those requested.
+		    </remarks>
+		</members>
+		<members name="Expires">
+		    <summary>
+		    Indicates the subscription expiration date in yyyy-mm-dd format (e.g. 2005-01-29).
+		    </summary>
+		</members>
+	</IsAuthorizedResult>
+	<BaseSvc>
+	    <class>
+	    	<summary>
+	        Base class for web service interface classes. Not creatable.
+	        Create instead <see cref="Avalara.AvaTax.Adapter.AddressService.AddressSvc"/> or <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc"/> objects.
+	        </summary>
+	    </class>
+	    <members name="Profile">
+	        <summary>
+		    Provides access to the request profile data. Should be set prior to making a request.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+oTaxSvc.Profile.Client = "ERPName,5.0.1.0,PlugInName,1.4.0.1"
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+taxSvc.Profile.Client = "ERPName,5.0.1.0,PlugInName,1.4.0.1";
+</code>
+		    </example>
+	    </members>
+	    <members name="Configuration">
+		    <summary>
+		    Provides access to standard configuration data, such as Security details and the url
+		    to the AvaTax service.
+		    </summary>
+		    <remarks>
+		    See the <see cref="ServiceConfig"/> class for more information and examples.
+		    </remarks>
+	    </members>
+	    <members name="Proxy">
+		    <summary>
+		    Gets or sets proxy information for making an XML Web service request through a firewall. 
+		    </summary>
+		    <remarks>
+		    
+		    </remarks>
+	    </members>
+	</BaseSvc>
+	<ServiceConfig>
+	    <class>
+		    <summary>
+		    Provides access to standard configuration data, such as Security details and the url
+		    to the AvaTax service. 
+		    </summary>
+		    <remarks>
+		    Not creatable. Accessible only via its container objects.
+		    Loaded internally by the <see cref="XmlSerializerSectionHandler"/> when either <see cref="Avalara.AvaTax.Adapter.AddressService.AddressSvc"/> or
+		    <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc"/> is instantiated. Exposed from the base object's <see cref="Avalara.AvaTax.Adapter.BaseSvc.Configuration"/> property.
+		    Uses defaults stored in the Avalara.AvaTax.Adapter.dll.config
+		    file located in the same directory as the assembly. Defaults may be overridden at runtime.
+		    </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+
+oTaxSvc.Configuration.Url = "http://www.avalara.com/avatax.services/"
+oTaxSvc.Configuration.Security.Account = "1234567890"
+oTaxSvc.Configuration.Security.License = "1234567890ABCDEF"
+
+Debug.Print oTaxSvc.Configuration.Url
+Debug.Print oTaxSvc.Configuration.Security.Account
+Debug.Print oTaxSvc.Configuration.Security.License
+Debug.Print oTaxSvc.Configuration.Security.Timeout
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+
+taxSvc.Configuration.Url = "http://www.avalara.com/avatax.services/";
+taxSvc.Configuration.Security.Account = "1234567890";
+taxSvc.Configuration.Security.License = "1234567890ABCDEF";
+	    
+Console.WriteLine(taxSvc.Configuration.Url);
+Console.WriteLine(taxSvc.Configuration.Security.Account);
+Console.WriteLine(taxSvc.Configuration.Security.License);
+Console.WriteLine(taxSvc.Configuration.Security.Timeout);
+</code>
+	        </example>
+	    </class>
+	    <members name="Url">
+		    <summary>
+		    Gets or sets the location of the AvaTax service when the address will not change between the client and web service.
+		    If <see cref="ServiceConfig.ViaUrl"/> is set, then gets or sets the final destination location of the AvaTax service behind a firewall or other intermediary server.
+		    </summary>
+		    <remarks>
+		    If Url is routed through a firewall or other intermediary server that might modify the Url, then 
+		    <see cref="ServiceConfig.ViaUrl"/> must also be set to the Url of the intermediary server.
+		    <para>
+		    May be overridden at runtime, but must be set prior to making method calls to the service.
+		    </para>
+		    </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+oTaxSvc.Configuration.Url = "http://www.avalara.com/AvaTax.Services/"
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+taxSvc.Configuration.Url = "http://www.avalara.com/AvaTax.Services/";
+</code>
+		    </example>
+	    </members>
+	    <members name="ViaUrl">
+		    <summary>
+		    Gets or sets the intermediary server, for example a firewall, for the AvaTax service.
+		    </summary>
+		    <remarks>
+		    Use this property if the Url will be changed by some intermediary server that might, for example,
+		    remove a specific port designation or change a https request to http. This property must be used in
+		    conjunction with <see cref="ServiceConfig.Url"/>.
+		    <para>
+		    May be overridden at runtime, but must be set prior to making method calls to the service.
+		    </para>
+		    </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+oTaxSvc.Configuration.Url = "http://www.avalara.com/AvaTax.Services/"
+oTaxSvc.Configuration.ViaUrl = "https://www.avalara.com:1234/AvaTax.Services/"
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+taxSvc.Configuration.Url = "http://www.avalara.com/AvaTax.Services/";
+taxSvc.Configuration.ViaUrl = "https://www.avalara.com:1234/AvaTax.Services/";
+</code>
+		    </example>
+	    </members>
+	    <members name="RequestTimeout">
+		    <summary>
+		    Gets or sets the time an XML Web service client waits for a synchronous XML Web service  
+		    request to complete (in seconds).
+		    </summary>
+		    <remarks>
+		    Defaults to 60 seconds. 
+		    <para>
+		    This is base period of time the Web service client will wait for a request to complete. 
+		    </para>
+		    <para>
+		    May be overridden at runtime, but must be set prior to making method calls to the service.
+		    </para>
+		    </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+oTaxSvc.Configuration.RequestTimeout = 30
+Debug.Print oTaxSvc.Configuration.RequestTimeout
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+taxSvc.Configuration.RequestTimeout = 30;
+Console.WriteLine(taxSvc.Configuration.RequestTimeout);
+</code>
+		    </example>
+	    </members>
+	    <members name="Security">
+		    <summary>
+		    Gets the <see cref="RequestSecurity"/> object.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc 
+Dim oSecurity As RequestSecurity
+
+Set oTaxSvc = New TaxSvc()
+Set oSecurity = oTaxSvc.Configuration.Security
+oSecurity.Account = "1234567890"
+oSecurity.License = "1A2B3C4D5E6F7F7F"
+oSecurity.Timeout = 120
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+
+RequestSecurity security = taxSvc.Configuration.Security;
+security.Account = "1234567890";
+security.License = "1A2B3C4D5E6F7F7F";
+security.Timeout = 120;
+</code>
+		    </example>
+	    </members>
+	    <members name="TraceSoap">
+		    <summary>
+		    The flag to enable or disable the soap trace.
+		    </summary>
+		</members>
+		<members name="LogFilePath">
+		    <summary>
+		    LogFilePath is the path where adapter log files will be created.
+		    </summary>
+			<example>
+				<code>
+				[Visual Basic 6]
+				Dim oTaxSvc As TaxSvc
+				Set oTaxSvc = New TaxSvc()
+				oTaxSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+				</code>
+				<code>
+				[C#]
+				TaxSvc taxSvc = new TaxSvc();
+				taxSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+				</code>
+			</example>
+		</members>
+		<members name="LogLevel">
+		    <summary>
+		    LogLevel will be applied for adapter logging.
+		    </summary>
+		    <example>
+				<code>
+				[Visual Basic 6]
+				Dim oTaxSvc As TaxSvc
+				Set oTaxSvc = New TaxSvc()
+				oTaxSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+				oTaxSvc.Configuration.LogLevel = LogLevel_DEBUG
+				</code>
+				<code>
+				[C#]
+				TaxSvc taxSvc = new TaxSvc();
+				taxSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+				taxSvc.Configuration.LogLevel = LogLevel.DEBUG;
+				</code>
+			</example>
+		</members>
+		<members name="LogMessages">
+		    <summary>
+		    The flag to enable or disable logging of adapter messages.
+		    </summary>
+		    <example>
+				<code>
+				[Visual Basic 6]
+				Dim oTaxSvc As TaxSvc
+				Set oTaxSvc = New TaxSvc()
+				oTaxSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+				oTaxSvc.Configuration.LogLevel = LogLevel_DEBUG
+				oTaxSvc.Configuration.LogMessages = True
+				</code>
+				<code>
+				[C#]
+				TaxSvc taxSvc = new TaxSvc();
+				taxSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+				taxSvc.Configuration.LogLevel = LogLevel.DEBUG;
+				taxSvc.Configuration.LogMessages = true;
+				</code>
+			</example>
+		</members>
+		<members name="LogSoap">
+		    <summary>
+		    The flag to enable or disable logging of adapter soap trace.
+		    </summary>
+		    <example>
+				<code>
+				[Visual Basic 6]
+				Dim oTaxSvc As TaxSvc
+				Set oTaxSvc = New TaxSvc()
+				oTaxSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+				oTaxSvc.Configuration.LogLevel = LogLevel_DEBUG
+				oTaxSvc.Configuration.LogSoap = True
+				</code>
+				<code>
+				[C#]
+				TaxSvc taxSvc = new TaxSvc();
+				taxSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+				taxSvc.Configuration.LogLevel = LogLevel.DEBUG;
+				taxSvc.Configuration.LogSoap = true;
+				</code>
+			</example>
+		</members>
+		<members name="LogTransactions">
+		    <summary>
+		    The flag to enable or disable logging of transaction details.
+		    </summary>
+		    <example>
+				<code>
+				[Visual Basic 6]
+				Dim oTaxSvc As TaxSvc
+				Set oTaxSvc = New TaxSvc()
+				oTaxSvc.Configuration.LogFilePath = "C:/AdapterLogs"
+				oTaxSvc.Configuration.LogLevel = LogLevel_DEBUG
+				oTaxSvc.Configuration.LogTransactions = True
+				</code>
+				<code>
+				[C#]
+				TaxSvc taxSvc = new TaxSvc();
+				taxSvc.Configuration.LogFilePath = "C:/AdapterLogs";
+				taxSvc.Configuration.LogLevel = LogLevel.DEBUG;
+				taxSvc.Configuration.LogTransactions = true;
+				</code>
+			</example>
+		</members>
+	</ServiceConfig>
+	<RequestSecurity>
+	    <class>
+	        <summary>
+	        Provides read/write access to the security settings used when making method calls to (requesting data from) the AvaTax service.
+	        </summary>
+	        <remarks>
+	        Not creatable. Exposed through the <see cref="ServiceConfig.Security"/> property of the 
+	        <see cref="ServiceConfig"/> object.
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+
+Debug.Print oTaxSvc.Configuration.Security.Account
+Debug.Print oTaxSvc.Configuration.Security.License
+Debug.Print oTaxSvc.Configuration.Security.Timeout
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+	    
+Console.WriteLine(taxSvc.Configuration.Security.Account);
+Console.WriteLine(taxSvc.Configuration.Security.License);
+Console.WriteLine(taxSvc.Configuration.Security.Timeout);
+</code>
+	        </example>
+	    </class>
+	    <members name="Account">
+	        <summary>
+	        Gets or sets the unique account number provided by Avalara for verification against the service.
+	        <seealso cref="RequestSecurity.License"/><seealso cref="RequestSecurity.UserName"/>
+	        </summary>
+	        <remarks>
+	        <para>
+	        If <see cref="RequestSecurity.UserName"/> is also supplied, <b>Account</b> will be combined with
+	        <b>UserName</b> in the format <i>username</i>@<i>account</i> when passed to the web service
+	        for validation.  If both <b>UserName</b> and <see cref="RequestSecurity.Password"/> are supplied,
+	        then this value and <b>License</b> are ignored.
+	        </para>
+	        To set the value, use a plain-text account string. The plain-text account will be automatically encrypted
+	        by the adapter.  When retrieving the account via this property, only the encrypted value will be available.
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+
+oTaxSvc.Configuration.Security.Account = "1234567890"
+Debug.Print oTaxSvc.Configuration.Security.Account
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+	    
+taxSvc.Configuration.Security.Account = "1234567890";
+Console.WriteLine(taxSvc.Configuration.Security.Account);
+</code>
+	        </example>
+	    </members>
+	    <members name="License">
+	        <summary>
+	        Gets or sets the unique alpha-numeric key for the <see cref="RequestSecurity.Account"/> provided by Avalara for verification against the service.
+	        <seealso cref="RequestSecurity.Account"/>
+	        </summary>
+	        <remarks>
+	        <para>
+	        Ignored if <see cref="RequestSecurity.UserName"/> and <see cref="RequestSecurity.Password"/> are
+	        both supplied.
+	        </para>
+	        <para>
+	        To set the value, use a plain-text license key. The plain-text key will be automatically encrypted
+	        by the adapter.  When retrieving the license key via this property, only the encrypted value will be available.
+	        </para>
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+
+oTaxSvc.Configuration.Security.License = "1A2B3C4D5E6F7F7F"
+Debug.Print oTaxSvc.Configuration.Security.License
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+	    
+taxSvc.Configuration.Security.License = "1A2B3C4D5E6F7F7F";
+Console.WriteLine(taxSvc.Configuration.Security.License);
+</code>
+	        </example>
+	    </members>
+	    <members name="UserName">
+	        <summary>
+	        Gets or sets the specific user logged into the system.
+	        <seealso cref="RequestSecurity.Password"/><seealso cref="RequestSecurity.Account"/>
+	        </summary>
+	        <remarks>
+	        <para>
+	        If <see cref="RequestSecurity.Password"/> is blank and <see cref="RequestSecurity.Account"/> 
+	        is also supplied, <b>Account</b> will be combined with <b>UserName</b> in the format 
+	        <i>username</i>@<i>account</i> when passed to the web service for validation. However, if
+	        <b>UserName</b> already contains a '@' character or if both <b>UserName</b> and <b>Password</b>
+	        are supplied, then <b>Account</b> and <see cref="License"/> are ignored.
+	        </para>
+	        To set the value, use a plain-text account string. The plain-text account will be automatically encrypted
+	        by the adapter.  When retrieving the username via this property, only the encrypted value will be available.
+	        </remarks>
+	    </members>
+	    <members name="Password">
+	        <summary>
+	        Gets or sets the password for the specific user logged into the system.
+	        <seealso cref="RequestSecurity.UserName"/>
+	        </summary>
+	        <remarks>
+	        <para>
+	        If <see cref="RequestSecurity.UserName"/> and <b>Password</b> are supplied, then
+	        <see cref="RequestSecurity.Account"/> and <see cref="RequestSecurity.License"/> are ignored.
+	        </para>
+	        To set the value, use a plain-text license key. The plain-text key will be automatically encrypted
+	        by the adapter.  When retrieving the password via this property, only the encrypted value will be available.
+	        </remarks>
+	    </members>
+	    <members name="Timeout">
+	        <summary>
+	        Gets or sets the amount of time in seconds a request is allowed to stay alive before the server requires the
+	        client revalidate using an <see cref="RequestSecurity.Account"/> and <see cref="RequestSecurity.License"/>.
+	        </summary>
+	        <remarks>
+	        If the server times out before returning a result, try changing this value to a higher number.
+	        The default is 300 seconds.
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oTaxSvc As TaxSvc
+Set oTaxSvc = New TaxSvc
+
+oTaxSvc.Configuration.Security.Timeout = 400
+Debug.Print oTaxSvc.Configuration.Security.Timeout
+</code>
+<code>
+[C#]
+TaxSvc taxSvc = new TaxSvc();
+	    
+taxSvc.Configuration.Security.Timeout = 400;
+Console.WriteLine(taxSvc.Configuration.Security.Timeout);
+</code>
+	        </example>
+	    </members>
+	</RequestSecurity>
+	<ReadOnlyCollection>
+	    <class>
+	        <summary>
+	        Base class for all read-only collection objects. New objects cannot be added to the collection 
+	        and the collection cannot be cleared. Not creatable.
+	        </summary>
+	    </class>
+	</ReadOnlyCollection>
+	<BaseCollection>
+	    <class>
+	        <summary>
+	        Base class for all collection objects. Not creatable.
+	        </summary>
+	    </class>
+	    <members name="Add">
+		    <summary>
+		    Add a new object to the collection.
+		    </summary>
+		    <param name="item">The object to add.</param>
+	    </members>
+	    <members name="List">
+	        <summary>
+	        The ArrayList maintained by <b>BaseCollection</b>. Accessible only to derived objects.
+	        </summary>
+	        <remarks>
+	        Useful for enumerating through <b>BaseCollection</b> in a derived class</remarks>
+	        <example>
+<code>
+[C#]
+public class Addresses : BaseCollection
+{
+	public Address Find(string addressCode)
+	{
+		foreach(Address address in base.List)
+		{
+			if (String.Compare(address.AddressCode, addressCode, false) == 0)
+			{
+				return address;
+			}
+		}
+		return null;
+	}
+}
+</code>
+	        </example>
+	    </members>
+	    <members name="GetEnumerator">
+		    <summary>
+		    Provides for For...Each looping of the collection.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oMsg As message
+For Each oMsg In oGetTaxResult.Messages
+    Debug.Print oMsg.Name
+Next oMsg
+</code>
+<code>
+[C#]
+foreach (Message message in getTaxResult.Messages)
+{
+    Console.WriteLine(message.Name);
+}
+</code>
+		    </example>
+	    </members>
+	    <members name="Count">
+		    <summary>
+		    Gets the number of objects in the collection.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim index As Integer
+Dim oMessage As Message
+
+index = oMessages.Count - 1
+Set oMessage = oMessages.Item(index)
+</code>
+<code>
+[C#]
+int index = messages.Count - 1;
+Message message = messages[index];
+</code>
+		    </example>
+	    </members>
+	    <members name="this">
+		    <summary>
+		    Provides array-like access to the collection. Read-only. Default member.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim index As Integer
+Dim oMessage As Message
+
+index = oMessages.Count - 1
+Set oMessage = oMessages.Item(index)
+</code>
+<code>
+[C#]
+int index = messages.Count - 1;
+Message message = messages[index];
+</code>
+		    </example>
+	    </members>
+	    <members name="Clear">
+		    <summary>
+		    Empty the collection.
+		    </summary>
+	    </members>
+	</BaseCollection>
+	<ConfigReader>
+	    <class>
+	        <summary>
+	        Utility for reading the Avalara.Adapter.AvaTax.dll.config file. Not creatable. Used by the <see cref="BaseSvc"/> class.
+	        </summary>
+	    </class>
+	    <members name="FileName">
+		    <summary>
+		    The file name and path where the config file is located. Defaults to same location as the assembly.
+		    Not required unless a different config file is needed.
+		    </summary>
+	    </members>
+	    <members name="AppSettings">
+		    <summary>
+		    A collection of name-value pairs found in the <c>appSettings</c> section of the config file.
+		    </summary>
+	    </members>
+	    <members name="SecuritySettings">
+		    <summary>
+		    A collection of name-value pairs found in the <c>securitySettings</c> section of the config file.
+		    </summary>
+	    </members>
+	</ConfigReader>
+	<Profile>
+	    <class>
+	        <summary>
+	        The request profile provides information about the calling application and may be used for customized request processing.
+	        </summary>
+	    </class>
+	    <members name="Name">
+		    <summary>
+		    Reference to a named profile
+		    </summary>
+		    <remarks>
+		    Designed to allow shared and custom profile.  Reserved for future use.
+		    </remarks>
+	    </members>
+	    <members name="Client">
+		    <summary>
+		    Client application name and version (and plugin name and version, if applicable)
+		    </summary>
+		    <remarks>
+		    This should be of the form: Application,ApplicationVersion[,Plugin,PluginVersion].  The plugin information is optional
+		    in the case of a direct or custom application integration.
+		      <list type="table">
+		        <listheader>
+			      <term>Segment</term>
+		          <description>Description</description>
+		        </listheader>
+		        <item>
+		          <term>Application</term><description>Name of the application (e.g. SuperERP)</description>
+		        </item>
+		        <item>
+		          <term>ApplicationVersion</term><description>Version of the application (e.g. 2.5.1.23)</description>
+		        </item>
+		        <item>
+		          <term>Plugin</term><description>Name of the plugin, if applicable (e.g. DuperPlugin)</description>
+		        </item>
+		        <item>
+		          <term>PluginVersion</term><description>Version of the plugin, if applicable (e.g. 2.5.0.1)</description>
+		        </item>
+		      </list>
+		    </remarks>
+		    <example>
+		    svc.Profile.Client = "SuperERP,2.5.1.23,DuperPlugin,2.5.0.1"
+		    </example>
+	    </members>
+	    <members name="Adapter">
+		    <summary>
+		    Gets the name and version of the adapter.
+		    </summary>
+	    </members>
+	    <members name="Machine">
+	        <summary>
+		    Gets the NetBIOS name of the local computer.
+	        </summary>
+	    </members>
+	</Profile>
+	<AvaTaxException>
+	    <class>
+	        <summary>
+	        The exception thrown by the Adapter if it catches an exception from the service.
+	        </summary>
+	        <remarks>
+	        Exceptions thrown by the service are generally unexpected errors or are errors wrapped in a SOAP message.
+	        <b>AvaTaxException</b> inspects the service exception for relevant client details and rethrows only that
+	        information.
+	        </remarks>
+	    </class>
+	    <members name="Message">
+	        <summary>
+	        Gets the generic message describing the exception.
+	        </summary>
+	    </members>
+	    <members name="RefersTo">
+	        <summary>
+	        Gets the name of a particular field if the service specified one to which this exception applies.
+	        </summary>
+	    </members>
+	    <members name="Details">
+	        <summary>
+	        Gets more specific information about the nature of the exception.
+	        </summary>
+	    </members>
+	    <members name="FaultCode">
+	        <summary>
+	        Gets the <see cref="SoapException.Code"/> if one exists.
+	        </summary>
+	    </members>
+	</AvaTaxException>
+	<AdapterConfigException>
+	    <class>
+	        <summary>
+	        The exception thrown by the Adapter if a problem is detected with the configuration prior to invoking a call to the
+	        web service.
+	        </summary>
+	        <remarks>
+	        This exception will be encountered if the application using the adapter has not set the required configuration
+	        properties, such as the URL, or if one of the properties is of the incorrect format.
+	        </remarks>
+	    </class>
+	    <members name="Message">
+	        <summary>
+	        Gets the generic message describing the exception.
+	        </summary>
+	    </members>
+	    <members name="RefersTo">
+	        <summary>
+	        Gets the name of a particular field if the service specified one to which this exception applies.
+	        </summary>
+	    </members>
+	    <members name="Details">
+	        <summary>
+	        Gets more specific information about the nature of the exception.
+	        </summary>
+	    </members>
+	</AdapterConfigException>
+	<AdapterConfigurationExceptionType>
+	    <enum>
+	        <summary>
+	        Used internally by the Adapter to communicate the type of configuration exception that was encountered. Not
+	        intended for use in a development environment.
+	        </summary>
+	        <remarks>
+	        <seealso cref="AdapterConfigException"/>
+	        </remarks>
+	    </enum>
+	    <members name="Url">
+	        <summary>
+	        Indicates an exception occurred relating to the <see cref="ServiceConfig.Url"/> member.
+	        </summary>
+	    </members>
+	    <members name="Account">
+	        <summary>
+	        Indicates an exception occurred relating to the <see cref="RequestSecurity.Account"/> member.
+	        </summary>
+	    </members>
+	    <members name="License">
+	        <summary>
+	        Indicates an exception occurred relating to the <see cref="RequestSecurity.License"/> member.
+	        </summary>
+	    </members>
+	    <members name="UserName">
+	        <summary>
+	        Indicates an exception occurred relating to the <see cref="RequestSecurity.UserName"/> member.
+	        </summary>
+	    </members>
+	    <members name="Password">
+	        <summary>
+	        Indicates an exception occurred relating to the <see cref="RequestSecurity.Password"/> member.
+	        </summary>
+	    </members>
+	</AdapterConfigurationExceptionType>
+</adapter>

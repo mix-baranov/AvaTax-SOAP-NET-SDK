@@ -1,0 +1,179 @@
+<html dir="LTR">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+		<title>About Configuration</title>
+		<xml></xml>
+		<link rel="stylesheet" type="text/css" href="MSDN.css" />
+	</head>
+	<body id="bodyID" class="dtBODY">
+		<div id="nsbanner">
+			<div id="bannerrow1">
+				<table class="bannerparthead" cellspacing="0">
+					<tr id="hdr">
+						<td class="runninghead">Avalara AvaTax On-Demand Documentation</td>
+						<td class="product">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="TitleRow">
+				<h1 class="dtH1">About Configuration</h1>
+			</div>
+		</div>
+		<div id="nstext">
+			<p>
+				<a href="#2">STORING CONFIGURATION PROPERTIES</a><br />
+				<a href="#3">CONFIGURATION FILE STRUCTURE</a><br />
+				&nbsp;&nbsp;<a href="#3_1">ServiceConfig</a><br />
+				&nbsp;&nbsp;<a href="#3_2">RequestSecurity</a><br />
+				<a href="#4">EXAMPLE</a><br />
+			</p>
+			<br />
+			<p>
+				The adapter contains configuration properties for setting values for URL or 
+				request timeouts and includes a subset of properties for security specific 
+				values, such as the account and license provided by Avalara to access the web 
+				services.
+			</p>
+			<p>
+				<a href="Avalara.AvaTax.Adapter.ServiceConfig.html">Configuration</a> is a 
+				member of the primary services, <a href="Avalara.AvaTax.Adapter.AddressService.AddressSvc.html">
+					AddressSvc</a> and <a href="Avalara.AvaTax.Adapter.TaxService.TaxSvc.html">TaxSvc</a>, 
+				and can be accessed after either class has been instantiated. Setting a 
+				property is accomplished using the syntax [<i>Service</i>].Configuration.[<i>Property</i>] 
+				= <i>value</i>. For example:
+				<pre class="code">taxSvc.Configuration.Url = "http://www.avalara.com/avatax.services/"</pre>
+				Likewise, security-specific properties are accessed as: [<i>Service</i>].Configuration.Security.[<i>Property</i>] 
+				= <i>value</i>.
+			</p>
+			<h2 class="dtH2"><a name="2"></a>STORING CONFIGURATION PROPERTIES</h2>
+			<p>
+				The AvaTax Adapter API provides full support for programmatically setting and 
+				accessing configuration properties. However, there may be cases when it is 
+				necessary or desired to persist values in a configuration text file. The 
+				configuration file also provides full support for the configuration properties. <font color="red">
+					Note: though the configuration file accepts Account and License elements, it is 
+					recommended that these values be stored in a more secure location, such as a 
+					password-protected database.</font>
+			</p>
+			<h2 class="dtH2"><a name="3"></a>CONFIGURATION FILE STRUCTURE</h2>
+			<p>
+				The configuration file must be named <b>"Avalara.AvaTax.Adapter.dll.config"</b>. 
+				Casing is not important.
+			</p>
+			<p>
+				Since the configuration file is simply an XML document, it must be identified 
+				as such. The first line of the file should be:
+				<pre class="code">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</pre>
+				and is followed by the root element:
+				<pre class="code">&lt;configuration&gt;<br />.<br />.<br />.<br />&lt;/configuration&gt;</pre>
+				Between the root element tags are the <b>ServiceConfig</b>, <b>RequestSecurity</b>, 
+				and <b>AvaLogger</b> element blocks. Each will be covered in detail below.
+			</p>
+			<h4 class="dtH4"><a name="3_1"></a>ServiceConfig</h4>
+			<p>
+				This element block's children mirrors exactly the properties of the 
+				Configuration class exposed from both AddressSvc and TaxSvc.<br />
+				<pre class="code">&lt;ServiceConfig type="Avalara.AvaTax.Adapter.ServiceConfig, Avalara.AvaTax.Adapter"&gt;<br />    &lt;Url&gt;https://www.avalara.com/avatax.services/&lt;/Url&gt;<br />    &lt;ViaUrl&gt;&lt;/ViaUrl&gt;<br />    &lt;RequestTimeout&gt;100&lt;/RequestTimeout&gt;<br />&lt;/ServiceConfig&gt;</pre>
+				All XML tags must exist in the configuration file exactly as shown in the 
+				example above. Only the values between the tags, in this case <b>https://www.avalara.com/avatax.services/</b>
+				and <b>100</b>, can be altered. Any one or more of the properties can be left 
+				out. For an explanation of these elements, please see the corresponding 
+				ServiceConfig class member.
+			</p>
+			<p>
+				<a href="Avalara.AvaTax.Adapter.ServiceConfigProperties.html">Service Config Class 
+					Properties</a>:<br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.ServiceConfig.Url.html">Url</a><br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.ServiceConfig.ViaUrl.html">ViaUrl</a><br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.ServiceConfig.RequestTimeout.html">RequestTimeout</a><br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.ServiceConfig.Security.html">Security</a><br />
+			</p>
+			<h4 class="dtH4"><a name="3_2"></a>RequestSecurity</h4>
+			<p>
+				This element block's children mirrors exactly the properties of the Security 
+				class exposed from both AddressSvc.Configuration and TaxSvc.Configuration.
+				<pre class="code">&lt;RequestSecurity type="Avalara.AvaTax.Adapter.RequestSecurity, Avalara.AvaTax.Adapter"&gt;<br />    &lt;Account&gt;0100000...&lt;/Account&gt;<br />    &lt;License&gt;0100000...&lt;/License&gt;<br />&lt;/RequestSecurity&gt;</pre>
+				The "..." in the Account and License text substitutes for a number of 
+				characters and/or numbers.<br />
+			</p>
+			<p>
+				All XML tags must exist in the configuration file exactly as shown in the 
+				example above. Only the values between the tags, in this case <b>0100000...</b>,
+				<b>0100000...</b>, and <b>300</b>, can be altered. Any one or more of the 
+				properties can be left out. For an explanation of these elements, please see 
+				the corresponding RequestSecurity class member.
+			</p>
+			<p>
+				<a href="Avalara.AvaTax.Adapter.RequestSecurityProperties.html">Request Security 
+					Class Properties</a>:<br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.RequestSecurity.Account.html">Account</a><br />
+				&nbsp;&nbsp;<a href="Avalara.AvaTax.Adapter.RequestSecurity.License.html">License</a><br />
+			</p>
+			<h4 class="dtH4"><a name="3_3"></a>AvaLogger</h4>
+			<p>
+				This element describes the type of logging.
+				<pre class="code">&lt;AvaLogger logFilePath="" logLevel="none" logMessages="false" logTransactions="false" logSoap="false"&gt;</pre>
+			</p>
+			<p>
+				Attribute details:<br>
+				<blockquote>
+					<li>
+						<b>logFilePath</b>: where adapter log files will be created; default is 
+					logs folder in current directory
+					<li>
+						<b>logLevel</b>: will be applied for all three types of adapter logging, 
+					default level is NONE Example for logLevel - NONE, DEBUG, INFO, WARNING, ERROR, 
+					FATAL
+					<li>
+						<b>logMessages</b>: is a switch to turn ON or OFF adapter logging; Log 
+					Filename: Adapter.2008-07-17
+					<li>
+						<b>logTransactions</b>: is a switch for logging transactions required for 
+					adapter; Log Filename: AdapterTransactions.2008-07-17
+					<li>
+						<b>logSoap</b>: is a switch for logging adapter SoapTrace; Log Filename: 
+					AdapterSoap.2008-07-17 </blockquote></li>
+			</p>
+			<h2 class="dtH2"><a name="4"></a>EXAMPLE</h2>
+			<p>
+				<b>A sample configuration file can be found at 
+					SDK\Samples\Avalara.AvaTax.Adapter.dll</b>
+			<p>
+				The following example shows a standard configuration file setup.
+				<pre class="code">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;configuration&gt;
+    &lt;ServiceConfig type="Avalara.AvaTax.Adapter.ServiceConfig, Avalara.AvaTax.Adapter"&gt;
+        &lt;Url&gt;https://www.avalara.com/avatax.services/&lt;/Url&gt;
+        &lt;ViaUrl&gt;&lt;/ViaUrl&gt;
+        &lt;RequestTimeout&gt;100&lt;/RequestTimeout&gt;
+        &lt;TraceSoap&gt;true&lt;/TraceSoap&gt;
+    &lt;/ServiceConfig&gt;
+    &lt;RequestSecurity type="Avalara.AvaTax.Adapter.RequestSecurity, Avalara.AvaTax.Adapter"&gt;
+        &lt;Account&gt;0100000...&lt;/Account&gt;
+        &lt;License&gt;0100000...&lt;/License&gt;
+    &lt;/RequestSecurity&gt;
+    &lt;AvaLogger logFilePath="" logLevel="debug" logMessages="true" logTransactions="false" logSoap="true"&gt;
+&lt;/configuration&gt;
+			</pre>
+			&nbsp;<p>The "..." in the Account and License text substitutes for a number of 
+				characters and/or numbers.<br />
+			</p>
+			</p>
+			<h4 class="dtH4">See Also</h4>
+			<p>
+				<a href="overview.html">SDK Overview</a> | <a href="Avalara.AvaTax.Adapter.ServiceConfig.html">
+					Configuration Class</a> | <a href="Avalara.AvaTax.Adapter.RequestSecurity.html">
+					RequestSecurity Class</a>
+			</p>
+			<hr />
+			<div id="footer">
+				<p>
+					<b>AVALARA CONFIDENTIAL</b><br />
+					© 2004 - 2011 Avalara, Inc.  All rights reserved.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

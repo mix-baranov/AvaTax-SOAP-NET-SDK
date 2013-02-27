@@ -1,0 +1,1714 @@
+<html>
+	<head>
+		<title>Avalara AvaTax On-Demand Document</title>
+		<meta http-equiv="Content-Language" content="en-us">
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+	</head>
+	<body>
+		<DIV>
+			<DIV id="nsbanner">
+				<DIV id="bannerrow1">
+					<TABLE class="bannerparthead" id="Table1" cellSpacing="0">
+						<TR id="hdr">
+							<TD class="runninghead"><FONT face="Verdana" size="2">Avalara AvaTax On-Demand 
+									Documentation</FONT></TD>
+							<TD class="product"></TD>
+						</TR>
+					</TABLE>
+				</DIV>
+				<DIV id="TitleRow">
+					<H1 class="dtH1"><FONT face="Verdana">What’s New</FONT></H1>
+				</DIV>
+			</DIV>
+			<DIV><FONT face="Verdana" size="2">All documentation and sample code has been updated 
+					to reflect the latest changes to the API.</FONT>
+			</DIV>
+			<DIV>&nbsp;</DIV>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.10 to 11.2</h3>
+		<p></p>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+				Added new Service AvaCert2 to add exempt customers,  certificate request initiate, certificate request get, certificate get, and certificate image get.</li>
+			</ul>
+		</DIV>
+		<h3 class="dtH3">AvaCert2Svc:</h3>
+		
+		<h4 class="dtH4">CustomerSaveRequest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>Customer</CODE>
+			has been added. The customer data to add.</LI>
+		</ul>
+		<h4 class="dtH4">CustomerSaveResult class</h4>
+		<p></p>
+		<h4 class="dtH4">CertificateRequestInitiateRequest class</h4>
+		<p></p>
+		<ul>			
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. CompanyCode for the customer.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. CustomerCode indicates the customer identification code from client system.</LI>
+			<LI>
+				<CODE>CommunicationMode</CODE>
+			has been added. CommunicationMode indicates the mode to use for communicating with the customer like Email, Mail, or Fax.</LI>
+			<LI>
+				<CODE>SourceLocationCode</CODE>
+			has been added. SourceLocationCode is the Source LocationCode for the request. If provided; the code must be one that exists for the Company.</LI>
+			<LI>
+				<CODE>RequestType</CODE>
+			has been added. RequestType indicates the type of the request to be initiated.</LI>
+			<LI>
+				<CODE>CustomMessage</CODE>
+			has been added. Custom message to be used for the request.</LI>
+			<LI>
+				<CODE>LetterTemplate</CODE>
+			has been added. The name of the Letter Template to use for the correspondence.</LI>
+			<LI>
+				<CODE>IncludeCoverPage</CODE>
+			has been added. Whether or not a fax cover sheet with a barcode will be attached to the correspondence. If null, the default is used (false).</LI>
+			<LI>
+				<CODE>CloseReason</CODE>
+			has been added. Reason for closing the Request.</LI>
+			<LI>
+				<CODE>RequestId</CODE>
+			has been added. Unique identifier for the Request record.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateRequestInitiateResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TrackingCode</CODE>
+			has been added. TrackingCode indicates the unique Tracking Code of the Request.</LI>
+			<LI>
+				<CODE>WizardLaunchUrl</CODE>
+			has been added.  WizardLaunchUrl indicates the unique tracking Url for the Request, that is used to launch the wizard.</LI>
+			<LI>
+				<CODE>RequestId</CODE>
+			has been added. Unique identifier for the Request record.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. Customer identification code from client system.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateGetRequest  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. The ComapnyCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. The CustomerCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>ModFromDate</CODE>
+			has been added. The ModFromDate indicates the date from which the certificates needs to be fetched.</LI>
+			<LI>
+				<CODE>ModToDate</CODE>
+			has been added. The ModToDate indicates the date from which the certificates needs to be fetched.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateGetResult  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>Certificates</CODE>
+			has been added. The Certificates contains collection of exemption certificate records.</LI>		
+		</ul>
+		<h4 class="dtH4">CertificateRequestGetRequest  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. The ComapnyCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. The CustomerCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>RequestStatus</CODE>
+			has been added. Current status of the Request.</LI>
+			<LI>
+				<CODE>ModFromDate</CODE>
+			has been added. The ModFromDate indicates the date from which the certificates needs to be fetched.</LI>
+			<LI>
+				<CODE>ModToDate</CODE>
+			has been added. The ModToDate indicates the date from which the certificates needs to be fetched.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateRequestGetResult  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CertificateRequests</CODE>
+			has been added. The CertificateRequests contains collection of certificate request records.</LI>		
+		</ul>
+		<h4 class="dtH4">CertificateImageGetRequest  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. The ComapnyCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>AvaCertId</CODE>
+			has been added. Unique identifier for the Certificate record.</LI>
+			<LI>
+				<CODE>Format</CODE>
+			has been added. Format in which the image needs to be exported.</LI>
+			<LI>
+				<CODE>PageNumber</CODE>
+			has been added. Page number of the certificate image. </LI>
+		</ul>
+		<h4 class="dtH4">CertificateImageGetResult  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>AvaCertId</CODE>
+			has been added. Unique identifier for the Certificate record.</LI>
+			<LI>
+				<CODE>Image</CODE>
+			has been added. Image is the Certificate image.</LI>	
+		</ul>
+		<h4 class="dtH4">Customer class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. CustomerCode indicates the customer identification code from client system.</LI>
+			<LI>
+				<CODE>NewCustomerCode</CODE>
+			has been added. NewCustomerCode is used for changing the CustomerCode.</LI>
+			<LI>
+				<CODE>ParentCustomerCode</CODE>
+			has been added. ParentCustomerCode is unique identifier for the parent customer record.</LI>
+			<LI>
+				<CODE>Type</CODE>
+			has been added. Type indicates the customer type code.</LI>
+			<LI>
+				<CODE>BusinessName</CODE>
+			has been added. BusinessName indicates the business or organization name.</LI>
+			<LI>
+				<CODE>Attn</CODE>
+			has been added. Attn indicates the name of the person to use in correspondence for the Customer record..</LI>
+			<LI>
+				<CODE>Address1</CODE>
+			has been added. Address1 is the Address line 1 .</LI>
+			<LI>
+				<CODE>Address2</CODE>
+			has been added. Address2 is the Address line 2 .</LI>
+			<LI>
+				<CODE>City</CODE>
+			has been added. City name.</LI>
+			<LI>
+				<CODE>State</CODE>
+			has been added. State indicates the state or province name.</LI>
+			<LI>
+				<CODE>Country</CODE>
+			has been added. Country is the ISO 2-character country code.</LI>
+			<LI>
+				<CODE>Zip</CODE>
+			has been added. Zip is the ZIP or postal code.</LI>
+			<LI>
+				<CODE>Phone</CODE>
+			has been added. Phone number.</LI>
+			<LI>
+				<CODE>Fax</CODE>
+			has been added. Fax number.</LI>
+			<LI>
+				<CODE>Email</CODE>
+			has been added. Email address.</LI>
+		</ul>
+		<h4 class="dtH4">Certificate class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>AvaCertId</CODE>
+			has been added. The AvaCertId is the unique identifier for the Certificate record.</LI>			
+			<LI>
+				<CODE>CertificateJurisdictions</CODE>
+			has been added. The CertificateJurisdictions contains the details of Certificate Jurisdiction.</LI>	
+			<LI>
+				<CODE>CustomerCodes</CODE>
+			has been added. The CustomerCodes for the customer associated with the Certificate record.</LI>
+			<LI>
+				<CODE>SourceLocationName</CODE>
+			has been added. The SourceLocationName is the source location display name for the Certificate record (the client location responsible for tracking the certificate).</LI>
+			<LI>
+				<CODE>SourceLocationCode</CODE>
+			has been added. The SourceLocationCode is the source location code for the Certificate record (the client location responsible for tracking the certificate).</LI>
+			<LI>
+				<CODE>CertificateStatus</CODE>
+			has been added. The CertificateStatus is the status for the Certificate record.</LI>
+			<LI>
+				<CODE>ReviewStatus</CODE>
+			has been added. The ReviewStatus is the review status for the Certificate record.</LI>
+			<LI>
+				<CODE>RejectionReasonCode</CODE>
+			has been added. Reason for rejection of a certificate when ReviewStatus of the Certificate record is REJECTED.</LI>
+			<LI>
+				<CODE>RejectionReasonDetailCode</CODE>
+			has been added. Details about the reason for rejection of a certificate when ReviewStatus of the Certificate record is REJECTED.</LI>
+			<LI>
+				<CODE>RejectionReasonCustomText</CODE>
+			has been added. Custom Reason or details about a reason for rejection of a certificate provided by the user when ReviewStatus of the Certificate record is REJECTED.</LI>
+			<LI>
+				<CODE>CreatedDate</CODE>
+			has been added. The CreatedDate is the creation date of the Certificate record.</LI>
+			<LI>
+				<CODE>LastModifyDate</CODE>
+			has been added. The LastModifyDate is the last modified date of the Certificate record.</LI>
+			<LI>
+				<CODE>DocReceivedDate</CODE>
+			has been added. The DocReceivedDate is the received date of the Certificate record.</LI>
+			<LI>
+				<CODE>BusinessName</CODE>
+			has been added. The BusinessName is the business name of the Certificate record.</LI>
+			<LI>
+				<CODE>Address1</CODE>
+			has been added. Address1 is the address1 field for the Certificate record.</LI>
+			<LI>
+				<CODE>Address2</CODE>
+			has been added. Address2 is the address2 field for the Certificate record.</LI>
+			<LI>
+				<CODE>City</CODE>
+			has been added. City is the exempt customer city address field for the Certificate record.</LI>
+			<LI>
+				<CODE>State</CODE>
+			has been added. State is the exempt customer region address field for the Certificate record.</LI>
+			<LI>
+				<CODE>Country</CODE>
+			has been added. Country is the exempt customer country address field for the Certificate record.</LI>
+			<LI>
+				<CODE>Zip</CODE>
+			has been added. Zip is the US zip or zip+4 code (or CA postal code) address field for the Certificate record.</LI>			
+			<LI>
+				<CODE>Phone</CODE>
+			has been added. Phone number field for the Certificate record.</LI>
+			<LI>
+				<CODE>Email</CODE>
+			has been added. Email address field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignerName</CODE>
+			has been added. SignerName is the exempt customer signer name field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignerTitle</CODE>
+			has been added. SignerTitle is the exempt customer signer title field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignedDate</CODE>
+			has been added. SignedDate is the effective date (or the actual signature date) of the Certificate record.</LI>
+			<LI>
+				<CODE>BusinessDescription</CODE>
+			has been added. BusinessDescription is the exempt customer business description field for the Certificate record.</LI>
+			<LI>
+				<CODE>SellerPropertyDescription</CODE>
+			has been added. SellerPropertyDescription is the seller property description the exempt customer selected for the Certificate record.</LI>
+			<LI>
+				<CODE>CertificateUsage</CODE>
+			has been added. CertificateUsage is the usage type for the Certificate record.</LI>
+			<LI>
+				<CODE>IsPartialExemption</CODE>
+			has been added. IsPartialExemption indicates whether the Certificate record is considered "partially exempt".</LI>
+			<LI>
+				<CODE>ExemptReasonCode</CODE>
+			has been added. ExemptReasonCode is the client-specified exemption reason code for the Certificate record.</LI>
+			<LI>
+				<CODE>ExemptFormName</CODE>
+			has been added. ExemptFormName is the name of the state-issued form for the Certificate record; either a system-defined code name or a client-specified custom name.</LI>
+			<LI>
+				<CODE>Custom1</CODE>
+			has been added. Custom1 is the client-specified value for custom Certificate field 1.</LI>
+			<LI>
+				<CODE>Custom2</CODE>
+			has been added. Custom2 is the client-specified value for custom Certificate field 2.</LI>
+			<LI>
+				<CODE>Custom3</CODE>
+			has been added. Custom3 is the client-specified value for custom Certificate field 3.</LI>
+			<LI>
+				<CODE>PageCount</CODE>
+			has been added. Number of pages in the Certificate record.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateJurisdiction class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>Jurisdiction</CODE>
+			has been added. The JurisdictionCode for the Jurisdiction record.</LI>			
+			<LI>
+				<CODE>Country</CODE>
+			has been added. The Country code for the Jurisdiction record (ISO-3166-1-alpha-2 Country Code).</LI>	
+			<LI>
+				<CODE>ExpiryDate</CODE>
+			has been added. The Expiry Date is an expiration date for the Jurisdiction record..</LI>
+			<LI>
+				<CODE>DoesNotExpire</CODE>
+			has been added. The DoesNotExpire indicates whether the Jurisdiction can expire.</LI>
+			<LI>
+				<CODE>PermitNumbers</CODE>
+			has been added. The PermitNumbers are the exempt customer permit number(s) for the Jurisdiction record.</LI>
+		</ul>
+		<h4 class="dtH4">CertificateRequest class</h4>
+		<p></p>
+		<ul>
+		    <LI>
+				<CODE>AvaCertId</CODE>
+			has been added. The AvaCertId is the unique identifier for the c ertificate request record.</LI>		
+			<LI>
+				<CODE>TrackingCode</CODE>
+			has been added. Unique Tracking Code for the certificate request record.</LI>
+			<LI>
+				<CODE>SourceLocationCode</CODE>
+			has been added. Source location code for the certificate record (the client location responsible for tracking the certificate).</LI>
+		    <LI>
+				<CODE>RequestDate</CODE>
+			has been added. Request date of the certificate request record.</LI>
+		    <LI>
+				<CODE>CustomerCode</CODE>
+			has been added. Customer identification code for the customer associated with the certificate request record.</LI>
+		    <LI>
+				<CODE>CreatorName</CODE>
+			has been added. CreatorName the certificate request record.</LI>
+		    <LI>
+				<CODE>LastModifyDate</CODE>
+			has been added. Last modification date of the certificate request record.</LI>
+		    <LI>
+				<CODE>RequestStatus</CODE>
+			has been added. Request status for the certificate request record.</LI>
+		    <LI>
+				<CODE>RequestStage</CODE>
+			has been added. Request stage for the certificate request record.</LI>
+		    <LI>
+				<CODE>CommunicationMode</CODE>
+			has been added. CommunicationMode for the certificate request record. </LI>
+		</ul>
+
+		<H4 class="dtH4">RequestType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>STANDARD</CODE> which sends correspondences and follow ups related to this Request to the associated Customer.</LI>
+			<LI>
+				Created new enum type called <CODE>DIRECT</CODE> which does not send any correspondence or follow ups related to this Request to the associated Customer.</LI>
+		</UL>	
+		<H4 class="dtH4">FormatType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>NULL</CODE> which indicates value has not been set.</LI>
+			<LI>
+				Created new enum type called <CODE>PNG</CODE> which is a bitmapped binary image in the 1-bit PNG format (default value). </LI>
+			<LI>
+				Created new enum type called <CODE>PDF</CODE> which is a document in Portable document format with images of every page in the certificate. </LI>
+		</UL>
+		<H4 class="dtH4">CertificateStatus enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>ACTIVE</CODE> which is active with images received.</LI>
+			<LI>
+				Created new enum type called <CODE>VOID</CODE> which has been voided from active use.</LI>
+			<LI>
+				Created new enum type called <CODE>INCOMPLETE</CODE> which does not yet have all of its images received.</LI>
+		</UL>		
+		<H4 class="dtH4">CertificateReviewStatus enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>PENDING</CODE> which has not yet been reviewed.</LI>
+			<LI>
+				Created new enum type called <CODE>ACCEPTED</CODE> which was accepted during review.</LI>
+			<LI>
+				Created new enum type called <CODE>REJECTED</CODE> which was rejected during review.</LI>
+		</UL>		
+		<H4 class="dtH4">CertificateRequestStatus enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>ALL</CODE> which is of any status.</LI>
+			<LI>
+				Created new enum type called <CODE>OPEN</CODE> which has been initiated and is currently open.</LI>
+			<LI>
+				Created new enum type called <CODE>CLOSED</CODE> which has been closed, either manually or automatically.</LI>
+		</UL>		
+		<H4 class="dtH4">CertificateRequestStage enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>REQUESTINITIATED</CODE> which indicates request has been initiated; correspondence has been sent to the associated Customer.</LI>
+			<LI>
+				Created new enum type called <CODE>CUSTOMERRESPONDED</CODE> which indicates customer has responded to the correspondence.</LI>
+			<LI>
+				Created new enum type called <CODE>CERTIFICATERECEIVED</CODE> which indicates customer has provided a Certificate.</LI>
+		</UL>	
+		<H4 class="dtH4">CertificateUsage enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>BLANKET</CODE> which indicates the certificate may be used multiple times.</LI>
+			<LI>
+				Created new enum type called <CODE>SINGLE</CODE> which indicates the certificate may only be used for a single transaction.</LI>
+			<LI>
+				Created new enum type called <CODE>NULL</CODE> which indicates value has not been set.</LI>
+		</UL>
+		<H4 class="dtH4">CommunicationMode enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>NULL</CODE> which is no value has been set.</LI>
+			<LI>
+				Created new enum type called <CODE>EMAIL</CODE> which is Email address.</LI>
+			<LI>
+				Created new enum type called <CODE>MAIL</CODE> which is Mail address.</LI>
+			<LI>
+				Created new enum type called <CODE>FAX</CODE> which is Fax number.</LI>
+		</UL>
+		
+		<h3 class="dtH3">AddressSvc:</h3>		
+		<h4 class="dtH4">ValidAddress  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxRegionId</CODE>
+			has been added. TaxRegionId provides the ability to override the tax region assignment for an address.</LI>
+		</ul>
+
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.8 to 5.10</h3>
+		<p></p>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+				Added new GetExemptionCertificates AvaCert method that will obtain all certificates from vCert for a customer.</li>
+			</ul>
+		</DIV>
+		<h3 class="dtH3">AvaCertSvc:</h3>
+		
+		<h4 class="dtH4">InitiateExemptCertRequest  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>RequestType</CODE>
+			has been added. The RequestType indicates the type of the request to be initiated.</LI>
+		</ul>
+		<h4 class="dtH4">InitiateExemptCertResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>WizardLaunchUrl</CODE>
+			has been added. The WizardLaunchUrl is an unique tracking Url for the Request, that is used to launch the wizard.</LI>			
+		</ul>
+		<h4 class="dtH4">GetExemptionCertificatesRequest  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. The ComapnyCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. The CustomerCode associated with a certificate record.</LI>
+			<LI>
+				<CODE>FromDate</CODE>
+			has been added. The FromDate indicates the date from which the certificates needs to be fetched.</LI>
+			<LI>
+				<CODE>ToDate</CODE>
+			has been added. The ToDate indicates the date from which the certificates needs to be fetched.</LI>
+			<LI>
+				<CODE>Region</CODE>
+			has been added. The Region associated with a certificate record.</LI>
+		</ul>
+		<h4 class="dtH4">GetExemptionCertificatesResult  class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>ExemptionCertificates</CODE>
+			has been added. The ExemptionCertificates contains collection of exemption certificate records.</LI>
+			<LI>
+				<CODE>RecordCount</CODE>
+			has been added. The RecordCount indicates the total number of exemption certificates returned.</LI>			
+		</ul>
+		<h4 class="dtH4">ExemptionCertificate class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>AvaCertId</CODE>
+			has been added. The AvaCertId is the unique identifier for the Certificate record.</LI>			
+			<LI>
+				<CODE>Jurisdictions</CODE>
+			has been added. The Jurisdictions contains the details of Jurisdiction.</LI>	
+			<LI>
+				<CODE>CustomerCodes</CODE>
+			has been added. The CustomerCodes for the customer associated with the Certificate record.</LI>
+			<LI>
+				<CODE>CustomerType</CODE>
+			has been added. The CustomerType of the customer associated with the Certificate record.</LI>
+			<LI>
+				<CODE>LocationName</CODE>
+			has been added. The LocationName is the source location display name for the Certificate record (the client location responsible for tracking the certificate).</LI>
+			<LI>
+				<CODE>LocationCode</CODE>
+			has been added. The LocationCode is the source location code for the Certificate record (the client location responsible for tracking the certificate).</LI>
+			<LI>
+				<CODE>CertificateStatus</CODE>
+			has been added. The CertificateStatus is the status for the Certificate record.</LI>
+			<LI>
+				<CODE>ReviewStatus</CODE>
+			has been added. The ReviewStatus is the review status for the Certificate record.</LI>
+			<LI>
+				<CODE>CreatedDate</CODE>
+			has been added. The CreatedDate is the creation date of the Certificate record.</LI>
+			<LI>
+				<CODE>ModifiedDate</CODE>
+			has been added. The ModifiedDate is the last modified date of the Certificate record.</LI>
+			<LI>
+				<CODE>ReceivedDate</CODE>
+			has been added. The ReceivedDate is the received date of the Certificate record.</LI>
+			<LI>
+				<CODE>BusinessName</CODE>
+			has been added. The BusinessName is the business name of the Certificate record.</LI>
+			<LI>
+				<CODE>Address1</CODE>
+			has been added. Address1 is the address1 field for the Certificate record.</LI>
+			<LI>
+				<CODE>Address2</CODE>
+			has been added. Address2 is the address2 field for the Certificate record.</LI>
+			<LI>
+				<CODE>City</CODE>
+			has been added. City is the exempt customer city address field for the Certificate record.</LI>
+			<LI>
+				<CODE>Region</CODE>
+			has been added. Region is the exempt customer region address field for the Certificate record.</LI>
+			<LI>
+				<CODE>Country</CODE>
+			has been added. Country is the exempt customer country address field for the Certificate record.</LI>
+			<LI>
+				<CODE>PostalCode</CODE>
+			has been added. PostalCode is the US zip or zip+4 code (or CA postal code) address field for the Certificate record.</LI>			
+			<LI>
+				<CODE>Phone</CODE>
+			has been added. Phone number field for the Certificate record.</LI>
+			<LI>
+				<CODE>Email</CODE>
+			has been added. Email address field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignerName</CODE>
+			has been added. SignerName is the exempt customer signer name field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignerTitle</CODE>
+			has been added. SignerTitle is the exempt customer signer title field for the Certificate record.</LI>
+			<LI>
+				<CODE>SignedDate</CODE>
+			has been added. SignedDate is the effective date (or the actual signature date) of the Certificate record.</LI>
+			<LI>
+				<CODE>BusinessDescription</CODE>
+			has been added. BusinessDescription is the exempt customer business description field for the Certificate record.</LI>
+			<LI>
+				<CODE>SellerPropertyDescription</CODE>
+			has been added. SellerPropertyDescription is the seller property description the exempt customer selected for the Certificate record.</LI>
+			<LI>
+				<CODE>CertificateUsage</CODE>
+			has been added. CertificateUsage is the usage type for the Certificate record.</LI>
+			<LI>
+				<CODE>IsPartialExemption</CODE>
+			has been added. IsPartialExemption indicates whether the Certificate record is considered "partially exempt".</LI>
+			<LI>
+				<CODE>ExemptReasonCode</CODE>
+			has been added. ExemptReasonCode is the client-specified exemption reason code for the Certificate record.</LI>
+			<LI>
+				<CODE>ExemptFormName</CODE>
+			has been added. ExemptFormName is the name of the state-issued form for the Certificate record; either a system-defined code name or a client-specified custom name.</LI>
+			<LI>
+				<CODE>Custom1</CODE>
+			has been added. Custom1 is the client-specified value for custom Certificate field 1.</LI>
+			<LI>
+				<CODE>Custom2</CODE>
+			has been added. Custom2 is the client-specified value for custom Certificate field 2.</LI>
+			<LI>
+				<CODE>Custom3</CODE>
+			has been added. Custom3 is the client-specified value for custom Certificate field 3.</LI>
+		</ul>
+		<h4 class="dtH4">Jurisdiction class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>JurisdictionCode</CODE>
+			has been added. The JurisdictionCode for the Jurisdiction record.</LI>			
+			<LI>
+				<CODE>Country</CODE>
+			has been added. The Country code for the Jurisdiction record (ISO-3166-1-alpha-2 Country Code).</LI>	
+			<LI>
+				<CODE>ExpiryDate</CODE>
+			has been added. The Expiry Date is an expiration date for the Jurisdiction record..</LI>
+			<LI>
+				<CODE>DoesNotExpire</CODE>
+			has been added. The DoesNotExpire indicates whether the Jurisdiction can expire.</LI>
+			<LI>
+				<CODE>PermitNumbers</CODE>
+			has been added. The PermitNumbers are the exempt customer permit number(s) for the Jurisdiction record.</LI>
+		</ul>
+		<H4 class="dtH4">RequestType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>STANDARD</CODE> which sends correspondences and follow ups related to this Request to the associated Customer.</LI>
+			<LI>
+				Created new enum type called <CODE>DIRECT</CODE> which does not send any correspondence or follow ups related to this Request to the associated Customer.</LI>
+		</UL>		
+		<H4 class="dtH4">CertificateStatus enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>ACTIVE</CODE> which is active with images received.</LI>
+			<LI>
+				Created new enum type called <CODE>VOID</CODE> which has been voided from active use.</LI>
+			<LI>
+				Created new enum type called <CODE>INCOMPLETE</CODE> which does not yet have all of its images received.</LI>
+		</UL>		
+		<H4 class="dtH4">ReviewStatus enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>PENDING</CODE> which has not yet been reviewed.</LI>
+			<LI>
+				Created new enum type called <CODE>ACCEPTED</CODE> which was accepted during review.</LI>
+			<LI>
+				Created new enum type called <CODE>REJECTED</CODE> which was rejected during review.</LI>
+		</UL>	
+		<H4 class="dtH4">CertificateUsage enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>BLANKET</CODE> which indicates the certificate may be used multiple times.</LI>
+			<LI>
+				Created new enum type called <CODE>SINGLE</CODE> which indicates the certificate may only be used for a single transaction.</LI>
+			<LI>
+				Created new enum type called <CODE>NULL</CODE> which indicates value has not been set.</LI>
+		</UL>		
+
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.7 to 5.8</h3>
+		<p></p>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+				Added new Service AvaCert to add exempt customers and initiate certificate requests.</li>
+			</ul>
+		</DIV>
+		<h3 class="dtH3">AvaCertSvc:</h3>
+		
+		<h4 class="dtH4">AddCustomerRequest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>Customer</CODE>
+			has been added. The customer data to add.</LI>
+		</ul>
+		<h4 class="dtH4">AddCustomerResult class</h4>
+		<p></p>
+		<h4 class="dtH4">InitiateExemptCertRequest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>Customer</CODE>
+			has been added. The customer data to add.</LI>
+			<LI>
+				<CODE>CommunicationMode</CODE>
+			has been added. CommunicationMode indicates the mode to use for communicating with the customer like Email, Mail, or Fax.</LI>
+			<LI>
+				<CODE>LocationCode</CODE>
+			has been added. LocationCode is the Source LocationCode for the request. If provided; the code must be one that exists for the Company.</LI>
+			<LI>
+				<CODE>CustomMessage</CODE>
+			has been added. Custom message to be used for the request.</LI>
+		</ul>
+		<h4 class="dtH4">InitiateExemptCertResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TrackingCode</CODE>
+			has been added. TrackingCode indicates the unique Tracking Code of the Request.</LI>
+		</ul>
+		<h4 class="dtH4">Customer class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>CompanyCode</CODE>
+			has been added. CompanyCode for the customer.</LI>
+			<LI>
+				<CODE>CustomerCode</CODE>
+			has been added. CustomerCode indicates the customer identification code from client system.</LI>
+			<LI>
+				<CODE>NewCustomerCode</CODE>
+			has been added. NewCustomerCode is used for changing the CustomerCode.</LI>
+			<LI>
+				<CODE>ParentCustomerCode</CODE>
+			has been added. ParentCustomerCode is unique identifier for the parent customer record.</LI>
+			<LI>
+				<CODE>CustomerType</CODE>
+			has been added. CustomerType indicates the customer type code.</LI>
+			<LI>
+				<CODE>CustomerName</CODE>
+			has been added. CustomerName indicates the business or organization name.</LI>
+			<LI>
+				<CODE>Attn</CODE>
+			has been added. Attn indicates the name of the person to use in correspondence for the Customer record..</LI>
+			<LI>
+				<CODE>Address1</CODE>
+			has been added. Address1 is the Address line 1 .</LI>
+			<LI>
+				<CODE>Address2</CODE>
+			has been added. Address2 is the Address line 2 .</LI>
+			<LI>
+				<CODE>City</CODE>
+			has been added. City name.</LI>
+			<LI>
+				<CODE>Region</CODE>
+			has been added. Region indicates the state or province name.</LI>
+			<LI>
+				<CODE>PostalCode</CODE>
+			has been added. PostalCode is the ZIP or postal code.</LI>
+			<LI>
+				<CODE>Country</CODE>
+			has been added. Country is the ISO 2-character country code.</LI>
+			<LI>
+				<CODE>Phone</CODE>
+			has been added. Phone number.</LI>
+			<LI>
+				<CODE>Fax</CODE>
+			has been added. Fax number.</LI>
+			<LI>
+				<CODE>Email</CODE>
+			has been added. Email address.</LI>
+		</ul>
+		<H4 class="dtH4">CommunicationMode enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Email</CODE>
+			which is Email address.</LI>
+			<LI>
+				Created new enum type called <CODE>Mail</CODE> which is Mail address.</LI>
+			<LI>
+				Created new enum type called <CODE>Fax</CODE>
+			which is Fax number.</LI>
+		</UL>
+
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.3.1 to 5.7</h3>
+		<p></p>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+				Removed DocID property
+				<li>
+				Added NewDocCode property
+				<li>
+					Modified LastDocID to LastDocCode for Reconciliation</li>
+			</ul>
+		</DIV>
+		<h3 class="dtH3">TaxSvc changes:</h3>
+		<ul>
+			<LI>
+				Removed DocId from the following types. Use DocCode and CompanyCode instead of 
+				DocId.
+				<ul>
+					<LI>
+					GetTaxResult
+					<LI>
+					PostTaxRequest
+					<LI>
+					PostTaxResult
+					<LI>
+					CommitTaxRequest
+					<LI>
+					CommitTaxResult
+					<LI>
+					CancelTaxRequest
+					<LI>
+					CancelTaxResult
+					<LI>
+					ApplyPaymentRequest
+					<LI>
+						ApplyPaymentResult</LI>
+				</ul>
+			<LI>
+				Added NewDocCode to the following types. During a PostTax or CommitTax call if 
+				this property is set it will replace the value in the DocCode with the value 
+				set in NewDocCode.
+				<ul>
+					<LI>
+					PostTaxRequest
+					<LI>
+						CommitTaxRequest</LI>
+				</ul>
+			<LI>
+				Removed HashCode from the following types.
+				<ul>
+					<LI>
+					GetTaxRequest
+					<LI>
+					GetTaxResult
+					<LI>
+						PostTaxRequest</LI>
+				</ul>
+			</LI>
+		</ul>
+		<h4 class="dtH4">ReconcileTaxHistoryRequest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>DocType</CODE>
+			has been added. The original document's type, such as Sales Invoice or Purchase 
+			Invoice.
+			<LI>
+				<CODE>LastDocCode</CODE>
+			has been added. Used to seek for additional results in large result sets.
+			<LI>
+				<CODE>PageSize</CODE>
+			has been added. Indicates the number of records to return.
+			<LI>
+				Eliminated LastDocId and Reconciled from ReconcileTaxHistoryRequest.</LI>
+		</ul>
+		<h4 class="dtH4">ReconcileTaxHistoryResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>LastDocCode</CODE>
+			has been added. Indicates the last document code in the current result set.
+			<LI>
+				<CODE>RecordCount</CODE>
+			has been added. Indicates the total number of records in the 
+			ReconcileTaxHistoryResult.
+			<LI>
+				Eliminated LastDocId from ReconcileTaxHistoryResult.</LI>
+		</ul>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>StateAssignedNo</CODE> has been added. StateAssignedNo indicates the 
+				identifier given to the location by the state.
+			</LI>
+		</ul>
+		<H4 class="dtH4">DocumentType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Added a new enum value called <CODE>DocumentType.Any</CODE> which is used to 
+				return all types of documents.
+			</LI>
+		</UL>
+		<P>&nbsp;</P>
+		<h3 class="dtH3">AddressSvc changes:</h3>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.3 to 5.3.1</h3>
+		<p></p>
+		<H4 class="dtH4">TaxType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Fee</CODE>
+			which is PIFs (Public Improvement Fees) and RSFs (Retail Sales Fees).
+			<LI>
+				Created new enum type called <CODE>Rental</CODE> which is Rental tax.
+			</LI>
+		</UL>
+		<H4></H4>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 5.0.2.0 to 5.3.1.0</h3>
+		<p></p>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+				Several properties were added and some behavioral changes were made for the 
+				existing ones.
+				<li>
+					The adapter no longer requires the Log4Net.dll and the 
+					Microsoft.Web.Services2.dlls. A new AvaLogger has been added and may be 
+					configured in the Avalara.AvaTax.Adapter.config file.
+				</li>
+			</ul>
+		</DIV>
+		<h4 class="dtH4">GetTaxRequest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>ExchangeRate</CODE>
+			has been added. ExchangeRate indicates the currency exchange rate from the 
+			transaction currency (indicated by CurrencyCode) to the company base currency. 
+			This only needs to be set if the transaction currency is different than the 
+			company base currency. It defaults to 1.0.
+			<LI>
+				<CODE>ExchangeRateEffDate</CODE>
+			has been added. ExchangeRateEffDate indicates the effective date of the 
+			exchange rate. It should be set in conjunction with ExchangeRate. It will 
+			default to the DocDate if not set.
+			<LI>
+				<CODE>PaymentDate</CODE> has been added. PaymentDate indicates the date when 
+				payment was received for the document. It is only applicable for cash-basis 
+				accounting and does not need to be set otherwise. It defaults to 1/1/1900 which 
+				indicates no payment. The new TaxSvc.ApplyPayment method may be used to apply a 
+				payment to an existing invoice.<BR>
+				<i>Note: The ReportingDate for a cash-basis invoice will be set to 12/31/9999.</i>
+			</LI>
+		</ul>
+		<h4 class="dtH4">GetTaxResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TotalTaxCalculated</CODE>
+			has been added. TotalTaxCalculated indicates the total tax calculated by 
+			AvaTax. This is usually the same as the TotalTax, except when a tax override 
+			amount is specified. This is for informational purposes. The TotalTax will 
+			still be used for reporting.
+			<LI>
+				<CODE>TaxSummary</CODE> has been added. TaxSummary is now returned when 
+				GetTaxRequest.DetailLevel == DetailLevel.Line in addition to 
+				DetailLevel.Summary. It is not returned for DetailLevel.Document or 
+				DetailLevel.TaxDetail.
+			</LI>
+		</ul>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>RateType</CODE> has been added. RateType indicates the tax rate type. 
+				These currently include:
+				<ul>
+					<LI>
+					F = Food (US)
+					<LI>
+					G = General (US)
+					<LI>
+					S = Standard (VAT)
+					<LI>
+					R = Reduced (VAT)
+					<LI>
+					Q = Super Reduced (VAT)
+					<LI>
+					A = Reduced Rate 1 (VAT)
+					<LI>
+					B = Reduced Rate 2 (VAT)
+					<LI>
+						Z = Zero Rate
+					</LI>
+				</ul>
+			<LI>
+				<CODE>TaxCalculated</CODE>
+			has been added. TaxCalculated indicates the tax calculated by AvaTax. It will 
+			usually be the same as the Tax property, unless it has been overridden by a 
+			TaxOverride.TaxAmount.
+			<LI>
+				<CODE>TaxGroup</CODE> has been added. TaxGroup indicates the group code when 
+				special grouping is enabled for particular client applications. For other 
+				clients, it will be empty.
+			</LI>
+		</ul>
+		<h4 class="dtH4">Line class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxIncluded</CODE> has been added. TaxIncluded indicates the tax amount 
+				has already been included in the line Amount. The tax will be reversed out and 
+				returned in the TaxLine.Tax property. The TaxLine.Taxable property will 
+				indicate the calculated tax base amount.
+			</LI>
+		</ul>
+		<h4 class="dtH4">TaxLine class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxCalculated</CODE>
+			has been added. TaxCalculated indicates the tax calculated by AvaTax. This will 
+			normally be the same as the Tax property unless it has been overridden by a 
+			TaxOverride.TaxAmount.
+			<LI>
+				<CODE>TaxIncluded</CODE> has been added. TaxIncluded indicates the tax has 
+				already been included in the line item prices. When true, the Tax property will 
+				indicate reversed out tax amount and the Taxable property will indicate the 
+				calculated tax base amount.
+			</LI>
+		</ul>
+		<h4 class="dtH4">TaxSvc class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>ApplyPayment</CODE> has been added. ApplyPayment allows a payment to be 
+				applied to an invoice for companies using cash-basis accounting. It will update 
+				the PaymentDate and ReportingDate for that invoice. Until a payment is applied 
+				to cash-basis invoices, the ReportingDate will be set to 12/31/9999 to prevent 
+				the invoice from being reported.
+			</LI>
+		</ul>
+		<H4 class="dtH4">TaxType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Fee</CODE>
+			which is PIFs (Public Improvement Fees) and RSFs (Retail Sales Fees).
+			<LI>
+				Created new enum type called <CODE>Rental</CODE> which is Rental tax.
+			</LI>
+		</UL>
+		<H4></H4>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.17 to 5.0.2.0</h3>
+		<p></p>
+		<DIV>
+			<ul>
+				<li>
+					Several properties were added. Added support for real time client side AuditLog 
+					tracking. You need Avalara customer care executive's help to turn on client 
+					tracing for you. Currently we are noting down time taken on client's machine 
+					for GetTax and Address Validate operations. Please talk to Avalara customer 
+					care executive for further details.</li>
+			</ul>
+		</DIV>
+		<h4 class="dtH4">GetTaxRquest class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxOverride</CODE>
+			has been added. TaxOverride indicates to apply tax override to the document. 
+			<!--LI>
+					<CODE>IsTotalTaxOverriden </CODE>
+				has been added. IsTotalTaxOverriden indicates to apply tax to this line that 
+				has already been calculated by the seller instead of calculating the tax.
+				<li>
+					<code>TotalTaxOverride </code>has been added. TotalTaxOverride is the tax 
+					amount that has already been calculated by the seller that should be applied to 
+					the line instead of the AvaTax calculate tax.-->
+			<LI>
+				<CODE>CurrencyCode</CODE>
+			has been added. CurrencyCode indicates 3 character ISO 4217 currency code.
+			<LI>
+				<CODE>ServiceMode</CODE> has been added. ServiceMode is only supported by 
+				AvaLocal servers. It provides the ability to controls whether tax is calculated 
+				locally or remotely when using an AvaLocal server. <!--LI>
+					<CODE>IsTotalTaxOverriden </CODE>
+				has been added. IsTotalTaxOverriden indicates to apply tax to this line that 
+				has already been calculated by the seller instead of calculating the tax.
+				<li>
+					<code>TotalTaxOverride </code>has been added. TotalTaxOverride is the tax 
+					amount that has already been calculated by the seller that should be applied to 
+					the line instead of the AvaTax calculate tax.--></LI>
+		</ul>
+		<h4 class="dtH4">GetTaxResult class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxSummary</CODE> has been added. TaxSummary is a new array that is 
+				returned if the GetTaxRequest.DetailLevel is Summary. It contains a summary of 
+				TaxDetails for the entire document grouped by Country, JurisType, JurisCode, 
+				and Rate.
+			</LI>
+		</ul>
+		<h4 class="dtH4">Line class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxOverride</CODE> has been added. TaxOverride indicates to apply tax 
+				override to the document at line level.
+			</LI>
+		</ul>
+		<h4 class="dtH4">TaxOverride class</h4>
+		<p></p>
+		<ul>
+			<LI>
+				<CODE>TaxOverrideType</CODE>
+			has been added. TaxOverrideType indicates the type of tax override applied for 
+			the document.
+			<LI>
+				<CODE>TaxAmount </CODE>
+			has been added. TaxAmount indicates to apply tax amount to the doument.
+			<LI>
+				<CODE>TaxDate </CODE>
+			has been added. TaxDate indicates the override tax date to use. This is used 
+			when the tax has been previously calculated as in the case of a layaway, return 
+			or other reason indicated by the Reason element.
+			<li>
+				<code>Reason </code>has been added. Reason is for a tax override for audit 
+				purposes. Typical reasons include: "Return", "Layaway", "Imported".</li>
+		</ul>
+		<h4 class="dtH4">Address class</h4>
+		<p></p>
+		<UL>
+			<li>
+				<code>TaxRegionId </code>has been added. TaxRegionId provides the ability to 
+				override the tax region assignment for an address.</li></UL>
+		<H4 class="dtH4">TaxOverrideType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>None</CODE>
+			which is default.
+			<LI>
+				Created new enum type called <CODE>TaxAmount</CODE>
+			which overrides the total tax for the document.
+			<LI>
+				Created new enum type called <CODE>Exemption</CODE>
+			which certificates are overridden making the document taxable.
+			<LI>
+				Created new enum type called <CODE>TaxDate</CODE> which overrides the DocDate 
+				as the effective date used for tax calculation.
+			</LI>
+		</UL>
+		<H4 class="dtH4">ServiceMode enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Automatic</CODE>
+			which is automated handling by local and/or remote server.
+			<LI>
+				Created new enum type called <CODE>Local</CODE> which is for
+				<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">AvaLocal 
+  server only.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Lines requiring 
+  remote will not be calculated</SPAN>
+			.
+			<LI>
+				Created new enum type called <CODE>Remote</CODE>&nbsp;in which a<SPAN style="FONT-SIZE: 10pt; FONT-FAMILY: Arial; mso-bidi-font-size: 12.0pt; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: 'Times New Roman'; mso-ansi-language: EN-US; mso-fareast-language: EN-US; mso-bidi-language: AR-SA">ll 
+  lines are calculated by AvaTax remote server</SPAN>.</LI></UL>
+		<H4 class="dtH4">ApplyPaymentRequest class</H4>
+		<P></P>
+		<UL>
+			<LI>
+				<CODE>DocId</CODE>
+			has been added. DocId indicates the&nbsp;unique document Id.
+			<LI>
+				<CODE>CompanyCode </CODE>
+			has been added. CompanyCode indicates the client application company reference 
+			code.
+			<LI>
+				<CODE>DocType </CODE>
+			has been added. DocType indicates the document type.
+			<LI>
+				<CODE>DocCode </CODE>
+			has been added. DocCode indicates the internal reference code used by the 
+			client application.
+			<LI>
+				<CODE>PaymentDate </CODE>has been added. PaymentDate indicates the date payment 
+				was applied to the invoice.
+			</LI>
+		</UL>
+		<H4 class="dtH4">ApplyPaymentResult class</H4>
+		<P></P>
+		<UL>
+			<LI>
+				<CODE>DocId</CODE> has been added. DocId indicates the&nbsp;unique document Id.</LI></UL>
+		<H4 class="dtH4">TaxType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Output</CODE>
+			which is VAT/GST Input tax.
+			<LI>
+				Created new enum type called <CODE>Input</CODE>
+			which is VAT/GST Nonrecoverable Input tax.
+			<LI>
+				Created new enum type called <CODE>Nonrecoverable</CODE> which is VAT/GST 
+				Output tax.
+			</LI>
+		</UL>
+		<H4 class="dtH4">JurisdictionType enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Country</CODE> which indicates Country.
+			</LI>
+		</UL>
+		<H4 class="dtH4">AccountingMethod enum</H4>
+		<P></P>
+		<UL>
+			<LI>
+				Created new enum type called <CODE>Accural</CODE>
+			which is Accural basis (default).
+			<LI>
+				Created new enum type called <CODE>Cash</CODE> which is Cash basis.</LI></UL>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.13 to 4.17</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				Several properties were added. Introducing AdjustTax method for performing 
+				adjustment on committed&nbsp; documents. log4net.dll has been updated to 
+				version 1.2.10.0.</li>
+		</ul>
+		<h4 class="dtH4">AdjustTax call</h4>
+		<ul>
+			<li>
+				<code>AdjustTax </code>call has been added. This takes AdjustTaxRequest as an 
+				input and returns AdjustTaxResult which inherits GetTaxResult.
+			</li>
+		</ul>
+		<h4 class="dtH4">AdjustTaxRequest class</h4>
+		<ul>
+			<li>
+				<code>AdjustTaxRequest </code>has been added. It is made of AdjustmentReason, 
+				AdjustmentDescription and GetTaxRequest object. It is an input for AdjustTax 
+				call.
+			</li>
+		</ul>
+		<h4 class="dtH4">AdjustTaxRequest class</h4>
+		<ul>
+			<li>
+				<code>AdjustTaxResult </code>has been added. It is similar to GetTaxResult 
+				object. It is returned from AdjustTax call.</li>
+		</ul>
+		<p></p>
+		<p></p>
+		<h4 class="dtH4">GetTaxRequest class</h4>
+		<ul>
+			<li>
+				<code>Commit </code>has been added. Setting this value to true will straight 
+				away commit the document at the time of GetTax call. This saves you separate 
+				PostTax and CommitTax call.
+			</li>
+		</ul>
+		<h4 class="dtH4">GetTaxResult class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Locked </code>
+			has been added. Flag identifying the Document has been locked by Avalara's MRS 
+			process..
+			<li>
+				<code>AdjustmentReason&nbsp;</code>has been added. Valid reason for 
+			adjusting document.
+			<li>
+				<code>AdjustmentDescription&nbsp;</code>has been added. Description for 
+			adjusting document.
+			<li>
+				<code>Version&nbsp;</code>has been added. This shows current version of 
+			document.
+			<li>
+				<code>TaxDate&nbsp;</code>has been added. It is the date used to calculate tax 
+				on the Document.</li>
+		</ul>
+		<h4 class="dtH4">PostTaxRequest class</h4>
+		<ul>
+			<li>
+				<code>Commit </code>has been added. Setting this value to true will straight 
+				away commit the document at the time of PostTax call. This saves you separate 
+				CommitTax call.
+			</li>
+		</ul>
+		<h4 class="dtH4">TaxLine class</h4>
+		<ul>
+			<li>
+				<code>ExemptCertId </code>has been added. This specifies ExemptCertId applied 
+				to a particulat Line during GetTax call.
+			</li>
+		</ul>
+		<h4 class="dtH4">CancelCode enum</h4>
+		<p></p>
+		<ul>
+			<li>
+				Created new enum type called <code>AdjustmentCancelled</code> which cancels the 
+				adjustment made.</li>
+		</ul>
+		<h4 class="dtH4">DocStatus enum</h4>
+		<p></p>
+		<ul>
+			<li>
+				Created new enum type called <code>Adjusted</code> which says document has been 
+				adjusted using AdjustTax call.</li>
+		</ul>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.12 to 4.13</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				Several properties were added.
+			</li>
+		</ul>
+		<p></p>
+		<p></p>
+		<h4 class="dtH4">ValidAddress class</h4>
+		<ul>
+			<li>
+				<code>Latitude </code>
+			has been added. This contains the latitude value for 5-digit ZIP or 6 character 
+			Postal Code if Coordinates [in ValidateRequest class] = true.
+			<li>
+				<code>Longitude&nbsp;</code>has been added. This contains the longitude value 
+				for 5-digit ZIP or 6 character Postal Code if Coordinates [in ValidateRequest 
+				class] = true.
+			</li>
+		</ul>
+		<h4 class="dtH4">ValidateRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Coordinates </code>has been added. Setting it to true returns the 
+				Latitude and Longitude values for the ValidAddress class. Default is false.
+			</li>
+		</ul>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.1 to 4.12</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				Several properties were added and some behavioral changes for the existing 
+				ones.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">Line class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>CustomerUsageType </code>
+			has been added. Value at line level will override the value at GetTaxRequest 
+			level.&nbsp;This plays a big role in determining the Exemption.
+			<li>
+				<code>Description&nbsp;</code>has been added. This defines the description for 
+				the product or item.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>TaxName&nbsp;</code>has been added which further defines tax and 
+				jurisdiction.</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">GetTaxRequest&nbsp;class</h4>
+		<h4 class="dtH4"></h4>
+		<ul>
+			<li>
+				<code>HashCode</code>&nbsp;has been added. This should be computed by an 
+			SDK developer using some standard algorithm out of the content of the object. 
+			This value gets stored in the system and can be retrieved for the cross 
+			checking [Internal Reconciliation purpose].
+			<li>
+				<code>LocationCode</code>&nbsp;has been added. It is Also referred to as a 
+				Store Location, Outlet Id, or Outlet code is a number assigned by the State 
+				which identifies a Store location. Some state returns require taxes are broken 
+				out separately for Store Locations.</li>
+		</ul>
+		<h4 class="dtH4">GetTaxResult&nbsp;class</h4>
+		<h4 class="dtH4"></h4>
+		<ul>
+			<li>
+				<code>HashCode</code>&nbsp;has been added. This should be computed by an 
+			SDK developer using some standard algorithm out of the content of the object. 
+			This value gets stored in the system and can be retrieved for the cross 
+			checking [Internal Reconciliation purpose].
+			<li>
+				Implementation for <code>TimeStamp</code> has been modified. Now this value 
+				will get converted in to LocalTimeZone.</li>
+		</ul>
+		<h4 class="dtH4"></h4>
+		<h4 class="dtH4"></h4>
+		<h4 class="dtH4"></h4>
+		<h4 class="dtH4">ReconcileTaxHostory class</h4>
+		<h4></h4>
+		<h4></h4>
+		<h4></h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>StartDate</code>
+			has been added. Set this value&nbsp;to retrieve data FROM a specific date.
+			<li>
+				<code>EndDate</code>
+			has been added. Set this&nbsp;value to retrieve data TO a specific date.
+			<li>
+				<code>Docstatus</code> has been added. Set this value to retrieve data with a 
+				specific.</li>
+		</ul>
+		<h4 class="dtH4">PostTaxRequest class</h4>
+		<h4></h4>
+		<h4></h4>
+		<h4></h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>HashCode</code>&nbsp;has been added. This should be computed by an SDK 
+				developer using some standard algorithm out of the content of the object. This 
+				value gets stored in the system and can be retrieved for the cross checking 
+				[Internal Reconciliation purpose].
+			</li>
+		</ul>
+		<h4 class="dtH4">CommitTaxRequest class</h4>
+		<h4></h4>
+		<h4></h4>
+		<h4></h4>
+		<p></p>
+		<ul>
+			<li>
+				Implementation for<code> DocCode</code>&nbsp;has been updated. Some seller 
+				system generates DocCode at the time of CommitTax. This enables user to provide 
+				a new DocCode at the time of CommitTax call and this should overwrite the 
+				existing DocCode.</li>
+		</ul>
+		<h4 class="dtH4">CancelCode enum</h4>
+		<p></p>
+		<ul>
+			<li>
+				Created new enum type called <code>DocVoided</code> which voids the document.</li>
+		</ul>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.0.1.8 to 4.1</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				Several properties were deprecated in this release. See the section for each 
+				class below for details.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">GetTaxResult class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>TotalExemption</code> has been deprecated. If the total exemption is 
+				needed, calculate a tax with a <code>DetailLevel</code> of <code>Tax</code> and 
+				in the result inspect the exemption amount in each <code>TaxDetail</code>
+			object.
+			<li>
+				<code>TotalTaxable</code> has been deprecated. If the total taxable amount is 
+				needed, calculate a tax with a <code>DetailLevel</code> of <code>Tax</code> and 
+				in the result inspect the taxable amount in each <code>TaxDetail</code> object.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxLine class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Exemption</code> has been deprecated. If the exemption is needed, 
+				calculate a tax with a <code>DetailLevel</code> of <code>Tax</code> and in the 
+				result inspect the exemption amount in each <code>TaxDetail</code>
+			object.
+			<li>
+				<code>Taxable</code> has been deprecated. If the taxable amount is needed, 
+				calculate a tax with a <code>DetailLevel</code> of <code>Tax</code> and in the 
+				result inspect the taxable amount in each <code>TaxDetail</code>
+			object.
+			<li>
+				<code>Rate</code> has been deprecated. If the rate is needed, calculate a tax 
+				with a <code>DetailLevel</code> of <code>Tax</code> and in the result inspect 
+				the rate in each <code>TaxDetail</code> object.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Base</code> has been deprecated. Refer to the <code>Taxable</code>
+			property instead.
+			<li>
+				<code>Exemption</code> has been added at the <code>TaxDetail</code>
+			level in this release.
+			<li>
+				<code>Taxable</code> has been added at the <code>TaxDetail</code> level in this 
+				release. It returns the same data as the deprecated property <code>Base</code>
+			did in previous releases.
+			<li>
+				<code>NonTaxable</code> has been added at the <code>TaxDetail</code> level in 
+				this release.
+			</li>
+		</ul>
+		<p></p>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.0.1.7 to 4.0.1.18</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				The datatype of the <code>DocDate</code> element in the SOAP request sent to 
+				AvaTax<sup>TM</sup> web service has changed from <code>DateTime</code> to <code>Date</code>. 
+				This fixes any problems stemming from timezone differences between the client 
+				and the service. The effected classes are <b>GetTaxRequest</b>, <b>GetTaxResult</b>, 
+				and <b>PostTax</b>. This change does not effect the external interface exposed 
+				to applications consuming the adapter.
+			</li>
+		</ul>
+		<p></p>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.0.1.0 to 4.0.1.7</h3>
+		<h4 class="dtH4">General</h4>
+		<p></p>
+		<ul>
+			<li>
+				All methods of the <b>AddressSvc</b> and <b>TaxSvc</b> classes now return a 
+				result message instead of exception if the adapter was unable to connect to the 
+				web service. The result will have a <code>ResultCode</code> of <code>Error</code>
+				and the <code>Messages</code> collection contains details about the failure.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">Line class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Qty</code> changed from type <code>Decimal</code> to type <code>Double</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxLine class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Rate</code> changed from type <code>Decimal</code> to type <code>Double</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<li>
+				<code>Rate</code> changed from type <code>Decimal</code> to type <code>Double</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h3 class="dtH3" style="BACKGROUND: #dddddd">Version 4.0.0.0 to 4.0.1.0</h3>
+		<h4 class="dtH4">Namespaces</h4>
+		<p></p>
+		<ul>
+			<li>
+				The namespaces for both the <b>AddressSvc</b> and <b>TaxSvc</b> classes has 
+				been changed to <i>http://avatax.avalara.com/services</i>. There is no impact 
+				to any users as a result of this change.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">BoundaryLevel enum</h4>
+		<p></p>
+		<ul>
+			<li>
+				Created new enum type called <code>BoundaryLevel</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">CancelTaxRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>PurchaserCode</code> property to <code>DocType</code> and changed 
+				the type from <code>string</code> to <code>DocumentType</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">CommitTaxRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>PurchaserCode</code> property to <code>DocType</code> and changed 
+				the type from <code>string</code> to <code>DocumentType</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">DocumentType enumeration</h4>
+		<p></p>
+		<ul>
+			<li>
+				Added <code>ReturnOrder</code> and <code>ReturnInvoice</code> document types. 
+				The new types were added to the end of the enumeration; existing enumeration 
+				values are unchanged.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">GetTaxHistoryRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>PurchaserCode</code> property to <code>DocType</code> and changed 
+				the type from <code>string</code> to <code>DocumentType</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">GetTaxRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>PurchaserCode</code> property to <code>CustomerCode</code>.
+			<li>
+				Renamed <code>PurchaserType</code> property to <code>CustomerUsageType</code>.
+			<li>
+				Added new property <code>PurchaseOrderNo</code> of type <code>string</code>.
+			<li>
+				Added new property <code>OriginalDocCode</code> of type <code>string</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">GetTaxResult class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>TotalBase</code> property to <code>TotalTaxable</code>.
+			<li>
+				Added new property <code>TotalDiscount</code> of type <code>Decimal</code> (.NET) 
+				/ <code>Currency</code>
+			(VB6).
+			<li>
+				Added new property <code>TotalExemption</code> of type <code>Decimal</code> (.NET) 
+				/ <code>Currency</code> (VB6).
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">JurisdictionType enum</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>Unspecified</code> enum value to <code>Composite</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">PostTaxRequest class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>PurchaserCode</code> property to <code>DocType</code> and changed 
+				the type from string to DocumentType.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">RequestSecurity class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Removed property Timeout.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxDetail class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>JurisdictionType</code> to <code>JurisType</code>.
+			<li>
+				Renamed <code>FIPSCode</code> property to <code>JurisCode</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">TaxLine class</h4>
+		<p></p>
+		<ul>
+			<li>
+				Renamed <code>Base</code> property to <code>Taxable</code>.
+			<li>
+				Added new property <code>TotalExemption</code> of type <code>Decimal</code> (.NET) 
+				/ <code>Currency</code>
+			(VB6).
+			<li>
+				Added new property <code>Taxability</code> of type <code>boolean</code>.
+			<li>
+				Added new property <code>BoundaryLevel</code> of type <code>BoundaryLevel</code>.
+			</li>
+		</ul>
+		<p></p>
+		<h4 class="dtH4">See Also</h4>
+		<p><a href="overview.html">SDK Overview</a>
+		</p>
+		<hr>
+		<div id="footer">
+			<b>AVALARA CONFIDENTIAL</b><br>
+			© 2004 - 2011 Avalara, Inc.  All rights reserved.
+		</div>
+		</CODE>
+	</body>
+</html>

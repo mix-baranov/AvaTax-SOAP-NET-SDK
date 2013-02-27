@@ -1,0 +1,1 @@
+regasm Avalara.AvaTax.Adapter.dll /tlb /codebase

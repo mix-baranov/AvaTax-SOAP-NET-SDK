@@ -1,0 +1,107 @@
+<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252" />
+    <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+    <title>About CipherGen</title>
+    <xml>
+    </xml>
+    <link rel="stylesheet" type="text/css" href="MSDN.css" />
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead">Avalara AvaTax SDK Documentation</td>
+            <td class="product">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">About CipherGen</h1>
+      </div>
+    </div>
+    <div id="nstext">
+			<p>
+			CipherGen is a utility which encrypts text using a machine-specific key. It is necessary when adding the Account and License configuration properties to the configuration file. Using encryption keeps this sensitive data private; employing a machine-specific key ensures that the configuration file cannot be copied and used on a different machine.
+			</p>
+			<p>
+			It is only necessary to run this utility when there is no other option for securely storing the Account and License values. These values are considered sensitive data, and the best practice is to keep them in a password-protected database or other password-protected storage. Should this not be possible, the Adapter's configuration file does support the properties (see <a href="configuration.html">About Configuration</a>).  In this case, encrypting the values is strongly encouraged.
+			</p>
+			<h3 class="dtH3">Using the Utility</h3>
+			<p>
+			The executable (<b>CipherGen.exe</b>) must be placed in the same directory as the <b>Avalara.AvaTax.Common.Security.dll</b>.
+			</p>
+			<br/>
+			<p>
+			1. Double-click CipherGen.exe or type "CipherGen.exe" into a command window (where the current directory is the location of the executable). When the application is running, you will be prompted to enter the text to be encrypted:
+			<pre class="code">Input the string to encrypt:</pre>
+			</p>
+			<br/>
+			<p>
+			2. Type in the Account number provided by Avalara:
+			<pre class="code">Input the string to encrypt:
+1234567890</pre>
+			<b>CipherGen</b> will output the encrypted text and specify the text file into which the encrypted text has been copied:
+			<pre class="code">01000000D08C9DDF0115D1118C7A00C04FC297EB01000000A65E7B2EBC4A2D4881DB3840FDD9380D
+0400000002000000000003660000A800000010000000FF96D7DB0DF30262A3BA42A917AD2AE50000
+000004800000A0000000100000003D91B0852D9BB22EA4EA1E3086ABC352100000005F560961F88E
+EDB08440C959190D80D514000000034380E4AE62DC64163D894330C1A1D01D6FD173
+
+The encrypted text was written to the file:
+C:\Projects\AvaTax\cipher.txt
+
+Press Enter key to exit...</pre>
+			<b>CipherGen</b> will not overwrite an existing output file. It defaults to "cipher.txt". If this file already exists, it will try to output the encrypted text to "cipher_1.txt". If this file already exists, it will try "cipher_2.text", and so on.
+			</p>
+			<br/>
+			<p>
+			3. Open the file specified, copy the encrypted text, and paste it into the configuration file between the &lt;Account&gt; element tags:
+			<pre class="code">&lt;RequestSecurity type="Avalara.AvaTax.Adapter.RequestSecurity, Avalara.AvaTax.Adapter"&gt;
+    <b>&lt;Account&gt;</b>0100000...D894330C1A1D01D6FD173<b>&lt;/Account&gt;</b>
+    &lt;License&gt;&lt;/License&gt;
+    &lt;Timeout&gt;300&lt;/Timeout&gt;
+&lt;/RequestSecurity&gt;</pre>
+			The actual encrypted text in the example above has been shortened for readability purposes. The entire text should be copied, unaltered, from the cipher.txt file into the configuration file.
+			</p>
+			<br/>
+			<p>
+			4. To get the encrypted License text, repeat the above steps 1 through 3, entering the License key provided by Avalara when prompted to "Input the string to encrypt:". For example:
+			<pre class="code">Input the string to encrypt:
+1234567890123456
+01000000D08C9DDF0115D1118C7A00C04FC297EB01000000A65E7B2EBC4A2D4881DB3840FDD9380D
+0400000002000000000003660000A80000001000000041D97CF14BAC6F30677A703FA60559F70000
+000004800000A000000010000000C6822F56F4161980F0A12E9516D48D51180000005CF898C06C5D
+56B03E347B6700CCC3D3B0D433E90C8D73A81400000031AFA0A70D14C38233C895463A368882ED26
+C3BC
+
+The encrypted text was written to the file:
+C:\Projects\AvaTax\cipher_1.txt
+
+Press Enter key to exit...</pre>
+			</p>
+			<br/>
+			<p>
+			5. Open the file specified, copy the encrypted text, and paste it into the configuration file between the &lt;License&gt; element tags:
+			<pre class="code">&lt;RequestSecurity type="Avalara.AvaTax.Adapter.RequestSecurity, Avalara.AvaTax.Adapter"&gt;
+    &lt;Account&gt;0100000...D894330C1A1D01D6FD173&lt;/Account&gt;
+    <b>&lt;License&gt;</b>0100000...0A70D14C38233C895463A368882ED26C3BC<b>&lt;/License&gt;</b>
+    &lt;Timeout&gt;300&lt;/Timeout&gt;
+&lt;/RequestSecurity&gt;</pre>
+			The actual encrypted text in the example above has been shortened for readability purposes. The entire text should be copied, unaltered, from the cipher.txt file into the configuration file.
+			</p>
+      <h4 class="dtH4">See Also</h4>
+      <p>
+      <a href="overview.html">SDK Overview</a> | <a href="configuration.html">About Configuration</a>
+      </p>
+      <hr />
+      <div id="footer">
+<p>
+	<b>AVALARA CONFIDENTIAL</b><br/>
+	&copy; Copyright 2005 Avalara, Inc. All rights reserved.
+</p>
+      </div>
+    </div>
+  </body>
+</html>
