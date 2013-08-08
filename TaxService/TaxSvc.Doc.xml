@@ -1206,6 +1206,12 @@ request.DocType = DocumentType.SalesInvoice;
       </summary>
     </members>
 
+    <members name="PosLaneCode">
+      <summary>
+        Permits a Point of Sale application to record the unique code / ID / number associated with the terminal processing a sale.
+      </summary>
+    </members>
+
 	    <members name="Addresses">
 		    <summary>
 		    Address collection for the document.  The AddressCode relates to the OriginCode or DestinationCode in the document or line.

@@ -77,7 +77,7 @@ namespace Test.Avalara.AvaTax.Adapter
 			request.DocDate = DateTime.Today;
 			request.DocType = DocumentType.SalesInvoice;			
 			request.DocCode = "Adapter_TaxSvcTest_" + DateTime.Now.Ticks;
-			request.CustomerCode = "Purchaser01";
+			request.CustomerCode = "Purchaser02";
 			request.DetailLevel = DetailLevel.Tax;
 			request.CustomerUsageType = "Purchaser Type";
 			request.SalespersonCode = "Salesperson Code";
@@ -2966,6 +2966,32 @@ namespace Test.Avalara.AvaTax.Adapter
 
             result = _taxSvc.GetTax(request);
             Assert.AreEqual(SeverityLevel.Success, result.ResultCode, "Test case should pass with AccruedTaxAmount.");
+
+        }
+
+        [Test]
+        public void GetTaxRequestPOSlaneCode()
+        {
+
+            GetTaxRequest request = CreateDefaultGetTaxRequest();
+            request.OriginAddress = CreateDefaultShipFromAddress();
+            request.DestinationAddress = CreateDefaultShipToAddress();
+
+            Line line = CreateDefaultGetTaxRequestLine();
+            request.Lines.Add(line);
+
+            request.PosLaneCode = "Lane 1";
+
+            GetTaxResult result = _taxSvc.GetTax(request);
+
+            if (result.Messages.Count > 0)
+            {
+                Console.WriteLine(FormatMessages(result));
+            }
+            Assert.AreEqual(SeverityLevel.Success, result.ResultCode);
+
+            result = _taxSvc.GetTax(request);
+            Assert.AreEqual(SeverityLevel.Success, result.ResultCode, "Test case should pass for POSLaneCode.");
 
         }
 

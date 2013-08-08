@@ -740,6 +740,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/Line/members[@name="BusinessIdentificationNo"]/*' />
         [DispId(38)]
         public string BusinessIdentificationNo
         {
@@ -1635,6 +1636,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		string _referenceCode;
 		bool _commit;
         string _businessIdentificationNo;
+        string _posLaneCode;
 
 		//added for 5.0
 		//bool _isTotalTaxOverriden;
@@ -2046,6 +2048,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxRequest/members[@name="BusinessIdentificationNo"]/*' />
         [DispId(55)]
         public string BusinessIdentificationNo
         {
@@ -2062,6 +2065,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
                 else
                 {
                     _businessIdentificationNo = value.Trim();
+                }
+            }
+        }
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxRequest/members[@name="PosLaneCode"]/*' />
+        [DispId(56)]
+        public string PosLaneCode
+        {
+            get
+            {
+                return _posLaneCode;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _posLaneCode = null;
+                }
+                else
+                {
+                    _posLaneCode = value.Trim();
                 }
             }
         }
@@ -2216,6 +2240,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		    _businessIdentificationNo = SvcResult.BusinessIdentificationNo;
 			//_totalTaxOverride = SvcResult.TotalTaxOverride;
 			//_isTotalTaxOverriden = SvcResult.IsTotalTaxOverriden;
+            _posLaneCode = SvcResult.PosLaneCode;
 
 			//Update Note : Added for 5.0
 			//bool hasTaxOverride=false;		
@@ -2312,6 +2337,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		    SvcRequest.BusinessIdentificationNo = BusinessIdentificationNo;
 			//SvcRequest.TotalTaxOverride = TotalTaxOverride;
 			//SvcRequest.IsTotalTaxOverriden = IsTotalTaxOverriden;
+            SvcRequest.PosLaneCode = PosLaneCode;
 			
 			//Update Note : Added for 5.0	
 			if(TaxOverride != null && TaxOverride.TaxOverrideType != TaxOverrideType.None)
