@@ -25,7 +25,7 @@ using System.Security;
 [assembly: AssemblyVersion("13.5.0.0")]
 [assembly: AllowPartiallyTrustedCallers()]
 
-//changing this value to true would have
+
 
 //changing this value to true would have a detrimental effect on the Adapter;
 //  if it must be true, then we need to move this attribute from here to each local AssemblyInfo.cs
