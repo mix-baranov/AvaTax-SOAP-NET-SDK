@@ -12,7 +12,7 @@
     <AssemblyName>Avalara.AvaTax.Adapter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>Adapter.ico</ApplicationIcon>
+    <ApplicationIcon>AvalaraButton.ico</ApplicationIcon>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Avalara.AvaTax.Adapter.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
@@ -96,6 +96,7 @@
     </Content>
     <Content Include="AvaCert2Service\AvaCert2Svc.Doc.xml" />
     <Content Include="Avalara.AvaTax.Adapter.Doc.xml" />
+    <Content Include="AvalaraButton.ico" />
     <Content Include="Proxies\AddressSvcProxy\AddressSvcProxy.Doc.xml" />
     <Content Include="Proxies\BaseSvcProxy.Doc.xml" />
     <Content Include="Proxies\AvaCert2SvcProxy\AvaCert2SvcProxy.Doc.xml" />
