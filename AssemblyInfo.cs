@@ -22,7 +22,7 @@ using System.Security;
 [assembly: AssemblyCulture("")]
 
 
-[assembly: AssemblyVersion("13.7.0.0")]
+[assembly: AssemblyVersion("14.2.0.0")]
 [assembly: AllowPartiallyTrustedCallers()]
 
 

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Avalara.AvaTax.Adapter</RootNamespace>
     <AssemblyName>Avalara.AvaTax.Adapter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>AvalaraButton.ico</ApplicationIcon>
     <SignAssembly>true</SignAssembly>

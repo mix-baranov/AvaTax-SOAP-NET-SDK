@@ -223,6 +223,29 @@ namespace Test.Avalara.AvaTax.Adapter
 			return postTaxRequest;
 		}
 
+        public PostTaxRequest CreatePostTaxRequestWithDocID(GetTaxRequest getTaxRequest, GetTaxResult getTaxResult)
+        {
+            PostTaxRequest postTaxRequest = new PostTaxRequest();
+            //postTaxRequest.CompanyCode = getTaxRequest.CompanyCode;
+            //postTaxRequest.DocCode = getTaxRequest.DocCode;
+            //postTaxRequest.DocType = getTaxRequest.DocType;
+            //postTaxRequest.DocDate = getTaxRequest.DocDate;
+
+            //adding docid
+            postTaxRequest.DocId = getTaxResult.DocId;
+            
+            foreach (Line line in getTaxRequest.Lines)
+            {
+                postTaxRequest.TotalAmount += line.Amount;
+            }
+            foreach (TaxLine taxLine in getTaxResult.TaxLines)
+            {
+                postTaxRequest.TotalTax += taxLine.Tax;
+            }
+
+            return postTaxRequest;
+        }
+
 		#endregion
 
         /// <summary>
@@ -1080,6 +1103,7 @@ namespace Test.Avalara.AvaTax.Adapter
 			Assert.AreEqual(SeverityLevel.Success, getTaxResult.ResultCode, "Expected GetTax to pass");
 
 			PostTaxRequest postTaxRequest = CreatePostTaxRequest(getTaxRequest, getTaxResult);
+            
 			PostTaxResult postTaxResult = _taxSvc.PostTax(postTaxRequest);
 		
 			foreach (Message message in postTaxResult.Messages)
@@ -1117,6 +1141,49 @@ namespace Test.Avalara.AvaTax.Adapter
             {
                 Console.WriteLine(message.Name + ": " + message.Summary);
             }
+            Assert.AreEqual(SeverityLevel.Success, postTaxResult.ResultCode);
+
+            GetTaxHistoryRequest getTaxHistoryRequest = new GetTaxHistoryRequest();
+            getTaxHistoryRequest.CompanyCode = getTaxRequest.CompanyCode;
+            getTaxHistoryRequest.DocType = getTaxRequest.DocType;
+            getTaxHistoryRequest.DocCode = getTaxRequest.DocCode;
+
+            getTaxHistoryRequest.DetailLevel = DetailLevel.Line;
+            GetTaxHistoryResult getTaxHistoryResult = _taxSvc.GetTaxHistory(getTaxHistoryRequest);
+            Assert.AreEqual(SeverityLevel.Success, getTaxHistoryResult.ResultCode);
+            Assert.AreEqual(postTaxRequest.DocDate, getTaxHistoryResult.GetTaxRequest.DocDate);
+            Assert.AreEqual(postTaxRequest.DocDate, getTaxHistoryResult.GetTaxResult.DocDate);
+        }
+
+          /// <summary>
+        /// This test updates the DocDate during posting
+        /// </summary>
+        [Test]
+        public void PostTaxDateTestWithDocID()
+        {
+            GetTaxRequest getTaxRequest = CreateDefaultGetTaxRequest();
+            getTaxRequest.DocCode = "PostTaxDateTest_" + DateTime.Now.Ticks;
+            getTaxRequest.DocType = DocumentType.SalesInvoice;
+            getTaxRequest.CustomerCode = "PostTest01";
+            getTaxRequest.OriginAddress = CreateDefaultShipFromAddress();
+            getTaxRequest.DestinationAddress = CreateDefaultShipToAddress();
+            getTaxRequest.DocDate = DateTime.Today.AddDays(-2);
+
+            Line line = CreateDefaultGetTaxRequestLine();
+            getTaxRequest.Lines.Add(line);
+
+            GetTaxResult getTaxResult = _taxSvc.GetTax(getTaxRequest);
+            Assert.AreEqual(SeverityLevel.Success, getTaxResult.ResultCode, "Expected GetTax to pass");
+
+            PostTaxRequest postTaxRequest = CreatePostTaxRequestWithDocID(getTaxRequest, getTaxResult);
+            postTaxRequest.DocDate = DateTime.Today;
+            PostTaxResult postTaxResult = _taxSvc.PostTax(postTaxRequest);
+
+            foreach (Message message in postTaxResult.Messages)
+            {
+                Console.WriteLine(message.Name + ": " + message.Summary);
+            }
+            Assert.AreEqual(getTaxResult.DocId, postTaxResult.DocId);
             Assert.AreEqual(SeverityLevel.Success, postTaxResult.ResultCode);
 
             GetTaxHistoryRequest getTaxHistoryRequest = new GetTaxHistoryRequest();

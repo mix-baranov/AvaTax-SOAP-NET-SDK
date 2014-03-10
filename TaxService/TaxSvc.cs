@@ -2447,6 +2447,9 @@ namespace Avalara.AvaTax.Adapter.TaxService
         DocumentType _docType;
 		string _lastDocCode;
 	    int _pageSize;
+        //updated for 14.2
+        string _lastdocId;
+
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public ReconcileTaxHistoryRequest()
@@ -2568,6 +2571,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/ReconcileTaxHistoryRequest/members[@name="LastDocId"]/*' />
+        [DispId(37)]
+        public string LastDocId
+        {
+            get
+            {
+                return _lastdocId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _lastdocId = null;
+                }
+                else
+                {
+                    _lastdocId = value.Trim();
+                }
+            }
+        }
+
 		#region Internal Members
 
 		/// <summary>
@@ -2583,6 +2607,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
             SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.LastDocCode = _lastDocCode;
 			SvcRequest.PageSize = _pageSize;
+            SvcRequest.LastDocId =   _lastdocId;
 		}
 
         internal override bool IsValid(out string message)
@@ -2686,6 +2711,8 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		DocumentType _docType;
 		string _docCode;
 		CancelCode _cancelCode;
+        //updated for 14.2
+        string _docId;
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public CancelTaxRequest()
@@ -2764,6 +2791,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(36)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _docId = null;
+                }
+                else
+                {
+                    _docId = value.Trim();
+                }
+            }
+        }
+
 		#region Internal Members
 		
 		/// <summary>
@@ -2776,6 +2824,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.CompanyCode = _companyCode;
 			SvcRequest.DocCode = _docCode;
+            SvcRequest.DocId = _docId;
 		}
 
         internal override bool IsValid(out string message)
@@ -2808,6 +2857,9 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		string _docCode;	
         //Update Note : Added for HA
         string _newDocCode;
+        //updated for 14.2
+        string _docId;
+
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public CommitTaxRequest()
@@ -2885,6 +2937,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
             }
         }
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(35)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _docId = null;
+                }
+                else
+                {
+                    _docId = value.Trim();
+                }
+            }
+        }
+
 		#region Internal Members
 		
 		/// <summary>
@@ -2897,6 +2970,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.DocCode = _docCode;			
             SvcRequest.NewDocCode = _newDocCode;
+            SvcRequest.DocId = _docId;
 		}
 
         internal override bool IsValid(out string message)
@@ -2937,6 +3011,8 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		//Update Note : Added for HA
 		string _newDocCode;
 
+        //updated for 14.2
+        string _docId;
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public PostTaxRequest()
@@ -3075,6 +3151,26 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(40)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _docId = null;
+                }
+                else
+                {
+                    _docId = value.Trim();
+                }
+            }
+        }
 
 		#region Internal Members
 		
@@ -3092,6 +3188,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			SvcRequest.TotalTax = _totalTax;
 			SvcRequest.Commit = _commit;
 			SvcRequest.NewDocCode = _newDocCode;
+            SvcRequest.DocId = _docId;
 		}
 
         internal override bool IsValid(out string message)
@@ -3123,6 +3220,9 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		DocumentType _docType;
 		string _docCode;
         DetailLevel _detailLevel = DetailLevel.Document;
+
+        /// <remarks/> updated for 14.2
+        string _docId;
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public GetTaxHistoryRequest()
@@ -3201,6 +3301,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(35)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _docId = null;
+                }
+                else
+                {
+                    _docId = value.Trim();
+                }
+            }
+        }
+
 		#region Internal Members
 		
 		/// <summary>
@@ -3213,6 +3334,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.DetailLevel = (ProxyDetailLevel)_detailLevel;
 			SvcRequest.DocCode = _docCode;
+            SvcRequest.DocId = _docId;
 		}
 
         internal override bool IsValid(out string message)
@@ -3390,10 +3512,23 @@ namespace Avalara.AvaTax.Adapter.TaxService
 	[ComVisible(true)]
 	public class CancelTaxResult : BaseResult
 	{
+        //update note : added for 14.2
+        string _docId;
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
 		internal CancelTaxResult()
 		{
 		}
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+        }
 
 		#region Internal Members
 
@@ -3403,6 +3538,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		/// <param name="SvcResult">The CancelTaxResult object provided by the web service.</param>
 		internal void CopyFrom(ProxyCancelTaxResult SvcResult)
 		{
+            _docId = SvcResult.DocId;
 			base.CopyFrom(SvcResult);
 		}
 
@@ -3427,11 +3563,26 @@ namespace Avalara.AvaTax.Adapter.TaxService
 	[ComVisible(true)]
 	public class CommitTaxResult : BaseResult
 	{
+        
+        //update note : added for 14.2
+        string _docId;
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
 		internal CommitTaxResult()
 		{
 		}
-        
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+        }
+
+
 		#region Internal Members
 
 		/// <summary>
@@ -3440,6 +3591,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		/// <param name="SvcResult">The CommitTaxResult object provided by the web service.</param>
 		internal void CopyFrom(ProxyCommitTaxResult SvcResult)
 		{
+            _docId = SvcResult.DocId;
 			base.CopyFrom(SvcResult);
 		}
 
@@ -3503,12 +3655,24 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		//Update Note : Added for 5.1
 		Decimal _totalTaxCalculated;
 
+        //update Note : added for 14.2
+        string _docId;
 
-		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
+        /// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
 		internal GetTaxResult()
 		{
 		}
-        
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+        }
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxResult/members[@name="DocType"]/*' />
 		[DispId(31)]
 		public DocumentType DocType
@@ -3732,6 +3896,8 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			_taxDate = SvcResult.TaxDate;
 			//Update Note : Added for 5.1
 			_totalTaxCalculated = SvcResult.TotalTaxCalculated;
+            //update notw : added for 14.2
+            _docId = SvcResult.DocId;
 
 			base.CopyFrom(SvcResult);
 
@@ -3768,9 +3934,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			result.CopyFrom(baseResult);
 			return result;
 		}
-
 		#endregion
-
 	}
 
 	/// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxResults/class/*' />
@@ -3878,11 +4042,23 @@ namespace Avalara.AvaTax.Adapter.TaxService
 	[ComVisible(true)]
 	public class PostTaxResult : BaseResult
 	{
+        //update note : added for 14.2
+        string _docId;
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
 		internal PostTaxResult()
 		{
 		}
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+        }
 
 		#region Internal Members
 
@@ -3893,6 +4069,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		internal void CopyFrom(ProxyPostTaxResult SvcResult)
 		{
 			base.CopyFrom(SvcResult);
+            _docId = SvcResult.DocId;
 		}
 
 		/// <summary>
@@ -4102,6 +4279,9 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		string _docCode;
 		DateTime _paymentDate;
 
+        //updated for 14.2
+        string _docId;
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public ApplyPaymentRequest()
 		{
@@ -4110,6 +4290,27 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			_docCode = string.Empty;
 			_paymentDate = DateUtil.MinDate;
 		}
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+            set
+            {
+                if (value == null || value.Trim() == "")
+                {
+                    _docId = null;
+                }
+                else
+                {
+                    _docId = value.Trim();
+                }
+            }
+        }
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="CompanyCode"]/*' />
 		[DispId(31)]
@@ -4194,6 +4395,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.DocCode = _docCode;	
 			SvcRequest.PaymentDate = _paymentDate;
+            SvcRequest.DocId = _docId;
 		}
 
         internal override bool IsValid(out string message)
@@ -4225,10 +4427,23 @@ namespace Avalara.AvaTax.Adapter.TaxService
 	public class ApplyPaymentResult : BaseResult
 	{
 
+        //update note : added for 14.2
+        string _docId;
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="InternalConstructor"]/*' />
 		internal ApplyPaymentResult()
 		{
 		}
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/TaxSvc/common/members[@name="DocId"]/*' />
+        [DispId(30)]
+        public string DocId
+        {
+            get
+            {
+                return _docId;
+            }
+        }
 
 		#region Internal Members
 
@@ -4238,6 +4453,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		/// <param name="SvcResult">The ApplyPaymentResult object provided by the web service.</param>
 		internal void CopyFrom(ProxyApplyPaymentResult SvcResult)
 		{
+            _docId = SvcResult.DocId;
 			base.CopyFrom(SvcResult);
 		}
 

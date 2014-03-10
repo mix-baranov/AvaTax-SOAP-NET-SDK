@@ -426,6 +426,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         
 		/// <remarks/>
 		public int PageSize;
+
+        /// <remarks/> //updated for 14.2
+        public string LastDocId;
 	}
     
 	/*	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/SearchTaxHistoryRequest/*' />
@@ -461,6 +464,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         
 		/// <remarks/>
 		public ProxyCancelCode CancelCode;
+
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/CancelCode/*' />
@@ -502,7 +508,10 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 		public string DocCode;
 
         /// <remarks/>
-        public string NewDocCode; 
+        public string NewDocCode;
+
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/PostTaxRequest/*' />
@@ -535,6 +544,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 
 		/// <remarks/> Updated for HA
 		public string NewDocCode;
+
+        /// <remarks/> updated for 14.2
+        public string DocId;
         
 	}
     
@@ -554,6 +566,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         
 		/// <remarks/>
 		public ProxyDetailLevel DetailLevel;
+
+        /// <remarks/>
+        public string DocId;
 	}
 
     
@@ -813,6 +828,8 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 	[ComVisible(false)]
 	public class ProxyCancelTaxResult : ProxyBaseResult 
 	{
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/CommitTaxResult/*' />
@@ -820,6 +837,8 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 	[ComVisible(false)]
 	public class ProxyCommitTaxResult : ProxyBaseResult 
 	{
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/ProxySearchTaxHistoryResult/*' />
@@ -834,6 +853,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         
         /// <remarks/>
         public string LastDocCode;
+
+        /// <remarks/> updated for 14.2
+        public string LastDocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/GetTaxResult/*' />
@@ -845,9 +867,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 		/// <remarks/>
 		public ProxyDocumentType DocType;
         
-		/// <remarks/>
-		public string DocCode;
-        
+        /// <remarks/>
+        public string DocCode;
+           
 		/// <remarks/>
 		[XmlElement(DataType="date")]
 		public System.DateTime DocDate;
@@ -908,6 +930,10 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 		/// <remarks/>
 		public Decimal TotalTaxCalculated;
 
+        //update note added for 14.2
+        /// <remarks/>
+        public string DocId;
+
 	}
 
     /// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/ReconcileTaxHistoryResult/*' />
@@ -953,6 +979,8 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 	[ComVisible(false)]
 	public class ProxyPostTaxResult : ProxyBaseResult 
 	{
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/GetTaxHistoryResult/*' />
@@ -1101,7 +1129,10 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 
 		/// <remarks/>
 		[XmlElement(DataType="date")]
-		public DateTime PaymentDate; 
+		public DateTime PaymentDate;
+
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
     
 	//Update Note : Added for 5.1
@@ -1110,6 +1141,8 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 	[ComVisible(false)]
 	public class ProxyApplyPaymentResult : ProxyBaseResult 
 	{
+        /// <remarks/> updated for 14.2
+        public string DocId;
 	}
 
 	//Update Note : Added for 5.0	

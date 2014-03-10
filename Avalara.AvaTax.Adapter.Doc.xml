@@ -104,6 +104,14 @@
 	        The base class for result objects that return a ResultCode and Messages collection. Not creatable.
 	        </summary>
 	    </class>
+      <members name="DocId">
+        <summary>
+          A unique Document number used only by Avalara
+        </summary>
+        <remarks>
+          See <see cref="BaseRequest.DocId"/> on <b>GetTaxRequest</b> for more information about this member.
+        </remarks>
+      </members>
 	    <members name="TransactionId">
 		    <summary>
 		    A unique Transaction ID identifying a specific request/response set.
@@ -118,15 +126,15 @@
 		    This identifies the name of the entity that was created or modified by the transaction if applicable, else it is blank.
 		    </summary>
 	    </members>
-		<members name="ResultCode">
-		    <summary>
+		  <members name="ResultCode">
+		          <summary>
 		    Indicates the success (or <see cref="SeverityLevel"/>) of the operation.
 		    </summary>
-		    <remarks>
+		          <remarks>
 		      If there are one or more <see cref="Avalara.AvaTax.Adapter.Message"/> objects in the result, 
 		      the ResultCode is set to the most severe of the messages' result codes.
 		    </remarks>
-	        <example>
+	            <example>
 <code>
 [Visual Basic 6]
 Dim oMsg As Message
@@ -147,15 +155,15 @@ if (getTaxResult.ResultCode != SeverityLevel.Success)
 }
 </code>
 	        </example>
-		</members>
-		<members name="Messages">
-		    <summary>
+		  </members>
+		  <members name="Messages">
+		          <summary>
 		    A collection of <see cref="Avalara.AvaTax.Adapter.Message"/> objects.
 		    </summary>
-		    <remarks>
+		          <remarks>
 		    <seealso cref="BaseResult.ResultCode"/>
 		    </remarks>
-	        <example>
+	            <example>
 <code>
 [Visual Basic 6]
 Dim oMsg As Message
@@ -171,7 +179,7 @@ foreach (Message msg in getTaxResult.Messages)
 }
 </code>
 	        </example>
-		</members>
+		  </members>
 	</BaseResult>
 	<Messages>
 	    <class>

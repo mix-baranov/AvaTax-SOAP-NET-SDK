@@ -130,7 +130,15 @@ request.Lines.Add(line);
 		        <remarks>
 		        </remarks>
 	        </members>
-	    </common>
+          <members name="DocId">
+            <summary>
+              A unique Document number used only by Avalara.
+            </summary>
+            <remarks>
+            </remarks>
+          </members>
+
+      </common>
 	    <class>
 	        <summary>
 	        Proxy interface for the Avalara Tax Web Service.
@@ -1338,6 +1346,15 @@ Console.WriteLn(request.TaxOverride.TaxOverrideType);
 		    to get the next set of results.
 		    </remarks>
 	    </members>
+    <members name="LastDocId">
+      <summary>
+        Used to seek for additional results in large result sets.
+      </summary>
+      <remarks>
+        Set the value to the result of <b>LastDocId</b> from the previous <see cref="ReconcileTaxHistoryResult"/>
+        to get the next set of results.
+      </remarks>
+    </members>
 	    <members name="PageSize">
 		    <summary>
 		    Indicates the number of records to return.
@@ -1505,7 +1522,7 @@ Console.WriteLn(request.TaxOverride.TaxOverrideType);
 		    Specifies the level of detail to return.
 		    </summary>
 	    </members>
-	</GetTaxHistoryRequest>
+  </GetTaxHistoryRequest>
 	
 	<AdjustTaxRequest>
 	    <class>
@@ -1586,6 +1603,7 @@ Console.WriteLn(request.TaxOverride.TaxOverrideType);
 	        <seealso cref="CommitTaxRequest"/>
 	        </remarks>
 	    </class>
+    
 	</CommitTaxResult>
 	<SearchTaxHistoryResult>
 	    <class>
@@ -1606,6 +1624,11 @@ Console.WriteLn(request.TaxOverride.TaxOverrideType);
 	        <seealso cref="GetTaxRequest"/>
 	        </remarks>
 	    </class>
+      <members name="DocId">
+      <summary>
+        A unique Document number used only by Avalara..
+      </summary>
+    </members>
 	    <members name="DocType">
 		    <summary>
 		    Gets the Document Type.
