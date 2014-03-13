@@ -2447,9 +2447,6 @@ namespace Avalara.AvaTax.Adapter.TaxService
         DocumentType _docType;
 		string _lastDocCode;
 	    int _pageSize;
-        //updated for 14.2
-        string _lastdocId;
-
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public ReconcileTaxHistoryRequest()
@@ -2571,27 +2568,6 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			}
 		}
 
-        /// <include file='TaxSvc.Doc.xml' path='adapter/ReconcileTaxHistoryRequest/members[@name="LastDocId"]/*' />
-        [DispId(37)]
-        public string LastDocId
-        {
-            get
-            {
-                return _lastdocId;
-            }
-            set
-            {
-                if (value == null || value.Trim() == "")
-                {
-                    _lastdocId = null;
-                }
-                else
-                {
-                    _lastdocId = value.Trim();
-                }
-            }
-        }
-
 		#region Internal Members
 
 		/// <summary>
@@ -2607,7 +2583,6 @@ namespace Avalara.AvaTax.Adapter.TaxService
             SvcRequest.DocType = (ProxyDocumentType)_docType;
 			SvcRequest.LastDocCode = _lastDocCode;
 			SvcRequest.PageSize = _pageSize;
-            SvcRequest.LastDocId =   _lastdocId;
 		}
 
         internal override bool IsValid(out string message)

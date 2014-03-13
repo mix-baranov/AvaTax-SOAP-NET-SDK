@@ -427,8 +427,6 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 		/// <remarks/>
 		public int PageSize;
 
-        /// <remarks/> //updated for 14.2
-        public string LastDocId;
 	}
     
 	/*	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/SearchTaxHistoryRequest/*' />
@@ -854,8 +852,6 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         /// <remarks/>
         public string LastDocCode;
 
-        /// <remarks/> updated for 14.2
-        public string LastDocId;
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/GetTaxResult/*' />
