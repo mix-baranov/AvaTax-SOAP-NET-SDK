@@ -1949,6 +1949,16 @@ Console.WriteLn(request.TaxOverride.TaxOverrideType);
         Inventory Transfer Invoice
       </summary>
     </members>
+    <members name="ReverseChargeOrder">
+      <summary>
+        This type of document will be returned by the AvaTax service for PurchaseOrder for European countries as destination address with business identification number without tax override option.
+      </summary>
+    </members>
+    <members name="ReverseChargeInvoice">
+      <summary>
+        This type of document will be returned by the AvaTax service for PurchaseInvoice for European countries as destination address with business identification number without tax override option
+      </summary>
+    </members>
 	</DocumentType>
 	<CancelCode>
 	    <enum>

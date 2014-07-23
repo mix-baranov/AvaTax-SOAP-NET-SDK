@@ -638,7 +638,11 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         InventoryTransferOrder,
         
 		/// <remarks/>
-        InventoryTransferInvoice
+        InventoryTransferInvoice,
+        /// <remarks/>
+        ReverseChargeOrder ,
+        /// <remarks/>
+        ReverseChargeInvoice 
 	}
 
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/TaxDetail/*' />

@@ -182,7 +182,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 				_avaLog.Debug("TaxSvc.PostTax");
 				_avaLog.Debug("Validate request");
 				Utilities.VerifyRequestObject(postTaxRequest);
-
+                
 				_avaLog.Debug("Copying request into proxy object");
 				ProxyPostTaxRequest proxyRequest = new ProxyPostTaxRequest();
 				postTaxRequest.CopyTo(proxyRequest);
@@ -1650,6 +1650,9 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		decimal _exchangeRate;
 		DateTime _exchangeRateEffDate;
 
+        string _sdocDate;
+        string _sexchangeRateEffDate;
+
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public GetTaxRequest()
 		{
@@ -2090,6 +2093,80 @@ namespace Avalara.AvaTax.Adapter.TaxService
             }
         }
 
+        [DispId(57)]
+        public string sDocDate
+        {
+            get
+            {
+                return _sdocDate;
+            }
+            set
+            {
+                
+                //Utilities.VerifyDate(value);
+                if (!string.IsNullOrEmpty(value) )
+                {
+                    try
+                    {
+                        _sdocDate = value;
+                        
+                       // _docDate = DateTime.ParseExact(_sdocDate, "dd/MM/yyyy", null);
+                        string strDD, strMM, stryyyy;
+                        int stPos, edPos;
+                        stPos = _sdocDate.IndexOf("/", 0);
+                        strDD = _sdocDate.Substring(0, stPos );
+                        stPos = stPos + 1;
+                        edPos = _sdocDate.IndexOf("/", stPos);
+                        strMM = _sdocDate.Substring(stPos , edPos - stPos );
+                        stPos = edPos + 1;
+                        stryyyy = _sdocDate.Substring(stPos, _sdocDate.Length - stPos);
+                        _docDate =  new DateTime(Convert.ToInt16(stryyyy), Convert.ToInt16(strMM), Convert.ToInt16(strDD));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+
+            }
+        }
+
+        [DispId(58)]
+        public string sexchangeRateEffDate
+        {
+            get
+            {
+                return _sexchangeRateEffDate;
+            }
+            set
+            {
+
+                //Utilities.VerifyDate(value);
+                if (!string.IsNullOrEmpty(value) )
+                {
+                    try
+                    {
+                        _sexchangeRateEffDate = value;
+                      //  _exchangeRateEffDate = DateTime.ParseExact(_sexchangeRateEffDate, "dd/MM/yyyy", null);
+                        string strDD, strMM, stryyyy;
+                        int stPos, edPos;
+                        stPos = _sexchangeRateEffDate.IndexOf("/", 0);
+                        strDD = _sexchangeRateEffDate.Substring(0, stPos);
+                        stPos = stPos + 1;
+                        edPos = _sexchangeRateEffDate.IndexOf("/", stPos);
+                        strMM = _sexchangeRateEffDate.Substring(stPos, edPos - stPos);
+                        stPos = edPos + 1;
+                        stryyyy = _sexchangeRateEffDate.Substring(stPos, _sdocDate.Length - stPos);
+                        _exchangeRateEffDate = new DateTime(Convert.ToInt16(stryyyy), Convert.ToInt16(strMM), Convert.ToInt16(strDD));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+
+            }
+        }
         #region Internal Members
 
 		/// <summary>
@@ -2447,7 +2524,8 @@ namespace Avalara.AvaTax.Adapter.TaxService
         DocumentType _docType;
 		string _lastDocCode;
 	    int _pageSize;
-
+        string _sStartDate;
+        string _sEndDate;	
 		/// <include file='TaxSvc.Doc.xml' path='adapter/common/members[@name="Constructor"]/*' />
 		public ReconcileTaxHistoryRequest()
 		{
@@ -2567,6 +2645,77 @@ namespace Avalara.AvaTax.Adapter.TaxService
 				_pageSize = value;
 			}
 		}
+        [DispId(37)]
+        public string sStartDate
+        {
+            get
+            {
+                return _sStartDate;
+            }
+            set
+            {
+
+                if (!string.IsNullOrEmpty(value)  )
+                {
+                    try
+                    {
+                        _sStartDate = value;
+                       // _startDate = DateTime.ParseExact(_sStartDate, "dd/MM/yyyy", null);
+                        string strDD, strMM, stryyyy;
+                        int stPos, edPos;
+                        stPos = _sStartDate.IndexOf("/", 0);
+                        strDD = _sStartDate.Substring(0, stPos);
+                        stPos = stPos + 1;
+                        edPos = _sStartDate.IndexOf("/", stPos);
+                        strMM = _sStartDate.Substring(stPos, edPos - stPos);
+                        stPos = edPos + 1;
+                        stryyyy = _sStartDate.Substring(stPos, _sStartDate.Length - stPos);
+                        _startDate = new DateTime(Convert.ToInt16(stryyyy), Convert.ToInt16(strMM), Convert.ToInt16(strDD));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
+
+        /// <include file='TaxSvc.Doc.xml' path='adapter/ReconcileTaxHistoryRequest/members[@name="EndDate"]/*' />
+        [DispId(38)]
+        public string sEndDate
+        {
+            get
+            {
+                return _sEndDate;
+            }
+            set
+            {
+               
+                if (!string.IsNullOrEmpty(value)  )
+                {
+                    try
+                    {
+                        _sEndDate = value;
+                       // _endDate = DateTime.ParseExact(_sEndDate, "dd/MM/yyyy", null);
+                        string strDD, strMM, stryyyy;
+                        int stPos, edPos;
+                        stPos = _sEndDate.IndexOf("/", 0);
+                        strDD = _sEndDate.Substring(0, stPos);
+                        stPos = stPos + 1;
+                        edPos = _sEndDate.IndexOf("/", stPos);
+                        strMM = _sEndDate.Substring(stPos, edPos - stPos);
+                        stPos = edPos + 1;
+                        stryyyy = _sEndDate.Substring(stPos, _sEndDate.Length - stPos);
+                        _endDate = new DateTime(Convert.ToInt16(stryyyy), Convert.ToInt16(strMM), Convert.ToInt16(strDD));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+
+            }
+        }
 
 		#region Internal Members
 
@@ -2980,7 +3129,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		DateTime _docDate;
 		Decimal _totalAmount;
 		Decimal _totalTax;
-
+	    private string _sdocDate;
 		//Updated for 4.17
 		bool _commit;
 		//Update Note : Added for HA
@@ -3147,6 +3296,40 @@ namespace Avalara.AvaTax.Adapter.TaxService
             }
         }
 
+        [DispId(41)]
+        public string sDocDate
+        {
+            get
+            {
+                return _sdocDate;
+            }
+            set
+            {
+                //Utilities.VerifyDate(value);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    try
+                    {
+                        _sdocDate = value;
+                       // _docDate = DateTime.ParseExact(_sdocDate, "dd/MM/yyyy", null);
+                        string strDD, strMM, stryyyy;
+                        int stPos, edPos;
+                        stPos = _sdocDate.IndexOf("/", 0);
+                        strDD = _sdocDate.Substring(0, stPos);
+                        stPos = stPos + 1;
+                        edPos = _sdocDate.IndexOf("/", stPos);
+                        strMM = _sdocDate.Substring(stPos, edPos - stPos);
+                        stPos = edPos + 1;
+                        stryyyy = _sdocDate.Substring(stPos, _sdocDate.Length - stPos);
+                        _docDate = new DateTime(Convert.ToInt16(stryyyy), Convert.ToInt16(strMM), Convert.ToInt16(strDD));
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+            }
+        }
 		#region Internal Members
 		
 		/// <summary>
@@ -4501,7 +4684,11 @@ namespace Avalara.AvaTax.Adapter.TaxService
         InventoryTransferOrder = 6,
 
         /// <include file='TaxSvc.Doc.xml' path='adapter/DocumentType/members[@name="InventoryTransferInvoice"]/*' />
-        InventoryTransferInvoice = 7
+        InventoryTransferInvoice = 7,
+        /// <include file='TaxSvc.Doc.xml' path='adapter/DocumentType/members[@name="ReverseChargeOrder"]/*' />
+        ReverseChargeOrder = 8,
+        /// <include file='TaxSvc.Doc.xml' path='adapter/DocumentType/members[@name="ReverseChargeInvoice"]/*' />
+        ReverseChargeInvoice = 9
 	}
 
 	/// <include file='TaxSvc.Doc.xml' path='adapter/CancelCode/enum/*' />

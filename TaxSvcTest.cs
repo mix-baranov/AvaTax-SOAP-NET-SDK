@@ -3061,8 +3061,86 @@ namespace Test.Avalara.AvaTax.Adapter
             Assert.AreEqual(SeverityLevel.Success, result.ResultCode, "Test case should pass for POSLaneCode.");
 
         }
+        [Test]
+        public void GetTaxForPurchaseInvoiceDocType()
+        {
 
-		#region Helper Methods
+            GetTaxRequest request = CreateDefaultGetTaxRequest();
+            request.OriginAddress = CreateDefaultShipFromAddress();
+          
+            //request.DestinationAddress = CreateDefaultShipToAddress();
+
+            Address address = new Address();
+            address.Line1 = "";
+            address.City = "";
+            address.Region = "";
+            address.PostalCode = "";
+            address.Country = "GB";
+            request.DestinationAddress = address;
+
+            request.CompanyCode = "CERW";
+
+            request.DocType = DocumentType.PurchaseInvoice; // DocumentType.SalesOrder;
+            request.DocCode = "DOC-I-1-"+ DateTime.Now.Ticks.ToString();
+
+            Line line = new Line();
+            line.Amount = 100;
+            line.Qty = 1;
+            line.No = "1";
+            request.Lines.Add(line);
+
+            request.BusinessIdentificationNo = "test Business Id No";
+           
+
+            GetTaxResult result = _taxSvc.GetTax(request);
+
+           
+            Assert.AreEqual(SeverityLevel.Success, result.ResultCode);
+            Assert.AreEqual(DocumentType.ReverseChargeInvoice,result.DocType);
+           
+
+        }
+        [Test]
+        public void GetTaxForPurchaseOrderDocType()
+        {
+
+            GetTaxRequest request = CreateDefaultGetTaxRequest();
+            request.OriginAddress = CreateDefaultShipFromAddress();
+
+            //request.DestinationAddress = CreateDefaultShipToAddress();
+
+            Address address = new Address();
+            address.Line1 = "";
+            address.City = "";
+            address.Region = "";
+            address.PostalCode = "";
+            address.Country = "GB";
+            request.DestinationAddress = address;
+
+            request.CompanyCode = "CERW";
+
+            request.DocType = DocumentType.PurchaseOrder; // DocumentType.SalesOrder;
+            request.DocCode = "DOC-I-1-" + DateTime.Now.Ticks.ToString();
+
+            Line line = new Line();
+            line.Amount = 100;
+            line.Qty = 1;
+            line.No = "1";
+            request.Lines.Add(line);
+
+            request.BusinessIdentificationNo = "test Business Id No";
+
+
+            GetTaxResult result = _taxSvc.GetTax(request);
+
+
+            Assert.AreEqual(SeverityLevel.Success, result.ResultCode);
+            Assert.AreEqual(DocumentType.ReverseChargeOrder, result.DocType);
+
+
+        }
+
+        #region Helper Methods
 
 		private void CompareHistory(GetTaxRequest taxRequest, GetTaxResult taxResult, GetTaxHistoryResult history)
 		{
