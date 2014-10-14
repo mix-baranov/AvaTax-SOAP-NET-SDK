@@ -7,6 +7,7 @@ using System.Xml ;
 using System.Xml.Serialization ;
 using System.Xml.XPath ;
 using System.Diagnostics;
+using Avalara.AvaTax.Adapter;
 
 namespace Avalara.AvaTax.Common.Configuration
 {
@@ -31,6 +32,7 @@ namespace Avalara.AvaTax.Common.Configuration
 	public class XmlSerializerSectionHandler :
 		IConfigurationSectionHandler 
 	{
+        AvaLogger _avaLog = AvaLogger.GetLogger();
 		/// <summary>
 		/// Used by ConfigurationSettings to serialize a configuration section.
 		/// </summary>
@@ -52,13 +54,16 @@ namespace Avalara.AvaTax.Common.Configuration
 			try 
 			{
 				message = "Attempting to deserialize a configuration object based on a configuration section node.";
-				Debug.WriteLine(GetDateTimeStamp()+ ",DEBUG," + message);
+                //Ram
+                _avaLog.Debug(string.Format(GetDateTimeStamp() + ",DEBUG," + message));
+                //Debug.WriteLine(GetDateTimeStamp()+ ",DEBUG," + message);
 
 				XPathNavigator nav = section.CreateNavigator ();
 				string typename = ( string ) nav.Evaluate ("string(@type)");
 
 				message = "Object to deserialize: " + typename;
-				Debug.WriteLine(GetDateTimeStamp()+ ",DEBUG," + message);
+                //Debug.WriteLine(GetDateTimeStamp()+ ",DEBUG," + message);
+                _avaLog.Debug(string.Format(GetDateTimeStamp() + ",DEBUG," + message));
 
 				Type t = Type.GetType ( typename );
 				XmlSerializer ser = new XmlSerializer (t);
@@ -70,7 +75,8 @@ namespace Avalara.AvaTax.Common.Configuration
 				Console.WriteLine(ex);
 #endif
 				message = "Failed to deserialize object. "+ ex.Message;
-				Trace.WriteLine(GetDateTimeStamp()+ ",ERROR," + message);
+                //Trace.WriteLine(GetDateTimeStamp()+ ",ERROR," + message);
+                _avaLog.Error(GetDateTimeStamp() + ",ERROR," + message);
 				throw;
 			}
 		}

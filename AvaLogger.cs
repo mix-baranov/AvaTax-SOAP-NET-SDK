@@ -99,15 +99,19 @@ namespace Avalara.AvaTax.Adapter
             }
 
 			// Write LogMessages in csv format
-            string csv = string.Format("{0},{1},{2}", DateTime.UtcNow, messageType, message);
-            try
+            //ram
+            if (AvaLoggerConfiguration.LogMessages)
             {
-                Trace.WriteLine(csv);
-                Trace.Flush();
-            }
-            catch (Exception)
-            {
-                //To handle closed file access exception
+                string csv = string.Format("{0},{1},{2}", DateTime.UtcNow, messageType, message);
+                try
+                {
+                    Trace.WriteLine(csv);
+                    Trace.Flush();
+                }
+                catch (Exception)
+                {
+                    //To handle closed file access exception
+                }
             }
 		}
 
@@ -128,6 +132,8 @@ namespace Avalara.AvaTax.Adapter
 			{
 				objStream = new FileStream(logFileName, FileMode.OpenOrCreate | FileMode.Append );
 				TextWriterTraceListener objTraceListener = new TextWriterTraceListener(objStream) ;
+                //ram
+                Trace.Listeners.Clear();
 				Trace.Listeners.Add(objTraceListener);
 			}
 			catch(IOException ex)
