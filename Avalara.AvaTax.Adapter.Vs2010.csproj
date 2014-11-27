@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService\AccountSvc.cs" />
     <Compile Include="AdapterConfigException.cs" />
     <Compile Include="AddressService\AddressSvc.cs" />
     <Compile Include="AssemblyInfo.cs" />
@@ -72,6 +73,9 @@
     <Compile Include="LogService\LogSvc.cs" />
     <Compile Include="Perf.cs" />
     <Compile Include="PerformanceTimer.cs" />
+    <Compile Include="Proxies\AccountSvcProxy\AccountSvcProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Proxies\AddressSvcProxy\AddressSvcProxy.cs">
       <SubType>Component</SubType>
     </Compile>

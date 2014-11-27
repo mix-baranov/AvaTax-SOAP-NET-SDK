@@ -2,6 +2,7 @@ using System;
 using Avalara.AvaTax.Adapter.TaxService;
 using Avalara.AvaTax.Adapter.AddressService;
 using Avalara.AvaTax.Adapter.Utililty;
+using Avalara.AvaTax.Adapter.AccountService;
 
 namespace Avalara.AvaTax.Adapter
 {
@@ -89,6 +90,60 @@ namespace Avalara.AvaTax.Adapter
         /// Stops the monitoring clock.
         /// </summary>
         public void Stop(TaxSvc svc, ref Proxies.TaxSvcProxy.ProxyGetTaxResult result)
+        {
+            _end = DateTime.Now;
+
+            if (!_running)
+            {
+                throw new ApplicationException("An attempt was made to stop the performance timekeeper that was not running. Call the Start method prior to calling Stop method.");
+            }
+            try
+            {
+                if (Utilities.HasClientMetricMessage(result.Messages))
+                {
+                    //call Ping Method and send ClientMetric
+                    //Sample Entry - ClientMetrics:17849,ClientDuration,1500
+                    svc.Ping(Utilities.BuildAuditMetrics("", result.TransactionId, _end.Subtract(_start).Milliseconds));
+                }
+            }
+            catch (Exception ex)
+            {
+                _avaLog.Error(string.Format("Error sending ClientMetrics: {0}", ex.Message));
+            }
+            _running = false;
+        }
+
+        /// <summary>
+        /// Stops the monitoring clock.
+        /// </summary>
+        public void Stop(AccountSvc svc, ref Proxies.AccountSvcProxy.ProxyCompanyFetchResult result)
+        {
+            _end = DateTime.Now;
+
+            if (!_running)
+            {
+                throw new ApplicationException("An attempt was made to stop the performance timekeeper that was not running. Call the Start method prior to calling Stop method.");
+            }
+            try
+            {
+                if (Utilities.HasClientMetricMessage(result.Messages))
+                {
+                    //call Ping Method and send ClientMetric
+                    //Sample Entry - ClientMetrics:17849,ClientDuration,1500
+                    svc.Ping(Utilities.BuildAuditMetrics("", result.TransactionId, _end.Subtract(_start).Milliseconds));
+                }
+            }
+            catch (Exception ex)
+            {
+                _avaLog.Error(string.Format("Error sending ClientMetrics: {0}", ex.Message));
+            }
+            _running = false;
+        }
+
+        /// <summary>
+        /// Stops the monitoring clock.
+        /// </summary>
+        public void Stop(AccountSvc svc, ref Proxies.AccountSvcProxy.ProxyNexusFetchResult result)
         {
             _end = DateTime.Now;
 

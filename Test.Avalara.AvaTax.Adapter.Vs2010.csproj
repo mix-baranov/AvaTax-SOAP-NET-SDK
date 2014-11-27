@@ -146,6 +146,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountSvcTest.cs" />
     <Compile Include="AccountSvcWrapper.cs" />
     <Compile Include="AddressSvcTest.cs" />
     <Compile Include="AssemblyInfo.cs" />
