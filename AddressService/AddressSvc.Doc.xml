@@ -1,0 +1,706 @@
+<adapter>
+	<common>
+	    <!-- common members used in more than one class -->
+	    <members name="Constructor">
+	        <summary>
+	        Initializes a new instance of the class.
+	        </summary>
+	    </members>
+	    <members name="InternalConstructor">
+	        <summary>
+	        Initializes a new instance of the class. Not creatable outside the assembly.
+	        </summary>
+	    </members>
+	    <members name="Finalize">
+	        <summary>
+	        Ensures that resources are freed and other cleanup operations are performed when 
+	        the garbage collector reclaims the object. 
+	        </summary>
+	    </members>
+		<members name="Ping">
+		    <summary>
+		    Verifies connectivity to the web service 
+		    and returns version information about the service.
+		    </summary>
+		    <param name="message">For future use</param>
+		    <remarks>
+		    This replaces TestConnection and is available on every service.
+		    </remarks>
+		</members>
+		<members name="IsAuthorized">
+            <summary>
+            Checks authentication of and authorization to one or more operations on the service.
+            </summary>
+            <param name="operations">A comma-delimited list of operation names.</param>
+            <example>
+            IsAuthorized("GetTax,PostTax")
+            </example>
+            <remarks>
+            This operation allows pre-authorization checking of any or all operations.  
+            It will return a comma delimited set of operation names which will be all or a subset
+            of the requested operation names.  For security, it will never return operation names
+            other than those requested (no phishing allowed).
+            </remarks>
+		</members>
+	</common>
+	<AddressSvc>
+	    <class>
+	        <summary>
+	        Proxy interface for the Avalara Address Web Service.
+	        </summary>
+	        <remarks>
+	        Requires a configuration file at creation time named Avalara.Adapter.AvaTax.dll.config in the same directory as the assembly.
+	        The values in the file will be loaded as the default configuration information.  The data can be queried
+	        and overridden through the <see cref="Avalara.AvaTax.Adapter.ServiceConfig"/> object accessed through this class's Configuration member.
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+oSvc = new AddressSvc
+Debug.Print oSvc.Configuration.Url                             'output default Url
+oSvc.Configuration.Url = "http://www.avalara.com/services/"    'override the default Url
+oSvc.Configuration.Security.Timeout = 500                      'override the default security timeout
+</code>
+<code>
+[C#]
+AddressSvc svc = new AddressSvc();
+Console.WriteLn(svc.Configuration.Url);                       //output default Url
+svc.Configuration.Url = "http://www.avalara.com/services/";   //override the default Url
+svc.Configuration.Security.Timeout = 500;                     //override the default security timeout
+</code>
+	        </example>
+	    </class>
+		<members name="Validate">
+			<summary>
+		    Validates an address and returns a collection of possible <see cref="ValidAddresses"/> in a <see cref="ValidateResult"/> object.
+		    </summary>
+		    <param name="validateRequest">A <see cref="ValidateRequest"/> object containing address data to be validated.</param>
+		    <returns>
+		    A <see cref="ValidateResult"/> object containing a collection of zero or more validated addresses.
+		    </returns>
+		    <remarks>
+		    The <b>ValidateRequest</b> object includes a <see cref="TextCase"/> property that determines the casing applied to 
+		    a validated address.  It defaults to <see cref="TextCase.Default"/>.
+		    </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oResult As ValidateResult
+
+Set oSvc = New AddressSvc
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.City = "Bainbridge Island"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Upper
+
+Set oResult = oSvc.Validate(oValidateRequest)
+Debug.Print oResult.Addresses.Count
+</code>
+<code>
+[C#]
+AddressSvc svc = new AddressSvc();
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.City = "Bainbridge Island";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Upper;
+
+ValidateResult result = svc.Validate(validateRequest);
+Console.WriteLn(result.Addresses.Count);
+</code>
+		    </example>
+		</members>
+	</AddressSvc>
+		<!--The following documentation for Address members is a superset of Address and ValidAddress members.
+			Address will not implement all members below.  Documentation for Address and ValidAddress members is shared. -->
+	<Address>
+	    <class>
+		    <summary>
+	        Contains address data. Can be passed to <see cref="AddressSvc.Validate"/> using <see cref="ValidateRequest"/>. 
+	        Also part of the <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxRequest"/> result returned from
+	        the <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc.GetTax"/> tax calculation service.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oResult As ValidateResult
+
+Set oSvc = New AddressSvc
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.City = "Bainbridge Island"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Upper
+
+Set oResult = oSvc.Validate(oValidateRequest)
+Debug.Print oResult.Addresses.Count
+</code>
+<code>
+[C#]
+AddressSvc svc = new AddressSvc();
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.City = "Bainbridge Island";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Upper;
+
+ValidateResult result = svc.Validate(validateRequest);
+Console.WriteLn(result.Addresses.Count);
+</code>
+		    </example>
+	    </class>
+	    <members name="Equals">
+	        <summary>
+	        Overrides the default implementation of <see cref="Object.Equals(object)"/>.
+	        </summary>
+		    <param name="obj">The object to compare.</param>
+		    <returns>True if <b>obj</b> is a reference to this object or if both objects contain the same values (case-insensitive).
+		    False if they do not contain the same values or <b>obj</b> is not of type Address.</returns>
+	        <remarks>
+	        Equality is determined by first comparing referential equality (they are the same object). Returns true if the two objects
+	        are referentially equal.  If they are not, then it tests that the object passed into the Equals method is an Address object.
+	        Returns false if the compare object is not of type Address. Otherwise, it will compare the two objects on a field by field
+	        basis, such that Line1 is compared to Line1 of the compare object, Line2 to Line2 of the compare object, and so on. All
+	        fields must be identical (case-insensitive) in order for the two objects to be considered equal.
+	        </remarks>
+	        <example>
+	        The following will return <b>true</b>.
+<code>
+[C#]
+Address address1 = new Address();
+address1.Line1 = "900 Winslow Way";
+address1.Region = "WA";
+address1.PostalCode = "98110";
+
+Address address2 = address1;
+bool isEqual = address1.Equals(address2);
+</code>
+	        
+	        The following also returns <b>true</b>.
+<code>
+[C#]
+Address address1 = new Address();
+address1.Line1 = "900 Winslow Way";
+address1.Region = "WA";
+address1.PostalCode = "98110";
+
+Address address2 = new Address();
+address2.Line1 = "900 WINSLOW WAY";
+address2.Region = "wa";
+address2.PostalCode = "98110";
+
+bool isEqual = address1.Equals(address2);
+</code>
+	        </example>
+	    </members>
+	    <members name="GetHashCode">
+	        <summary>
+	        Gets the default hash code for the object (as returned by <see cref="Object.GetHashCode"/>).
+	        </summary>
+	        <returns>A default hash code.</returns>
+	    </members>
+	    <members name="Clone">
+	        <summary>
+	        Creates a new instance of an <b>Address</b> class containing the same values as the current object.
+	        </summary>
+	        <returns>A new <b>Address</b> object.</returns>
+	    </members>
+		<members name="AddressCode">
+		    <summary>
+		    Programmatically determined value used internally by the adapter. Defaults to the hash code of the Address object.
+		    </summary>
+		</members>
+		<members name="Line1">
+		    <summary>
+		    Address line 1
+		    </summary>
+		</members>
+		<members name="Line2">
+		    <summary>
+		    Address line 2
+		    </summary>
+		</members>
+		<members name="Line3">
+		    <summary>
+		    Address line 3
+		    </summary>
+		</members>
+		<members name="Line4">
+		    <summary>
+		    Address line 4
+		    </summary>
+		</members>
+		<members name="City">
+		    <summary>
+		    City name
+		    </summary>
+		</members>
+		<members name="Region">
+		    <summary>
+		    State or province name or abbreviation
+		    </summary>
+		</members>
+		<members name="PostalCode">
+		    <summary>
+		    Postal or ZIP code
+		    </summary>
+		</members>
+		<members name="County">
+		    <summary>
+		    County Name
+		    </summary>
+		</members>
+		<members name="Country">
+		    <summary>
+		    Country name
+		    </summary>
+		</members>
+		<members name="TaxRegionId">
+		    <summary>
+		    TaxRegionId provides the ability to override the tax region assignment for an address.
+		    </summary>
+		</members>
+		<members name="Latitude">
+		    <summary>
+		     Element containing the latitude of the 5-digit ZIP or 6 character postal code if <see cref="ValidateRequest.Coordinates"/>=True in the <see cref="ValidateRequest"/>
+		    </summary>
+		</members>
+		<members name="Longitude">
+		    <summary>
+		    Element containing the longitude of the 5-digit ZIP or 6 character postal code if <see cref="ValidateRequest.Coordinates"/>=True in the <see cref="ValidateRequest"/>
+		    </summary>
+		</members>
+		<members name="FipsCode">
+		    <summary>
+		    Federal Information Processing Standards Code (USA)
+		    </summary>
+		    <remarks>
+		    <para>
+		    This is a unique code representing each geographic combination of state, county, and city. 
+		    The code is made up of the Federal Information Processing Code (FIPS) that uniquely identifies each state, county, and city in the U.S.
+		    See <see href="http://www.census.gov/geo/www/fips/fips.html">Federal Information Processing Standards (FIPS) Codes</see> for more details.
+		    </para>
+		    <list type="table">
+		    <listheader>
+		   	  <term>Digits</term>
+		      <description>Description</description>
+		    </listheader>
+		    <item>
+		      <term>1-2</term><description>State code</description>
+		    </item>
+		    <item>
+		      <term>3-5</term><description>County code</description>
+		    </item>
+		    <item>
+		      <term>6-10</term><description>City code</description>
+		    </item>
+		    </list>
+		    </remarks>
+		</members>
+		<members name="CarrierRoute">
+		    <summary>
+		    The carrier route associated with the input address (USA).
+		    </summary>
+		    <remarks>
+		    <para>The CarrierRoute Property is a 4 character string set after a successful return from the VerifyAddress Method.</para>
+		    <para>The first character of this property is always alphabetic, and the last three characters are numeric. 
+		    For example, "R001" or "C027" would be typical carrier routes. 
+		    The alphabetic letter indicates the type of delivery associated with this address.</para>
+		    <list type="table">
+		    <listheader>
+		   	  <term>Term</term>
+		      <description>Description</description>
+		    </listheader>
+		    <item>
+		      <term>B</term><description>PO Box</description>
+		    </item>
+		    <item>
+		      <term>C</term><description>City Delivery</description>
+		    </item>
+		    <item>
+		      <term>G</term><description>General Delivery</description>
+		    </item>
+		    <item>
+		      <term>H</term><description>Highway Contract</description>
+		    </item>
+		    <item>
+		      <term>R</term><description>Rural Route</description>
+		    </item>
+		    </list>
+		    </remarks>
+		</members>
+		<members name="PostNet">
+		    <summary>
+		    A 12-digit POSTNet barcode (USA).
+		    </summary>
+		    <remarks>
+		    <list type="table">
+		    <listheader>
+		   	  <term>Digits</term>
+		      <description>Description</description>
+		    </listheader>
+		    <item>
+		      <term>1-5</term><description>ZIP Code</description>
+		    </item>
+		    <item>
+		      <term>6-9</term><description>Plus4 code</description>
+		    </item>
+		    <item>
+		      <term>10-11</term><description>Delivery point</description>
+		    </item>
+		    <item>
+		      <term>12</term><description>Check digit</description>
+		    </item>
+		    </list>
+		    </remarks>
+		</members>
+		<members name="AddressType">
+		    <summary>
+		    Address Type - The type of address that was coded (PO Box, Rural Route, and so on), using the input address.
+		    </summary>
+		    <remarks>
+		    <list type="table">
+		    <listheader>
+		      <term>Code</term>
+		      <description>Type</description>
+		    </listheader>
+		    <item>
+		      <term>F</term><description>Firm or company address</description>
+		    </item>
+		    <item>
+		      <term>G</term><description>General Delivery address</description>
+		    </item>
+		    <item>
+		      <term>H</term><description>High-rise or business complex</description>
+		    </item>
+		    <item>
+		      <term>P</term><description>PO Box address</description>
+		    </item>
+		    <item>
+		      <term>R</term><description>Rural route address</description>
+		    </item>
+		    <item>
+		      <term>S</term><description>Street or residential address</description>
+		    </item>
+		    </list>
+		    <note>
+		    AddressTypeString is no longer available.
+		    </note>
+		    </remarks>
+		</members>		
+	</Address>
+	<Addresses>
+		<class>
+		    <summary>
+		    A collection of zero or more <see cref="Address"/> objects.
+		    </summary>
+		</class>
+		<members name="Add">
+		    <summary>
+		    Inserts an <see cref="Address"/> object into the collection of addresses.
+		    </summary>
+		    <param name="address">The <see cref="Address"/> object to add.</param>
+		</members>
+	    <members name="this">
+		    <summary>
+		    Provides array-like access to the collection. Read-only. Default member.
+		    </summary>
+		    <returns>An <see cref="Address"/> object.</returns>
+	    </members>
+	    <members name="Clear">
+	        <summary>
+	        Removes all objects from the collection and resets the count to zero.
+	        </summary>
+	    </members>
+		<members name="Find">
+		    <summary>
+		    Searches for a specific address based on an <see cref="Address.AddressCode"/>. Since the collection does
+		    not contain duplicate object references and the AddressCode is based on the hash code of the object, this method
+		    can only ever return zero or one object.
+		    </summary>
+		    <param name="addressCode">The <see cref="Address.AddressCode"/> to search for in the collection.</param>
+		    <returns>If a matching <b>AddressCode</b> is found, then an <see cref="Address"/> object; else null.</returns>
+		</members>
+	</Addresses>
+	
+	<ValidateResult>
+	    <class>
+		    <summary>
+		    Contains a collection of <see cref="ValidAddresses"/> returned by <see cref="AddressSvc.Validate"/>
+		    <seealso cref="ValidAddresses"/>
+		    <seealso cref="ValidAddress"/>
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oResult As ValidateResult
+
+Set oSvc = New AddressSvc
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.City = "Bainbridge Island"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Upper
+
+Set oResult = oSvc.Validate(oValidateRequest)
+Debug.Print oResult.Addresses.Count
+</code>
+<code>
+[C#]
+AddressSvc svc = new AddressSvc();
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.City = "Bainbridge Island";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Upper;
+
+ValidateResult result = svc.Validate(validateRequest);
+Console.WriteLn(result.Addresses.Count);
+</code>
+		    </example>		    
+		</class>
+		<members name="Addresses">
+		    <summary>
+		    Provides access to the <see cref="ValidAddresses"/> collection.
+		    </summary>
+		</members>
+	</ValidateResult>
+	<ValidAddresses>
+		<class>
+		    <summary>
+		    A collection of zero or more valid <see cref="ValidAddress"/> objects.
+		    </summary>
+		</class>
+	</ValidAddresses>
+	<ValidAddress>
+		<class>
+		    <summary>
+		    A fully validated address based on initial <see cref="Address"/> data passed to 
+		    <see cref="AddressSvc.Validate"/>.
+		    <seealso cref="ValidAddresses"/>
+		    <seealso cref="Address"/>
+		    </summary>
+		</class>
+		<!-- documentation for ValidAddress members is found under <member name="Address"> -->
+	</ValidAddress>
+	<AddressType>
+	    <enum>
+	        <summary>
+	        An Address Type. See <see cref="GetTaxRequest.SetAddress"/> and <see cref="Line.SetAddress"/>.
+	        </summary>
+	    </enum>
+	    <members name="Origin">
+		    <summary>
+		    Indicates an address should be considered an originating, or "Ship From", address.
+		    </summary>
+	    </members>
+	    <members name="Destination">
+		    <summary>
+		    Indicates an address should be considered a destination, or "Ship To", address.
+		    </summary>
+	    </members>
+	</AddressType>
+	<ValidateRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="AddressSvc.Validate"/>.
+	        </summary>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oResult As ValidateResult
+
+Set oSvc = New AddressSvc
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.City = "Bainbridge Island"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Upper
+
+Set oResult = oSvc.Validate(oValidateRequest)
+Debug.Print oResult.Addresses.Count
+</code>
+<code>
+[C#]
+AddressSvc svc = new AddressSvc();
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.City = "Bainbridge Island";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Upper;
+
+ValidateResult result = svc.Validate(validateRequest);
+Console.WriteLn(result.Addresses.Count);
+</code>
+		</example>	        
+	    </class>
+	    <members name="Address">
+	        <summary>
+	        The address to validate.
+	        </summary>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oValidateResult As ValidateResult
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Default
+
+Set oSvc = New AddressSvc
+Set oValidateResult = oSvc.Validate(oValidateRequest)
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Default;
+
+AddressSvc svc = new AddressSvc();
+ValidateResult validateResult = svc.Validate(validateRequest);
+</code>
+		</example>
+	    </members>
+	     <members name="Origin">
+		    <summary>
+		    Indicates an address should be considered an originating, or "Ship From", address.
+		    </summary>
+	    </members>
+	    <members name="Coordinates">
+	        <summary>
+	        Indicates whether latitude and longitude values should be returned in the <see cref="ValidateResult"/> object.
+            Default is false.
+	        </summary>	    
+	     <example>  
+<code>
+[Visual Basic 6]
+Dim oSvc As AddressSvc
+Dim oValidateRequest As ValidateRequest
+Dim oAddress As Address
+Dim oValidateResult As ValidateResult
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oValidateRequest = New ValidateRequest
+Set oValidateRequest.Address = oAddress
+oValidateRequest.TextCase = TextCase_Default
+
+Set oSvc = New AddressSvc
+Set oValidateResult = oSvc.Validate(oValidateRequest)
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+ValidateRequest validateRequest = new ValidateRequest();
+validateRequest.Address = address;
+validateRequest.TextCase = TextCase.Default;
+
+AddressSvc svc = new AddressSvc();
+ValidateResult validateResult = svc.Validate(validateRequest);
+</code>
+	        </example>
+	    </members>
+	    <members name="TextCase">
+		    <summary>
+		    The casing to apply to the valid address(es) returned in the validation result. <see cref="TextCase"/>.
+		    </summary>
+	    </members>
+	    <members name="Taxability">
+		    <summary>
+		    Indicates that the taxability of the address should be checked.
+		    </summary>
+		    <remarks>
+		    This may be used to determine whether the TaxSvc GetTax method can successfully calculate tax with this address.  This is an expensive option that will slow down the response and should only be used when necessary.
+		    </remarks>
+	    </members>
+	    </ValidateRequest>
+	<TextCase>
+	    <enum>
+	        <summary>
+	        The casing to apply to the valid address(es) returned in the validation result.
+	        </summary>
+	    </enum>
+	    <members name="Default">
+		    <summary>
+		    Default for the account
+		    </summary>
+	    </members>
+	    <members name="Upper">
+		    <summary>
+		    Upper case
+		    </summary>
+	    </members>
+	    <members name="Mixed">
+		    <summary>
+		    Mixed Case
+		    </summary>
+	    </members>
+	</TextCase>
+	
+</adapter>

@@ -1,0 +1,185 @@
+<adapter>
+	<proxy>
+	    <CancelTaxRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.CancelTaxRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </CancelTaxRequest>
+	    <CancelTaxResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.CancelTaxResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </CancelTaxResult>
+	    <CommitTaxRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.CommitTaxRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </CommitTaxRequest>
+	    <CommitTaxResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.CommitTaxResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </CommitTaxResult>
+	    <GetTaxHistoryRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </GetTaxHistoryRequest>
+	    <GetTaxHistoryResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </GetTaxHistoryResult>
+	    <GetTaxRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </GetTaxRequest>
+	    <GetTaxResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </GetTaxResult>
+	    <Line>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.Line"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </Line>
+	    <PostTaxRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.PostTaxRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </PostTaxRequest>
+	    <PostTaxResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.PostTaxResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </PostTaxResult>
+	    <ReconcileTaxHistoryRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </ReconcileTaxHistoryRequest>
+	    <ReconcileTaxHistoryResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace: .
+	        </summary>
+	    </ReconcileTaxHistoryResult>
+	    <SearchTaxHistoryRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.SearchTaxHistoryRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </SearchTaxHistoryRequest>
+	    <SearchTaxHistoryResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.SearchTaxHistoryResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </SearchTaxHistoryResult>
+	    <TaxDetail>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.TaxDetail"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </TaxDetail>
+	    <TaxLine>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.TaxLine"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </TaxLine>
+	    <TaxSvc>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.TaxSvc"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </TaxSvc>
+	    <CancelCode>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.CancelCode"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </CancelCode>
+	    <DetailLevel>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.DetailLevel"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </DetailLevel>
+	    <DocStatus>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.DocStatus"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </DocStatus>
+	    <JurisdictionType>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.JurisdictionType"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </JurisdictionType>
+	     <AdjustTaxRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.AdjustTaxRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </AdjustTaxRequest>
+	    <AdjustTaxResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.AdjustTaxResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </AdjustTaxResult>
+	    <TaxOverrideType>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.TaxOverrideType"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </TaxOverrideType>
+	    <ServiceMode>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.ServiceMode"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </ServiceMode>
+	    <TaxOverride>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.TaxOverride"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </TaxOverride>
+	    <ApplyPaymentRequest>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.ApplyPaymentRequest"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </ApplyPaymentRequest>
+	    <ApplyPaymentResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.TaxService.ApplyPaymentResult"/> class in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </ApplyPaymentResult>
+	    <AccountingMethod>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See <see cref="Avalara.AvaTax.Adapter.TaxService.AccountingMethod"/> in the <see cref="Avalara.AvaTax.Adapter.TaxService"/> namespace.
+	        </summary>
+	    </AccountingMethod>
+	 
+	</proxy>
+</adapter>

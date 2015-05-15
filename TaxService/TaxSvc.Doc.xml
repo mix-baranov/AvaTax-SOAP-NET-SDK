@@ -1,0 +1,2342 @@
+<adapter>
+	<common>
+	    <!-- common members used in more than one class -->
+	    <members name="Constructor">
+	        <summary>
+	        Initializes a new instance of the class.
+	        </summary>
+	    </members>
+	    <members name="InternalConstructor">
+	        <summary>
+	        Initializes a new instance of the class. Not creatable outside the assembly.
+	        </summary>
+	    </members>
+	    <members name="Finalize">
+	        <summary>
+	        Ensures that resources are freed and other cleanup operations are performed when 
+	        the garbage collector reclaims the object. 
+	        </summary>
+	    </members>
+		<members name="Ping">
+		    <summary>
+		    Verifies connectivity to the web service 
+		    and returns version information about the service.
+		    </summary>
+		    <param name="message">For future use</param>
+		    <remarks>
+		    This replaces TestConnection and is available on every service.
+		    </remarks>
+		</members>
+		<members name="IsAuthorized">
+            <summary>
+            Checks authentication of and authorization to one or more operations on the service.
+            </summary>
+            <param name="operations">A comma-delimited list of operation names.</param>
+            <example>
+            IsAuthorized("GetTax,PostTax")
+            </example>
+            <remarks>
+            This operation allows pre-authorization checking of any or all operations.  
+            It will return a comma delimited set of operation names which will be all or a subset
+            of the requested operation names.  For security, it will never return operation names
+            other than those requested, i.e. protects against phishing.
+            </remarks>
+		</members>
+	</common>
+
+	<TaxSvc>
+	    <common><!-- documentation for common TaxSvc members -->
+	        <members name="CompanyCode">
+		        <summary>
+		        Gets or sets the client application company reference code.
+		        </summary>
+	        </members>
+	        <members name="CustomerCode">
+		        <summary>
+		        Gets or sets the client application customer reference code.
+		        </summary>
+	        </members>
+	        <members name="DocCode">
+		        <summary>
+		        Gets or sets the Document Code, i.e. the internal reference code used by the client application.  
+		        </summary>
+	        </members>
+	        <members name="GetTaxResults">
+		        <summary>
+		        Gets zero or more <see cref="GetTaxResult"/> summaries matching search criteria.
+		        </summary>
+	        </members>
+	        <members name="No">
+		        <summary>
+		        Line Number
+		        </summary>
+		        <remarks>
+		        <b>Line</b>s are added to a <see cref="GetTaxRequest"/> object when preparing a document for tax calculation. 
+		        The line <b>No</b> uniquely identifies a particular line item for the client.
+		        </remarks>
+		        <example>
+<code>
+[Visual Basic 6]
+Dim oRequest As GetTaxRequest
+Dim oLine As Line
+Set oRequest = New GetTaxRequest
+Set oLine = New Line
+oLine.No = "01"
+.
+.
+.
+oRequest.Lines.Add oLine
+
+Set oLine = New Line
+oLine.No = "02"
+.
+.
+.
+oRequest.Lines.Add oLine
+</code>
+<code>
+[C#]
+GetTaxRequest request = new GetTaxRequest();
+Line line = new Line();
+line.No = "01";
+.
+.
+.
+request.Lines.Add(line);
+
+line = new Line();
+line.No = "02";
+.
+.
+.
+request.Lines.Add(line);
+</code>
+		        </example>
+	        </members>
+	        <members name="OriginCode">
+		        <summary>
+		        Point of origin reference code to an address in the <see cref="GetTaxRequest.Addresses"/> list.  This may correspond to a client application code.
+		        </summary>
+	        </members>
+	        <members name="DestinationCode">
+		        <summary>
+		        Ship to reference code to an address in the <see cref="GetTaxRequest.Addresses"/> list.  This may correspond to a client application code.
+		        </summary>
+	        </members>
+	        <members name="DocType">
+		        <summary>
+		        The original document's type, such as Sales Invoice or Purchase Invoice
+		        </summary>
+		        <remarks>
+		        </remarks>
+	        </members>
+          <members name="DocId">
+            <summary>
+              A unique Document number used only by Avalara.
+            </summary>
+            <remarks>
+            </remarks>
+          </members>
+
+      </common>
+	    <class>
+	        <summary>
+	        Proxy interface for the Avalara Tax Web Service.
+	        </summary>
+	        <remarks>
+	        Requires a configuration file at creation time named Avalara.Adapter.AvaTax.dll.config in the same directory as the assembly.
+	        The values in the file will be loaded as the default configuration information.  The data can be queried
+	        and overridden through <see cref="Avalara.AvaTax.Adapter.ServiceConfig"/> object accesses through this class's Configuration member.
+	        </remarks>
+	        <example>
+<code>
+[Visual Basic 6]
+Dim adapter As TaxSvc
+adapter = new TaxSvc
+Debug.Print adapter.Configuration.Url                            'output default Url
+adapter.Configuration.Url = "http://www.avalara.com/services/"   'override the default Url
+adapter.Configuration.Security.Timeout = 500                     'override the default security timeout
+</code>
+<code>
+[C#]
+TaxSvc adapter = new TaxSvc();
+Console.WriteLn(adapter.Configuration.Url);                       //output default Url
+adapter.Configuration.Url = "http://www.avalara.com/services/";   //override the default Url
+adapter.Configuration.Security.Timeout = 500;                     //override the default security timeout	        
+</code>
+	        </example>
+	    </class>
+	    <members name="GetTax">
+		    <summary>
+		    Calculates taxes on a document such as a sales order, sales invoice, purchase order, purchase invoice, or credit memo.
+		    </summary>
+		    <param name="getTaxRequest">Tax calculation request</param>
+		    <remarks>
+		    The tax data is saved Sales Invoice and Purchase Invoice document types (<see cref="GetTaxRequest.DocType"/>).
+		    </remarks>
+	    </members>
+	    <members name="GetTaxHistory">
+		    <summary>
+		    Retrieves a previously calculated tax document.
+		    </summary>
+		    <param name="getTaxHistoryRequest">A <see cref="PostTaxRequest"/> indicating the document for which history should be retrieved.</param>
+		    <remarks>
+		    <para>
+		    This is only available for saved tax documents (Sales Invoices, Purchase Invoices).
+		    </para>
+		    <para>
+		    The request must specify all of <see cref="PostTaxRequest.CompanyCode"/>, <see cref="PostTaxRequest.DocCode"/>, and 
+		    <see cref="PostTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+		    </remarks>
+	    </members>
+	    <members name="PostTax">
+		    <summary>
+		    Posts a previously calculated tax.
+		    </summary>
+		    <param name="postTaxRequest">A <see cref="PostTaxRequest"/> indicating the document that should be posted.</param>
+		    <remarks>
+		    <para>
+		    This is only available for saved tax documents (Sales Invoices, Purchase Invoices).
+		    </para>
+		    <para>
+		    The request must specify all of <see cref="PostTaxRequest.CompanyCode"/>, <see cref="PostTaxRequest.DocCode"/>, and 
+		    <see cref="PostTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+		    </remarks>
+	    </members>
+	    <members name="CommitTax">
+		    <summary>
+		    Commits a previously posted tax.
+		    </summary>
+		    <param name="commitTaxRequest">A <see cref="CommitTaxRequest"/> indicating the document that should be committed.</param>
+		    <remarks>
+		    <para>
+		    This is only available for posted tax documents (Sales Invoices, Purchase Invoices). Committed documents cannot be
+		    changed or deleted.
+		    </para>
+		    <para>
+		    The request must specify all of <see cref="CommitTaxRequest.CompanyCode"/>, <see cref="CommitTaxRequest.DocCode"/>, and 
+		    <see cref="CommitTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+		    </remarks>
+	    </members>
+	    <members name="CancelTax">
+		    <summary>
+		    Cancels a previously calculated tax.  This is for use as a compensating action when posting on the client fails to complete.
+		    </summary>
+		    <param name="cancelTaxRequest">A <see cref="CancelTaxRequest"/> indicating the document that should be canceled.</param>
+		    <remarks>
+		    <para>
+		    This is only available for saved tax document types (Sales Invoices, Purchase Invoices). A document that is saved
+		    but not posted will be deleted if canceled. A document that has been posted will revert to a saved state if canceled
+		    (in this case <b>CancelTax</b> should be called with a <see cref="CancelTaxRequest.CancelCode"/> of
+		    <i>PostFailed</i>). A document that has been committed cannot be reverted to a posted state or deleted. In the case
+		    that a document on the client side no longer exists, a committed document can be virtually removed by calling
+		    <b>CancelTax</b> with a <b>CancelCode</b> of <i>DocDeleted</i>. The record will be retained in history but removed
+		    from all reports.
+		    </para>
+		    <para>
+		    The request must specify all of <see cref="CancelTaxRequest.CompanyCode"/>, <see cref="CancelTaxRequest.DocCode"/>, and 
+		    <see cref="CancelTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+		    </remarks>
+	    </members>
+	    <members name="SearchTaxHistory">
+		    <summary>
+		    Searches tax history.
+		    </summary>
+		    <param name="searchTaxHistoryRequest">Tax history search request</param>
+		    <returns>
+		    A collection of GetTaxRequests and GetTaxResults matching the search criteria.  
+		    TaxLines and TaxDetails will not be returned, but can be requested using <see cref="TaxSvc.GetTaxHistory"/>.
+		    </returns>
+		    <remarks>
+		    <note type="implementnotes">This is only available for stored tax documents (DocStatus is Saved, Posted, Committed, or Cancelled).</note>
+		    </remarks>
+	    </members>
+	    <members name="ReconcileTaxHistory">
+		    <summary>
+		    Reconciles tax history to ensure the client data matches the AvaTax history.
+		    </summary>
+		    <param name="reconcileTaxHistoryRequest">Reconciliation request</param>
+		    <returns>
+		    A collection of documents that have been posted or committed since the last reconciliation.
+		    </returns>
+		    <remarks>
+		    <para>The Reconcile operation allows reconciliation of the AvaTax history with the client accounting system.
+		    It must be used periodically according to your service contract.</para>
+		    <para>Because there may be a large number of documents to reconcile, it is designed to be called repetitively
+		    until all documents have been reconciled.  It should be called until no more documents are returned.  
+		    Each subsequent call should pass the previous results <see cref="ReconcileTaxHistoryRequest.LastDocCode"/>.</para>
+		    <para>When all results have been reconciled, Reconcile should be called once more with <see cref="ReconcileTaxHistoryRequest.LastDocCode"/>
+		    equal to the last document code processed.</para>
+		    <para>The <see cref="PostTax"/>, <see cref="CommitTax"/>, and <see cref="CancelTax"/> operations can be used to correct any differences.  
+		    <see cref="GetTax"/> should be called if any committed documents are out of balance (<see cref="GetTaxResult.TotalAmount"/> or <see cref="GetTaxResult.TotalTax"/> 
+		    don't match the accounting system records).  This is to make sure the correct tax is reported.</para>
+		    </remarks>
+	    </members>
+	    <members name="AdjustTax">
+		    <summary>
+		    Adjust tax methods allows user to adjust the invoice on AvaTax.
+		    Reconciles tax history to ensure the client data matches the AvaTax history.
+		    </summary>
+		    <param name="adjustTaxRequest">AdjustTax Request</param>
+		    <returns>
+		    A collection of documents that have been posted or committed since the last reconciliation.
+		    </returns>
+		    <remarks>
+		    <para>The AdjustTax operation allows user to Adjust document on the AvaTax system.</para>
+		    <para>Adjustment is allowed for Commited documents. If Document status is <see cref="GetTaxResult.Locked"/> then system will not process any AdjustTax call.
+		    A valid <see cref="AdjustTaxRequest.AdjustmentReason"/> is required for Adjusting a document.
+		    </para>
+		    </remarks>
+	    </members>
+	    <members name="ApplyPayment">
+		    <summary>
+		    ApplyPayment allows a payment to be applied to an invoice for companies using cash-basis accounting.  It will update the PaymentDate 
+		    and ReportingDate for that invoice.  Until a payment is applied to cash-basis invoices, the ReportingDate will be set to 12/31/9999 
+		    to prevent the invoice from being reported.
+		    </summary>
+	    </members>
+	  
+	</TaxSvc>
+	<Line>
+	    <class>
+	        <summary>
+	        A single line within a document containing data used for calculating tax.
+	        </summary>
+	        <remarks>
+	        <seealso cref="Lines"/>
+	        <seealso cref="GetTaxRequest"/>
+	        </remarks>
+	    </class>
+	    <members name="SetAddress">
+		    <summary>
+		    Adds an <see cref="Address"/> of either type <see cref="AddressType.Origin"/> or <see cref="AddressType.Destination"/>
+		    to the <b>Line</b>.
+		    </summary>
+		    <param name="address">The <b>Address</b> to add to the object.</param>
+		    <param name="type">Specifies the address as either an <b>Origin</b> or <b>Destination</b>.</param>
+		    <remarks>
+		    Adding more than one address of a given type will overwrite the existing reference. Both new instances of an
+		    <see cref="Address"/> and existing references are valid. If an existing reference is passed in, then changing
+		    either the original object or the reference will change all referenced objects.
+		    <para>
+		    Calling SetAddress on a Line object is not required. If no address exists for either the <b>Origin</b> or
+		    <b>Destination</b>, the <see cref="GetTaxRequest.OriginAddress"/> and/or <see cref="GetTaxRequest.DestinationAddress"/>
+		    will be defaulted from the parent <see cref="GetTaxRequest"/> object immediately prior to calling the AvaTax web service
+		    in the <see cref="TaxSvc.GetTax"/> method. Duplicate addresses on either the <b>GetTaxRequest</b> or the child
+		    <b>Line</b> will be consolidated into unique references.  Two address objects are considered to be duplicates if they
+		    share a reference or they contain the exact same field values (case-insensitive).
+		    </para>
+		    </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddress As Address
+Dim oLine As Line
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oLine = New Line
+Set oLine.OriginAddress = oAddress
+
+Debug.Print oLine.OriginAddress.Line1
+Debug.Print oLine.OriginAddress.Region
+Debug.Print oLine.OriginAddress.PostalCode
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Dim oAddress As Address
+Dim oLine As Line
+Dim oRequest As GetTaxRequest
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oRequest = New GetTaxRequest
+Set oRequest.OriginAddress = oAddress
+
+Set oLine = new Line
+Set oLine.OriginAddress = oRequest.OriginAddress 
+
+oRequest.Lines.Add oLine
+
+Debug.Print oLine.OriginAddress.Line1
+Debug.Print oLine.OriginAddress.Region
+Debug.Print oLine.OriginAddress.PostalCode
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+Line line = new Line();
+line.OriginAddress = address;
+
+Console.WriteLn(line.OriginAddress.Line1);
+Console.WriteLn(line.OriginAddress.Region);
+Console.WriteLn(line.OriginAddress.PostalCode);
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+GetTaxRequest request = new GetTaxRequest();
+request.OriginAddress = address;
+
+Line line = new Line();
+line.OriginAddress = request.OriginAddress;
+
+request.Lines.Add(line);
+
+Console.WriteLn(line.OriginAddress.Line1);
+Console.WriteLn(line.OriginAddress.Region);
+Console.WriteLn(line.OriginAddress.PostalCode);
+</code>
+		    </example>
+	    </members>
+	    <members name="OriginAddress">
+	        <summary>
+	        Gets or sets the <see cref="Address"/> used as the "Ship From" location for a specific line item.
+	        </summary>
+	        <remarks>
+		    Setting the Origin Address on a Line object is not required. If no address exists for either the <b>Origin</b> or
+		    <b>Destination</b>, the <see cref="GetTaxRequest.OriginAddress"/> and/or <see cref="GetTaxRequest.DestinationAddress"/>
+		    will be defaulted from the parent <see cref="GetTaxRequest"/> object immediately prior to calling the AvaTax web service
+		    in the <see cref="TaxSvc.GetTax"/> method. Duplicate addresses on either the <b>GetTaxRequest</b> or the child
+		    <b>Line</b> will be consolidated into unique references.  Two address objects are considered to be duplicates if they
+		    share an object reference or they contain the exact same field values (case-insensitive).
+	        </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddress As Address
+Dim oLine As Line
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oLine = New Line
+Set oLine.OriginAddress = oAddress
+
+Debug.Print oLine.OriginAddress.Line1
+Debug.Print oLine.OriginAddress.Region
+Debug.Print oLine.OriginAddress.PostalCode
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Dim oAddress As Address
+Dim oLine As Line
+Dim oRequest As GetTaxRequest
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oRequest = New GetTaxRequest
+Set oRequest.OriginAddress = oAddress
+
+Set oLine = new Line
+Set oLine.OriginAddress = oRequest.OriginAddress 
+
+oRequest.Lines.Add oLine
+
+Debug.Print oLine.OriginAddress.Line1
+Debug.Print oLine.OriginAddress.Region
+Debug.Print oLine.OriginAddress.PostalCode
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+Line line = new Line();
+line.OriginAddress = address;
+
+Console.WriteLn(line.OriginAddress.Line1);
+Console.WriteLn(line.OriginAddress.Region);
+Console.WriteLn(line.OriginAddress.PostalCode);
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+GetTaxRequest request = new GetTaxRequest();
+request.OriginAddress = address;
+
+Line line = new Line();
+line.OriginAddress = request.OriginAddress;
+
+request.Lines.Add(line);
+
+Console.WriteLn(line.OriginAddress.Line1);
+Console.WriteLn(line.OriginAddress.Region);
+Console.WriteLn(line.OriginAddress.PostalCode);
+</code>
+		    </example>
+	    </members>
+	    <members name="DestinationAddress">
+	        <summary>
+	        Gets or sets the <see cref="Address"/> used as the "Ship To" location for a specific line item.
+	        </summary>
+	        <remarks>
+		    Setting the Destination Address on a Line object is not required. If no address exists for either the <b>Origin</b> or
+		    <b>Destination</b>, the <see cref="GetTaxRequest.OriginAddress"/> and/or <see cref="GetTaxRequest.DestinationAddress"/>
+		    will be defaulted from the parent <see cref="GetTaxRequest"/> object immediately prior to calling the AvaTax web service
+		    in the <see cref="TaxSvc.GetTax"/> method. Duplicate addresses on either the <b>GetTaxRequest</b> or the child
+		    <b>Line</b> will be consolidated into unique references.  Two address objects are considered to be duplicates if they
+		    share an object reference or they contain the exact same field values (case-insensitive).
+	        </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddress As Address
+Dim oLine As Line
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oLine = New Line
+Set oLine.DestinationAddress = oAddress
+
+Debug.Print oLine.DestinationAddress.Line1
+Debug.Print oLine.DestinationAddress.Region
+Debug.Print oLine.DestinationAddress.PostalCode
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Dim oAddress As Address
+Dim oLine As Line
+Dim oRequest As GetTaxRequest
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oRequest = New GetTaxRequest
+Set oRequest.DestinationAddress = oAddress
+
+Set oLine = new Line
+Set oLine.DestinationAddress = oRequest.DestinationAddress 
+
+oRequest.Lines.Add oLine
+
+Debug.Print oLine.DestinationAddress.Line1
+Debug.Print oLine.DestinationAddress.Region
+Debug.Print oLine.DestinationAddress.PostalCode
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+Line line = new Line();
+line.DestinationAddress = address;
+
+Console.WriteLn(line.DestinationAddress.Line1);
+Console.WriteLn(line.DestinationAddress.Region);
+Console.WriteLn(line.DestinationAddress.PostalCode);
+</code>
+		    
+		    The following is also valid. However, it is unnecessary because the GetTaxRequest object
+		    will default a Line's address to that of the request if no Line address is found.
+<code>
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+GetTaxRequest request = new GetTaxRequest();
+request.DestinationAddress = address;
+
+Line line = new Line();
+line.DestinationAddress = request.DestinationAddress;
+
+request.Lines.Add(line);
+
+Console.WriteLn(line.DestinationAddress.Line1);
+Console.WriteLn(line.DestinationAddress.Region);
+Console.WriteLn(line.DestinationAddress.PostalCode);
+</code>
+		    </example>
+	    </members>
+	    <members name="OriginCode">
+	        <summary>
+	        Used internally by the adapter to reference the <see cref="Line.OriginAddress"/>.
+	        </summary>
+	        <remarks>Same as the <b>OriginAddress</b>'s <see cref="Address.AddressCode"/>.</remarks>
+	        <returns>An internally maintained value representing the <b>OriginAddress</b>.</returns>
+	    </members>
+	    <members name="DestinationCode">
+	        <summary>
+	        Used internally by the adapter to reference the <see cref="Line.DestinationAddress"/>.
+	        </summary>
+	        <remarks>Same as the <b>DestinationAddress</b>'s <see cref="Address.AddressCode"/>.</remarks>
+	        <returns>An internally maintained value representing the <b>DestinationAddress</b>.</returns>
+	    </members>
+	    <members name="ItemCode">
+		    <summary>
+		    Item Code (SKU)
+		    </summary>
+	    </members>
+	    <members name="TaxCode">
+		    <summary>
+		    System or Custom Tax Code.
+		    </summary>
+		    <remarks>
+		    This is used only by sellers who are managing their own tax code mapping.
+		    </remarks>
+	    </members>
+	    <members name="Qty">
+		    <summary>
+		    The quantity represented by this line.
+		    </summary>
+		    <remarks>
+		    Qty is not used in conjunction with <see cref="Line.Amount"/> when calculating tax. <b>Amount</b> should already
+		    be a product of <b>Qty</b> * UnitPrice. For example, if a line represents 2 items, each sold at $10 then,
+<code>
+line.Qty = 2
+line.Amount = 20
+</code>
+		    <seealso cref="Line.Amount"/>
+		    </remarks>
+	    </members>
+	    <members name="Amount">
+		    <summary>
+		    The total amount for this line item (<see cref="Line.Qty"/> * UnitPrice).
+		    </summary>
+	    </members>
+	    <members name="TaxIncluded">
+		    <summary>
+		    TaxIncluded indicates the tax amount has already been included in the line Amount.   The tax will be reversed out and returned in the 
+		    <see cref="TaxLine.Tax"/> property.  The <see cref="TaxLine.Taxable"/> property will indicate the calculated tax base amount.
+		    </summary>
+	    </members>
+	    <members name="Discounted">
+		    <summary>
+		    True if the document discount should be applied to this line
+		    </summary>
+	    </members>
+	    <members name="RevAcct">
+		    <summary>
+		    Revenue Account
+		    </summary>
+	    </members>
+	    <members name="Ref1">
+		    <summary>
+		    Client specific reference field
+		    </summary>
+	    </members>
+	    <members name="Ref2">
+		    <summary>
+		    Client specific reference field
+		    </summary>
+	    </members>
+	    <members name="ExemptionNo">
+		    <summary>
+		    Exemption number for this line
+		    </summary>
+	    </members>
+
+
+    <members name="BusinessIdentificationNo">
+      <summary>
+        Business identification number for this line
+      </summary>
+    </members>
+
+	    <members name="Description">
+		    <summary>
+		    Defines the description for the product or item
+		    </summary>
+	    </members>
+	    <members name="CustomerUsageType">
+		    <summary>
+		    <see cref="TaxOverride"/> Allows specifying the customer or usage type at the line level. This overrides 
+			<see cref="GetTaxRequest.CustomerUsageType"/> at the GetTaxRequest level.
+		    </summary>		     
+	    </members>	 
+	    <!-- Commenting it out for now as it has been dropped off the scop for 4.17 
+	    
+	    <members name="Discount">
+		    <summary>
+		    Allows specifying discount for the given Line. This will get reflected in the result object.
+			<see cref="GetTaxResult.Discount"/> at the GetTaxRequest level.
+		    </summary>		     
+	    </members>	     -->	     
+	    <members name="TaxOverride">
+		    <summary>
+			TaxOverride for the document at line level.
+			</summary>
+			<example>
+<code>
+[Visual Basic 6]
+Dim oLine As Line
+Set oLine = New Line
+
+oLine.TaxOverride.Reason = "Tax Override"
+oLine.TaxOverride.TaxAmount = 15.00
+oLine.TaxOverride.TaxDate = DateTime.Now
+oLine.TaxOverride.TaxOverrideType = TaxOverrideType_TaxAmount
+
+Debug.Print oLine.TaxOverride.Reason
+Debug.Print oLine.TaxOverride.TaxAmount
+Debug.Print oLine.TaxOverride.TaxDate
+Debug.Print oLine.TaxOverride.TaxOverrideType
+</code>
+<code>
+[C#]
+Line line = new Line();
+line.TaxOverride.Reason = "Tax Override";
+line.TaxOverride.TaxAmount = 15.00M;
+line.TaxOverride.TaxDate = DateTime.Now;
+line.TaxOverride.TaxOverrideType = TaxOverrideType.TaxAmount;
+
+Console.WriteLn(line.TaxOverride.Reason);
+Console.WriteLn(line.TaxOverride.TaxAmount);
+Console.WriteLn(line.TaxOverride.TaxDate);
+Console.WriteLn(line.TaxOverride.TaxOverrideType);
+</code>
+		        </example>
+	    </members>    
+	</Line>
+	<Lines>
+	    <class>
+	        <summary>
+	        A collection of zero or more <see cref="Line"/> objects.
+	        </summary>
+	        <remarks>
+	        <seealso cref="GetTaxRequest"/>
+	        </remarks>
+	    </class>
+		<members name="Add">
+		    <summary>
+		    Inserts a <see cref="Line"/> object into the collection of lines.
+		    </summary>
+		    <param name="line">The <see cref="Line"/> object to add.</param>
+		</members>
+	    <members name="this">
+		    <summary>
+		    Provides array-like access to the collection. Read-only. Default member.
+		    </summary>
+		    <returns>A <see cref="Line"/> object.</returns>
+	    </members>
+	    <members name="Clear">
+	        <summary>
+	        Removes all objects from the collection and resets the count to zero.
+	        </summary>
+	    </members>
+	    <members name="GetItemByNo">
+		    <summary>
+		    Finds a specific line in the collection based on the line's <see cref="Line.No"/> value.
+		    </summary>
+		    <param name="lineNo">The line <b>No</b> value to search for.</param>
+		    <returns>If a match was found, returns the Line; otherwise returns null.</returns>
+	    </members>
+	</Lines>
+	<TaxDetail>
+	    <class>
+	        <summary>
+	        Holds calculated tax information by jurisdiction.
+	        </summary>
+	        <remarks>
+	        <seealso cref="TaxDetails"/>
+	        <seealso cref="TaxLine"/>
+	        <seealso cref="GetTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="JurisType">
+		    <summary>
+		    Jurisdiction Type
+		    </summary>
+	    </members>
+	    <members name="JurisCode">
+		    <summary>
+		    Jurisdiction Code for the taxing jurisdiction
+		    </summary>
+	    </members>
+	    <members name="TaxType">
+		    <summary>
+		    Tax Type
+		    </summary>
+		    <remarks>
+		      <list type="table">
+		        <listheader>
+		          <term>Type</term>
+		          <description>Description</description>
+		        </listheader>
+		        <item>
+		          <term>S</term><description>Sales Tax</description>
+		        </item>
+		        <item>
+		          <term>U</term><description>Use Tax</description>
+		        </item>
+		      </list>
+		    </remarks>
+	    </members>
+	    <members name="Base">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. It has been replaced with 
+		    <see cref="TaxDetail.Taxable" />.</font><br/>
+		    The tax base, i.e. the taxable amount.
+		    </summary>
+	    </members>
+	    <members name="Rate">
+		    <summary>
+		    The tax rate, i.e. the rate of taxation (0.0 - 1.0)
+		    </summary>
+	    </members>
+	    <members name="Tax">
+		    <summary>
+		    The tax amount, i.e. the calculated tax (<see cref="TaxDetail.Taxable"/> * <see cref="TaxDetail.Rate"/>)
+		    </summary>
+	    </members>
+	    <members name="JurisName">
+	        <summary>
+	        Gets the jurisdiction name.
+	        </summary>
+	    </members>
+	    <members name="Taxable">
+	        <summary>
+	        The taxable amount for the jurisdiction (or part of a jurisdiction in cases of tiered tax rates).
+	        </summary>
+	    </members>
+	    <members name="NonTaxable">
+	        <summary>
+	        The portion of the detail that is not subject to taxes.
+	        </summary>
+	    </members>
+	    <members name="Exemption">
+	        <summary>
+	        The portion of the detail that is exempt from taxes.
+	        </summary>
+	    </members>
+	    <members name="TaxName">
+	        <summary>
+	        It further defines the tax and jurisdiction.
+	        </summary>
+	        <Remark>
+	        If AvaTax will find further defined meaning of Tax and Jurisdiction
+	        then only this value will be filled, do not always expect some value here.
+	        </Remark>
+	    </members>
+	    <members name="Region">
+		    <summary>
+		    2-character state or province code, if applicable
+		    </summary>
+	    </members>
+	    <members name="Country">
+		    <summary>
+		    2-character ISO country code
+		    </summary>
+	    </members>
+	    <members name="TaxAuthorityType">
+		    <summary>
+		    X12+ Tax Authority Type
+		    </summary>
+	    </members>
+	    <members name="TaxCalculated">
+		    <summary>
+		    TaxCalculated indicates the tax calculated by AvaTax.  It will usually be the same as the Tax property, unless it has been 
+		    overridden by a <see cref="TaxOverride.TaxAmount"/>. 
+		    </summary>
+	    </members>
+	    <members name="TaxGroup">
+		    <summary>
+		    TaxGroup indicates the group code when special grouping is enabled for particular client applications.  For other clients, it will be empty.
+		    </summary>
+	    </members>
+	    <members name="RateType">
+		    <summary>
+		    RateType indicates the tax rate type.  These currently include:  
+		    <UL>
+				<LI>F = Food (US)</LI>
+				<LI>G = General (US)</LI>
+				<LI>S = Standard (VAT)</LI>
+				<LI>R = Reduced (VAT)</LI>
+				<LI>Q = Super Reduced (VAT)</LI>
+				<LI>A = Reduced Rate 1 (VAT)</LI>
+				<LI>B = Reduced Rate 2 (VAT)</LI>
+				<LI>Z = Zero Rate</LI>
+			</UL>
+		    </summary>
+	    </members>
+      <members name="StateAssignedNo">
+        <summary>
+        StateAssignedNo indicates the identifier given to the location by the state.
+        </summary>
+      </members>
+	</TaxDetail>
+	<TaxDetails>
+	    <class>
+	        <summary>
+	        A collection of zero or more <see cref="TaxDetail"/> objects.
+	        </summary>
+	        <remarks>
+	        <seealso cref="TaxLine"/>
+	        <seealso cref="GetTaxResult"/>
+	        </remarks>
+	    </class>
+	</TaxDetails>
+	<TaxLine>
+	    <class>
+	        <summary>
+	        Taxes for a specific document <see cref="Line"/>
+	        </summary>
+	        <remarks>
+	        <seealso cref="TaxLines"/>
+	        <seealso cref="GetTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="TaxCode">
+		    <summary>
+		    System Tax Code
+		    </summary>
+	    </members>
+	    <members name="Discount">
+		    <summary>
+		    Discount amount applied to this line
+		    </summary>
+	    </members>
+	    <members name="Taxable">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. Refer to the 
+		    <see cref="TaxDetail.Taxable">TaxDetail.Taxable</see> for this tax line instead.</font><br/>
+		    The tax base, i.e. the taxable amount based on the discount and tax rules
+		    </summary>
+	    </members>
+	    <members name="Rate">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. Refer to the 
+		    <see cref="TaxDetail.Rate">TaxDetail.Rate</see> for this tax line instead.</font><br/>
+		    The tax rate percentage (0.0 - 1.0)
+		    </summary>
+	    </members>
+	    <members name="Tax">
+		    <summary>
+		    The tax amount, i.e.  the calculated tax amount (<see cref="TaxLine.Taxable"/> * <see cref="TaxLine.Rate"/>)
+		    </summary>
+	    </members>
+	    <members name="TaxDetails">
+		    <summary>
+		    Tax by jurisdiction
+		    </summary>
+	    </members>
+	    <members name="Exemption">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. Refer to the 
+		    <see cref="TaxDetail.Exemption">TaxDetail.Exemption</see> for this tax line instead.</font><br/>
+		    Exempt amount for this line.
+		    </summary>
+	    </members>
+	    <members name="Taxability">
+		    <summary>
+		    Is the item taxable?
+		    </summary>
+	    </members>
+	    <members name="BoundaryLevel">
+		    <summary>
+		    The level of jurisdiction boundary precision used for the tax calculation.
+		    </summary>
+	    </members>
+	    <members name="AccountingMethod">
+		    <summary>
+		    This is the accounting applied to the line.
+		    </summary>
+	    </members>
+	     <members name="ExemptCertId">
+		    <summary>
+		    Applied ExemptionCertificateId for the Line.
+		    </summary>
+	    </members>
+	    <members name="TaxCalculated">
+		    <summary>
+		    TaxCalculated indicates the tax calculated by AvaTax.  This will normally be the same as the Tax property unless it has been 
+		    overridden by a <see cref="TaxOverride.TaxAmount"/>.
+		    </summary>
+	    </members>
+	    <members name="TaxIncluded">
+		    <summary>
+		    TaxIncluded indicates the tax has already been included in the line item prices.   When true, the  <see cref="Tax"/> property will indicate 
+		    reversed out tax amount and the <see cref="Taxable"/> property will indicate the calculated tax base amount.
+		    </summary>
+	    </members>
+	</TaxLine>
+	<TaxLines>
+	    <class>
+	        <summary>
+	        A collection of zero or more <see cref="TaxLine"/> objects.
+	        </summary>
+	        <remarks>
+	        <seealso cref="GetTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="GetItemByNo">
+		    <summary>
+		    Finds a specific tax line in the collection based on the line's <see cref="TaxLine.No"/> value.
+		    </summary>
+		    <param name="lineNo">The line <b>No</b> value to search for.</param>
+		    <returns>If a match was found, returns the TaxLine; otherwise returns null.</returns>
+	    </members>
+	</TaxLines>
+	<GetTaxRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.GetTax"/>.  
+	        </summary>
+	        <remarks>
+	        <seealso cref="GetTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="CurrencyCode">
+	        <summary>
+	        3 character ISO 4217 currency code.
+	        </summary>
+	    </members>
+	    <members name="ServiceMode">
+		    <summary>		    
+		    It provides the ability to controls whether tax is calculated locally or remotely when using an AvaLocal server.  The default is Automatic which calculates locally unless remote is necessary for non-local addresses.		    
+		    </summary>
+	    </members>
+	    <members name="OriginAddress">
+	        <summary>
+	        Gets or sets the <see cref="Address"/> used as the "Ship From" location for a specific line item.
+	        </summary>
+	        <remarks>
+		    Setting the Origin Address on a <see cref="Line"/> object is not required. If no address exists for either 
+		    the <b>Origin</b> or <b>Destination</b> on the line object, they
+		    will be defaulted from the <b>GetTaxRequest</b> object immediately prior to calling the AvaTax web service
+		    in the <see cref="TaxSvc.GetTax"/> method. Duplicate addresses on either the <b>GetTaxRequest</b> or the child
+		    <b>Line</b> will be consolidated into unique references.  Two address objects are considered to be duplicates if they
+		    share an object reference or they contain the exact same field values (case-insensitive).
+	        </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddress As Address
+Dim oRequest As GetTaxRequest
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oRequest = New GetTaxRequest
+Set oRequest.OriginAddress = oAddress
+
+Debug.Print oRequest.OriginAddress.Line1
+Debug.Print oRequest.OriginAddress.Region
+Debug.Print oRequest.OriginAddress.PostalCode
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+GetTaxRequest request = new GetTaxRequest();
+request.OriginAddress = address;
+
+Console.WriteLn(request.OriginAddress.Line1);
+Console.WriteLn(request.OriginAddress.Region);
+Console.WriteLn(request.OriginAddress.PostalCode);
+</code>
+		    </example>
+	    </members>
+	    <members name="DestinationAddress">
+	        <summary>
+	        Gets or sets the <see cref="Address"/> used as the "Ship To" location for a GetTax request.
+	        </summary>
+	        <remarks>
+		    Setting the Destination Address on a <see cref="Line"/> object is not required. If no address exists for either 
+		    the <b>Origin</b> or <b>Destination</b> on the line object, they
+		    will be defaulted from the <b>GetTaxRequest</b> object immediately prior to calling the AvaTax web service
+		    in the <see cref="TaxSvc.GetTax"/> method. Duplicate addresses on either the <b>GetTaxRequest</b> or the child
+		    <b>Line</b> will be consolidated into unique references.  Two address objects are considered to be duplicates if they
+		    share an object reference or they contain the exact same field values (case-insensitive).
+	        </remarks>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oAddress As Address
+Dim oRequest As GetTaxRequest
+
+Set oAddress = New Address
+oAddress.Line1 = "900 Winslow Way"
+oAddress.Region = "WA"
+oAddress.PostalCode = "98110"
+
+Set oRequest = New GetTaxRequest
+Set oRequest.DestinationAddress = oAddress
+
+Debug.Print oRequest.DestinationAddress.Line1
+Debug.Print oRequest.DestinationAddress.Region
+Debug.Print oRequest.DestinationAddress.PostalCode
+</code>
+<code>
+[C#]
+Address address = new Address();
+address.Line1 = "900 Winslow Way";
+address.Region = "WA";
+address.PostalCode = "98110";
+
+GetTaxRequest request = new GetTaxRequest();
+request.DestinationAddress = address;
+
+Console.WriteLn(request.DestinationAddress.Line1);
+Console.WriteLn(request.DestinationAddress.Region);
+Console.WriteLn(request.DestinationAddress.PostalCode);
+</code>
+		    </example>
+	    </members>
+	    <members name="OriginCode">
+	        <summary>
+	        Used internally by the adapter to reference the <see cref="Line.OriginAddress"/>.
+	        </summary>
+	        <remarks>Same as the <b>OriginAddress</b>'s <see cref="Address.AddressCode"/>.</remarks>
+	        <returns>An internally maintained value representing the <b>OriginAddress</b>.</returns>
+	    </members>
+	    <members name="DestinationCode">
+	        <summary>
+	        Used internally by the adapter to reference the <see cref="Line.DestinationAddress"/>.
+	        </summary>
+	        <remarks>Same as the <b>DestinationAddress</b>'s <see cref="Address.AddressCode"/>.</remarks>
+	        <returns>An internally maintained value representing the <b>DestinationAddress</b>.</returns>
+	    </members>
+	    <members name="DocType">
+		    <summary>
+		    The document type specifies the category of the document and affects how the document is treated after a tax calculation.
+		    See <see cref="DocumentType"/> for more information about the specific document types.
+		    </summary>
+		    <example>
+<code>
+[Visual Basic 6]
+Dim oRequest As GetTaxRequest
+Set oRequest = New GetTaxRequest
+oRequest.DocType = DocumentType_SalesInvoice
+</code>
+<code>
+[C#]
+GetTaxRequest request = new GetTaxRequest();
+request.DocType = DocumentType.SalesInvoice;
+</code>
+		    </example>
+	    </members>
+	    <members name="CompanyCode">
+		    <summary>
+		    Gets or sets the client application company reference code.
+		    </summary>
+	    </members>
+	    <members name="DocDate">
+		    <summary>
+		    The date on the invoice, purchase order, etc.
+		    </summary>
+	    </members>
+	    <members name="SalespersonCode">
+		    <summary>
+		    The client application salesperson reference code.
+		    </summary>
+	    </members>
+	    <members name="CustomerCode">
+		    <summary>
+		    The client application customer reference code.
+		    </summary>
+	    </members>
+	    <members name="CustomerUsageType">
+		    <summary>
+		    The client application customer or usage type.<br/><br/>
+		    The standard values for the CustomerUsageType (A-L) are:<br/>
+		    A - Federal Government<br/>
+			B - State/Local Govt.<br/>
+			C - Tribal Government<br/>
+			D - Foreign Diplomat<br/>
+			E - Charitable Organization<br/>
+			F - Religious/Education<br/>
+			G - Resale<br/>
+			H - Agricultural Production<br/>
+			I - Industrial Prod/Mfg.<br/>
+			J - Direct Pay Permit<br/>
+			K - Direct Mail<br/>
+			L - Other
+		    </summary>
+	    </members>
+	    <members name="Discount">
+		    <summary>
+		    The discount amount to apply to the document.
+		    </summary>
+	    </members>
+	    <members name="ExemptionNo">
+		    <summary>
+		    Exemption Number for this document
+		    </summary>
+	    </members>
+
+
+    <members name="BusinessIdentificationNo">
+      <summary>
+        Business identification Number for this document
+      </summary>
+    </members>
+
+    <members name="PosLaneCode">
+      <summary>
+        Permits a Point of Sale application to record the unique code / ID / number associated with the terminal processing a sale.
+      </summary>
+    </members>
+
+	    <members name="Addresses">
+		    <summary>
+		    Address collection for the document.  The AddressCode relates to the OriginCode or DestinationCode in the document or line.
+		    </summary>
+		    <remarks>
+		    <seealso cref="Avalara.AvaTax.Adapter.AddressService.Addresses"/>
+		    <seealso cref="Line"/>
+		    </remarks>
+	    </members>
+	    <members name="Lines">
+		    <summary>
+		    Document line items list
+		    </summary>
+		    <remarks>
+		    <seealso cref="Line"/>
+		    </remarks>
+	    </members>
+	    <members name="DetailLevel">
+		    <summary>
+		    Specifies the level of detail to return.
+		    </summary>
+	    </members>
+	    <members name="PurchaseOrderNo">
+	        <summary>
+	        Purchase Order Number for this document.
+	        </summary>
+	        <remarks>
+	        This is required for single use exemption certificates to match the order and invoice with the certificate.
+	        </remarks>
+	    </members>
+	    <members name="ReferenceCode">
+	        <summary>
+	        For returns (see <see cref="DocumentType"/>), refers to the <see cref="GetTaxRequest.DocCode"/>
+	        of the original invoice.
+	        </summary>
+	    </members>
+	    <members name="LocationCode">
+		    <summary>
+		    Also referred to as a Store Location, Outlet Id, or Outlet code is a number assigned by the State which identifies a Store location.
+		    Some state returns require taxes are broken out separately for Store Locations.
+		    </summary>
+	    </members>	 
+	    <members name="Commit">
+		    <summary>
+			This has been defaulted to False ; invoice will be committed if this flag has been set to True.
+			</summary>
+			<remarks>
+	        No <see cref="TaxSvc.PostTax"/> or <see cref="TaxSvc.CommitTax"/> calls are required once this flag is set to true.
+	        AvaTax will commit the document on GetTax call only.
+	        </remarks>
+	    </members>
+	    <members name="TaxOverride">
+		    <summary>
+			TaxOverride for the document.
+			</summary>
+			<example>
+<code>
+[Visual Basic 6]
+Dim oRequest As GetTaxRequest
+Set oRequest = New GetTaxRequest
+
+oRequest.TaxOverride.Reason = "Tax Override"
+oRequest.TaxOverride.TaxAmount = 15.00
+oRequest.TaxOverride.TaxDate = DateTime.Now
+oRequest.TaxOverride.TaxOverrideType = TaxOverrideType_TaxAmount
+
+Debug.Print oRequest.TaxOverride.Reason
+Debug.Print oRequest.TaxOverride.TaxAmount
+Debug.Print oRequest.TaxOverride.TaxDate
+Debug.Print oRequest.TaxOverride.TaxOverrideType
+</code>
+<code>
+[C#]
+GetTaxRequest request = new GetTaxRequest();
+request.TaxOverride.Reason = "Tax Override";
+request.TaxOverride.TaxAmount = 15.00M;
+request.TaxOverride.TaxDate = DateTime.Now;
+request.TaxOverride.TaxOverrideType = TaxOverrideType.TaxAmount;
+
+Console.WriteLn(request.TaxOverride.Reason);
+Console.WriteLn(request.TaxOverride.TaxAmount);
+Console.WriteLn(request.TaxOverride.TaxDate);
+Console.WriteLn(request.TaxOverride.TaxOverrideType);
+</code>
+		        </example>
+	    </members>
+	    <members name="PaymentDate">
+		    <summary>
+			PaymentDate indicates the date when payment was received for the document.   It is only applicable for cash-basis accounting and does not need 
+			to be set otherwise.  It defaults to 1/1/1900 which indicates no payment.   The new TaxSvc.ApplyPayment method may be used to apply a payment to an existing invoice.
+			</summary>
+			<remarks>
+			Note: The ReportingDate for a cash-basis invoice will be set to 12/31/9999.
+			</remarks>
+	    </members>
+	    <members name="ExchangeRate">
+		    <summary>
+			ExchangeRate indicates the currency exchange rate from the transaction currency (indicated by CurrencyCode) to the company base currency. 
+			This only needs to be set if the transaction currency is different than the company base currency. It defaults to 1.0.
+			</summary>
+	    </members>
+	    <members name="ExchangeRateEffDate">
+		    <summary>
+			ExchangeRateEffDate indicates the effective date of the exchange rate.   It should be set in conjunction with ExchangeRate.  
+			It will default to the DocDate if not set.
+			</summary>
+	    </members>
+	</GetTaxRequest>
+	<ReconcileTaxHistoryRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.ReconcileTaxHistory"/>.  
+	        </summary>
+	        <remarks>
+	        <seealso cref="ReconcileTaxHistoryResult"/>
+	        </remarks>
+	    </class>
+	    <members name="LastDocCode">
+		    <summary>
+		    Used to seek for additional results in large result sets. 
+		    </summary>
+		    <remarks>
+		    Set the value to the result of <b>LastDocCode</b> from the previous <see cref="ReconcileTaxHistoryResult"/>
+		    to get the next set of results.
+		    </remarks>
+	    </members>
+    <members name="LastDocId">
+      <summary>
+        Used to seek for additional results in large result sets.
+      </summary>
+      <remarks>
+        Set the value to the result of <b>LastDocId</b> from the previous <see cref="ReconcileTaxHistoryResult"/>
+        to get the next set of results.
+      </remarks>
+    </members>
+	    <members name="PageSize">
+		    <summary>
+		    Indicates the number of records to return.
+		    </summary>
+	    </members>
+	    <members name="StartDate">
+		    <summary>
+		    Set this to retrieve data FROM a specific date. 		    
+		    </summary>		    
+	    </members>
+	    <members name="EndDate">
+		    <summary>
+		    Set this to retrieve data TO a specific date.
+		    </summary>		    
+	    </members>
+	    <members name="DocStatus">
+		    <summary>
+		     Set this to retrieve data with a specific <see cref="DocStatus"/>.
+		    </summary>		    
+	    </members>
+		<members name="DocType">
+			<summary>
+			The original document's type, such as Sales Invoice or Purchase Invoice.
+			</summary>
+		</members>
+	</ReconcileTaxHistoryRequest>
+	<SearchTaxHistoryRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.SearchTaxHistory"/>.  
+	        </summary>
+	        <remarks>
+	        <seealso cref="SearchTaxHistoryResult"/>
+	        </remarks>
+	    </class>
+	    <members name="Query">
+		    <summary>
+		    Search query
+		    </summary>
+	    </members>
+	    <members name="LastDocId">
+		    <summary>
+		    Used to seek for additional results in large result sets. 
+		    </summary>
+		    <remarks>
+		    Set the value to the result of <see cref="SearchTaxHistoryResult.LastDocId"/> from the previous <see cref="SearchTaxHistoryResult"/>.
+		    </remarks>		    
+	    </members>
+	</SearchTaxHistoryRequest>
+	<CancelTaxRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.CancelTax"/> indicating the document that should be cancelled and the reason
+	        for the operation.  
+	        </summary>
+	        <remarks>
+		    <para>
+		    The request must specify all of <see cref="CancelTaxRequest.CompanyCode"/>, <see cref="CancelTaxRequest.DocCode"/>, and 
+		    <see cref="CancelTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+	        <seealso cref="CancelTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="CancelCode">
+		    <summary>
+		    A code indicating the reason the document is getting canceled.
+		    </summary>
+	    </members>
+	</CancelTaxRequest>
+	<CommitTaxRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.CommitTax"/> indicating the document that should be committed.  
+	        </summary>
+	        <remarks>
+		    <para>
+		    The request must specify all of <see cref="CommitTaxRequest.CompanyCode"/>,  and 
+		    <see cref="CommitTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+	        <seealso cref="CommitTaxResult"/>
+	        </remarks>
+	    </class>	    
+		<members name="NewDocCode">
+			<summary>
+			New Document Code for the document.
+		    </summary>
+		    <remarks>
+			As on this version of SDK DocCode can be changed during commit using NewDocCode.
+		    </remarks>
+	    </members>
+	</CommitTaxRequest>
+	<PostTaxRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.PostTax"/> indicating the document that should be posted.  
+	        </summary>
+	        <remarks>
+		    <para>
+		    The request must specify all of <see cref="PostTaxRequest.CompanyCode"/>, <see cref="PostTaxRequest.DocCode"/>, and 
+		    <see cref="PostTaxRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+	        <seealso cref="PostTaxResult"/>
+	        </remarks>
+	    </class>
+	    <members name="DocDate">
+		    <summary>
+		    The Document Date, i.e. the date on the invoice, purchase order, etc.
+		    </summary>
+	    </members>
+	    <members name="TotalAmount">
+		    <summary>
+		    The total amount (not including tax) for the document.  
+		    </summary>
+		    <remarks>
+		    This is used for verification and reconciliation. This should be the <b>TotalAmount</b> returned by <see cref="GetTaxResult"/> when tax
+		    was calculated for this document; otherwise the web service will return an error.
+		    See also <see cref="PostTaxRequest.TotalTax"/>.
+		    </remarks>
+	    </members>
+	    <members name="TotalTax">
+		    <summary>
+		    The total tax for the document.  
+		    </summary>
+		    <remarks>
+		    This is used for verification and reconciliation. This should be the <b>TotalTax</b> returned by <see cref="GetTaxResult"/> when tax
+		    was calculated for this document; otherwise the web service will return an error.
+		    See also <see cref="PostTaxRequest.TotalAmount"/>.
+		    </remarks>
+	    </members>
+	    <members name="Commit">
+		    <summary>
+		    If this is set to True, AvaTax will Post and Commit the document in one call.
+		    A very useful feature if you want to Post/Commit the document in one call this avoids one round trip to AvaTax server.  
+		    </summary>
+		    <remarks>
+		    AvaTax will commit the document only if system can Post the document successfully.
+		    See also <see cref="GetTaxRequest.Commit"/>.
+		    </remarks>
+	    </members>
+		<members name="NewDocCode">
+			<summary>
+			New Document Code for the document.
+			</summary>
+			<remarks>
+			As on this version of SDK DocCode can be changed during post using NewDocCode.
+			</remarks>
+		</members>
+	   
+	</PostTaxRequest>
+	<GetTaxHistoryRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.GetTaxHistory"/> indicating the document for which history should be retrieved.  
+	        </summary>
+	        <remarks>
+		    <para>
+		    The request must specify all of <see cref="GetTaxHistoryRequest.CompanyCode"/>, <see cref="GetTaxHistoryRequest.DocCode"/>, and 
+		    <see cref="GetTaxHistoryRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+	        <seealso cref="GetTaxHistoryResult"/>
+	        </remarks>
+	    </class>
+	    <members name="DetailLevel">
+		    <summary>
+		    Specifies the level of detail to return.
+		    </summary>
+	    </members>
+  </GetTaxHistoryRequest>
+	
+	<AdjustTaxRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.AdjustTax"/>.  
+	        </summary>
+	        <remarks>
+	        <seealso cref="AdjustTaxResult"/>`
+	        </remarks>
+	    </class>
+	    <members name="AdjustmentReason">
+		    <summary>
+		    Sets a valid reason for the given AdjustTax call.
+		    Adjustment Reason is a high level classification of why an Original Document is being modified.
+		    <remarks>
+		      <list type="table">
+		        <listheader>
+		          <term>AdjustmentReason</term>
+		          <description>Description</description>
+		        </listheader>
+		        <item>
+		          <term>0</term><description>Not Adjusted</description>
+		        </item>
+		        <item>
+		          <term>1</term><description>Sourcing Issue</description>
+		        </item>
+		        <item>
+		          <term>2</term><description>Reconciled with General Ledger</description>
+		        </item>
+		        <item>
+		          <term>3</term><description>Exemption Certificate Applied</description>
+		        </item>
+		        <item>
+		          <term>4</term><description>Price or Quantity Adjusted</description>
+		        </item>
+		        <item>
+		          <term>5</term><description>Item Returned</description>
+		        </item>
+		        <item>
+		          <term>6</term><description>Item Exchanged</description>
+		        </item>
+		        <item>
+		          <term>7</term><description>Bad Debt</description>
+		        </item>
+		        <item>
+		          <term>8</term><description>Other (Explain) <p>Must provide <see cref="AdjustTaxRequest.AdjustmentDescription"/></p></description>
+		        </item>
+		      </list>
+		    </remarks>
+		    <remarks>
+		    Please visit Avalara's Administrative Console's transaction adjustment section for latest AdjustmentReasonList.
+		    </remarks>
+		    </summary>		   
+	    </members>
+	    <members name="AdjustmentDescription">
+		    <summary>
+		    Sets description for the given AdjustTax call. 
+		    Adjustment Description is required when <see cref="AdjustTaxRequest.AdjustmentReason"/> is "Other" for enhanced tractability.
+		    </summary>		    
+	    </members>
+	    <members name="GetTaxRequest">
+		    <summary>
+		    Holds the data for Adjust Tax call.
+		    It takes the information needed for <see cref="TaxSvc.GetTax"/> call.
+		    </summary>	
+		    <remarks>
+	        <seealso cref="GetTaxRequest"/>
+	        </remarks>	    
+	    </members>	   
+	</AdjustTaxRequest>
+	
+	<CommitTaxResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.CommitTax"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="CommitTaxRequest"/>
+	        </remarks>
+	    </class>
+    
+	</CommitTaxResult>
+	<SearchTaxHistoryResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.SearchTaxHistory"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="SearchTaxHistoryRequest"/>
+	        </remarks>
+	    </class>
+	</SearchTaxHistoryResult>
+	<GetTaxResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.GetTax"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="GetTaxRequest"/>
+	        </remarks>
+	    </class>
+      <members name="DocId">
+      <summary>
+        A unique Document number used only by Avalara..
+      </summary>
+    </members>
+	    <members name="DocType">
+		    <summary>
+		    Gets the Document Type.
+		    </summary>
+		    <remarks>
+		    See <see cref="GetTaxRequest.DocType"/> on <b>GetTaxRequest</b> for more information about this member.
+		    </remarks>
+	    </members>
+	    <members name="DocCode">
+		    <summary>
+		    Gets the internal reference code used by the client application.  This is used for operations such as Post and GetTaxHistory.
+		    </summary>
+		    <remarks>
+		    See <see cref="GetTaxRequest.DocCode"/> on <b>GetTaxRequest</b> for more information about this member.
+		    </remarks>
+	    </members>
+	    <members name="DocDate">
+		    <summary>
+		    Gets the date on the invoice, purchase order, etc.
+		    </summary>
+		    <remarks>
+		    See <see cref="GetTaxRequest.DocDate"/> on <b>GetTaxRequest</b> for more information about this member.
+		    </remarks>
+	    </members>
+	    <members name="DocStatus">
+	        <summary>
+	        The document's status after the tax calculation.
+	        </summary>
+	    </members>
+	    <members name="Reconciled">
+		    <summary>
+		    True if the document has been reconciled.  Only committed documents can be reconciled.
+		    </summary>
+		    <remarks>
+		    For information on committing documents, see the <b>TaxSvc</b>'s <see cref="TaxSvc.CommitTax"/> method. For information
+		    on reconciling documents, see the <see cref="TaxSvc.ReconcileTaxHistory"/> method.
+		    </remarks>
+	    </members>
+	    <members name="Timestamp">
+		    <summary>
+		    Date of the last status change on the document (i.e. Save date, Post date, Commit date, Cancel date).
+		    This will get converted in LocalTimeZone.
+		    </summary>
+	    </members>
+	    <members name="TotalAmount">
+		    <summary>
+		    The sum of all line <see cref="Line.Amount"/> values.
+		    </summary>
+	    </members>
+	    <members name="TotalTaxable">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. Refer to the 
+		    <see cref="TaxDetail.Taxable">TaxDetail.Taxable</see> for each <see cref="TaxLine" /> in this result instead.</font><br/>
+		    The amount the tax is based on.  This is the total of all <see cref="Line"/> <b>Base</b> amounts.  
+		    Typically it will be equal to the document <see cref="GetTaxResult.TotalAmount"/> - <see cref="GetTaxRequest.Discount"/> - <see cref="TotalExemption" />.
+		    </summary>
+	    </members>
+	    <members name="TotalDiscount">
+		    <summary>
+		    The sum of all <b>TaxLine</b> <see cref="TaxLine.Discount"/> amounts.
+		    Typically it will equal the requested Discount, but, but it is possible that no lines were marked as discounted.
+		    </summary>
+	    </members>
+	    <members name="TotalExemption">
+		    <summary>
+		    <font color="red">This property has been deprecated in 4.1. Refer to the 
+		    <see cref="TaxDetail.Exemption">TaxDetail.Exemption</see> for each <see cref="TaxLine" /> in this result instead.</font><br/>
+		    The sum of all <b>TaxLine</b> <see cref="TaxLine.Exemption"/> amounts.
+		    </summary>
+	    </members>
+	    <members name="TotalTax">
+		    <summary>
+		    The total tax for the document.
+		    </summary>
+	    </members>
+	    <members name="TaxLines">
+		    <summary>
+		    Tax broken down by individual <see cref="TaxLine"/>.
+		    </summary>
+	    </members>
+	    <members name="Locked">
+		    <summary>
+		    Flag indicating if a Document has been locked by Avalara's MRS process. Locked documents can not be modified and can not be cancelled
+		    because they have been reported on Tax Return.
+		    </summary>
+	    </members>
+	    <members name="AdjustmentReason">
+		    <summary>
+		    <see cref="AdjustTaxRequest.AdjustmentReason"/> set while making <see cref="TaxSvc.AdjustTax"/> call.
+		    It is a high level classification of why an Original Document is being modified.
+		    </summary>
+	    </members>
+	    <members name="AdjustmentDescription">
+		    <summary>
+		    <see cref="AdjustTaxRequest.AdjustmentDescription"/> set while making <see cref="TaxSvc.AdjustTax"/> call.		    
+		    </summary>
+	    </members>
+	    <members name="Version">
+		    <summary>
+		    Current version of the document.
+		    </summary>
+		    <remarks>
+	        Version of the tax document changes on while adjusting or cancelling the document.
+	        <seealso cref="TaxSvc.AdjustTax"/>	        
+	        </remarks>
+	    </members>
+	    <members name="TaxDate">
+		    <summary>
+		    Tax Date is the date used to calculate tax on the Document.
+		    </summary>
+	    </members>
+	    <members name="TaxSummary">
+		    <summary>
+		    TaxSummary is now returned when GetTaxRequest.DetailLevel == DetailLevel.Line in addition to DetailLevel.Summary.  
+		    It is not returned for DetailLevel.Document or DetailLevel.TaxDetail.
+		    </summary>
+	    </members>
+	    <members name="TotalTaxCalculated">
+		    <summary>
+		    TotalTaxCalculated indicates the total tax calculated by AvaTax.  This is usually the same as the TotalTax, except when a tax override 
+		    amount is specified.  This is for informational purposes.  The TotalTax will still be used for reporting.
+		    </summary>
+	    </members>
+	  
+	</GetTaxResult>
+	<GetTaxResults>
+	    <class>
+	        <summary>
+	        A collection of zero or more <see cref="GetTaxResult"/> objects.
+	        </summary>
+	        <remarks>
+	        <seealso cref="ReconcileTaxHistoryResult"/>
+	        <!--<seealso cref="SearchTaxHistoryResult"/>-->
+	        </remarks>
+	    </class>
+	</GetTaxResults>
+	<ReconcileTaxHistoryResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.ReconcileTaxHistory"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="ReconcileTaxHistoryRequest"/>
+	        </remarks>
+	    </class>
+	    <members name="LastDocCode">
+		    <summary>
+		    Indicates the last document code in the current result set.  
+		    </summary>
+		    <remarks>
+		    If <see cref="ReconcileTaxHistoryResult.GetTaxResults"/> is not empty, then this <b>LastDocCode</b> should be passed
+		    to the next <see cref="ReconcileTaxHistoryRequest"/>.
+		    </remarks>
+	    </members>
+		<members name="RecordCount">
+			<summary>
+        	Indicates the total number of records.
+			</summary>
+		</members>
+	    <members name="GetTaxResults">
+		    <summary>
+		    Gets zero or more <see cref="GetTaxResult"/> summaries that need to be reconciled.
+		    </summary>
+		    <remarks>
+		    If <b>LastDocCode</b> was not specified by the <see cref="ReconcileTaxHistoryRequest"/>, then this is the first set of
+		    records that need reconciliation. If <b>LastDocCode</b> was specified, the collection represents the next set of
+		    records after <b>LastDocCode</b>. If the collection is empty, then all records have been reconciled and the result's
+		    <see cref="ReconcileTaxHistoryResult.LastDocCode"/> will be set to the last record of the last result set.
+		    </remarks>
+	    </members>
+	</ReconcileTaxHistoryResult>
+	<PostTaxResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.PostTax"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="PostTaxRequest"/>
+	        </remarks>
+	    </class>
+	</PostTaxResult>
+	<GetTaxHistoryResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.GetTaxHistory"/> for a previously calculated tax document.
+	        </summary>
+	        <remarks>
+	        <seealso cref="GetTaxHistoryRequest"/>
+	        </remarks>
+	    </class>
+	    <members name="GetTaxRequest">
+		    <summary>
+		    The original <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxRequest"/> for the document.
+		    </summary>
+	    </members>
+	    <members name="GetTaxResult">
+		    <summary>
+		    The original <see cref="Avalara.AvaTax.Adapter.TaxService.GetTaxResult"/> for the document.
+		    </summary>
+	    </members>
+	</GetTaxHistoryResult>
+	<AdjustTaxResult>
+	    <class>
+	        <summary>
+	        Return object of <see cref="TaxSvc.AdjustTax"/>.  
+	        </summary>
+	        <remarks>
+	        <seealso cref="AdjustTaxRequest"/>
+	        </remarks>
+	    </class>	    
+	</AdjustTaxResult>
+	
+	
+	<DetailLevel>
+	    <enum>
+	        <summary>
+	        Specifies the level of tax detail to return to the client application following a tax calculation. 
+	        See <see cref="GetTaxRequest"/> and <see cref="GetTaxHistoryRequest"/>.
+	        </summary>
+	    </enum>
+	    <members name="Summary">
+		    <summary>
+		    Reserved for future use.
+		    </summary>
+	    </members>
+	    <members name="Document">
+		    <summary>
+		    Document (<see cref="GetTaxResult"/>) level details; <see cref="TaxLines"/> will not be returned.
+		    </summary>
+	    </members>
+	    <members name="Line">
+		    <summary>
+		    Line level details (includes Document details). <see cref="TaxLines"/> will be returned but <see cref="TaxDetails"/> will not be returned.
+		    </summary>
+	    </members>
+	    <members name="Tax">
+		    <summary>
+		    Tax jurisdiction level details (includes Document, <see cref="TaxLines"/>, and <see cref="TaxDetails"/>)
+		    </summary>
+	    </members>
+	    <members name="Diagnostic">
+		    <summary>
+		    In addition to <see cref="DetailLevel.Tax"/> level details, indicates that the server should return
+		    information about how the tax was calculated. Intended for use only while the SDK is in a development environment.
+		    </summary>
+	    </members>
+	</DetailLevel>
+	<DocumentType>
+	    <enum>
+	        <summary>
+	        The document type specifies the category of the document and affects how the document is treated after a tax calculation.
+	        </summary>
+	        <remarks>
+			Specified when constructing a <see cref="GetTaxRequest"/>.
+	        </remarks>
+	    </enum>
+	    <members name="SalesOrder">
+		    <summary>
+		    Sales Order, estimate or quote. This is a temporary document type and is not saved in tax history. 
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Temporary</b>.
+		    </summary>
+	    </members>
+	    <members name="SalesInvoice">
+		    <summary>
+		    The document is a permanent invoice; document and tax calculation results are saved in the tax history.
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Saved</b>.
+		    </summary>
+	    </members>
+	    <members name="PurchaseOrder">
+		    <summary>
+		    Purchase order, estimate, or quote. This is a temporary document type and is not saved in tax history.
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Temporary</b>.
+		    </summary>
+	    </members>
+	    <members name="PurchaseInvoice">
+		    <summary>
+		    The document is a permanent invoice; document and tax calculation results are saved in the tax history.
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Saved</b>.
+		    </summary>
+	    </members>
+	    <members name="ReturnOrder">
+		    <summary>
+		    Sales Return Order. This is a temporary document type and is not saved in tax history.
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Temporary</b>.
+		    </summary>
+	    </members>
+	    <members name="ReturnInvoice">
+		    <summary>
+		    The document is a permanent sales return invoice; document and tax calculation results are saved in the tax history
+		    <see cref="GetTaxResult"/> will return with a <see cref="DocStatus"/> of <b>Saved</b>.
+		    </summary>
+	    </members>
+	    <members name="ReturnOrder">
+		    <summary>
+		    Sales Return Order
+		    </summary>
+		    <remarks>
+		    This is a temporary document type and is not saved in tax history.
+		    </remarks>
+	    </members>
+	    <members name="ReturnInvoice">
+		    <summary>
+		    Sales Return Invoice
+		    </summary>
+	    </members>
+	    <members name="Any">
+		    <summary>
+		    This will return all types of documents.
+		    </summary>
+	    </members>
+    <members name="InventoryTransferOrder">
+      <summary>
+        Inventory Transfer Order
+      </summary>
+    </members>
+    <members name="InventoryTransferInvoice">
+      <summary>
+        Inventory Transfer Invoice
+      </summary>
+    </members>
+    <members name="ReverseChargeOrder">
+      <summary>
+        This type of document will be returned by the AvaTax service for PurchaseOrder for European countries as destination address with business identification number without tax override option.
+      </summary>
+    </members>
+    <members name="ReverseChargeInvoice">
+      <summary>
+        This type of document will be returned by the AvaTax service for PurchaseInvoice for European countries as destination address with business identification number without tax override option
+      </summary>
+    </members>
+	</DocumentType>
+	<CancelCode>
+	    <enum>
+	        <summary>
+	        A cancel code is set on a <see cref="CancelTaxRequest"/> and specifies the reason the tax calculation is being canceled
+	        (or in the case of posting, returned to its prior state).
+	        </summary>
+	    </enum>
+	    <members name="Unspecified">
+		    <summary>
+		    Unspecified reason
+		    </summary>
+	    </members>
+	    <members name="PostFailed">
+		    <summary>
+		    Specifies the post operation failed when attempting to post an invoice within a client's application, for example,
+		    to the client's General Ledger. The document's status will be changed to <b>Saved</b>.
+		    </summary>
+	    </members>
+	    <members name="DocDeleted">
+		    <summary>
+		    Specifies the document was deleted within the client's application and should be removed from the AvaTax records. 
+		    If the document within AvaTax is already committed, the document status will be changed to <b>Cancelled</b> 
+		    and retained for historical records.  If the document was not committed, (was <b>Saved</b> or <b>Posted</b>) 
+		    the document will be deleted within AvaTax.
+		    </summary>
+		</members>
+		<members name="DocVoided">
+		    <summary>
+		    Specifies the document was voided within the client's application and should be removed from the AvaTax records. 
+		    If the document within AvaTax is already committed, the document status will be changed to <b>Cancelled</b> 
+		    and retained for historical records.  If the document was not committed, (was <b>Saved</b> or <b>Posted</b>) 
+		    the document will be deleted within AvaTax.
+		    </summary>
+	    </members>
+	    <members name="AdjustmentCancelled">
+		    <summary>
+		    Specifies the document was voided for to cancel the adjustment made.
+		    If the document within AvaTax is already committed, the document status will be changed to <b>Cancelled</b> 
+		    and retained for historical records.  If the document was not committed, (was <b>Saved</b> or <b>Posted</b>) 
+		    the document will be deleted within AvaTax.
+		    </summary>
+	    </members>
+	</CancelCode>
+	<JurisdictionType>
+	    <enum>
+	        <summary>
+	        A Jurisdiction Type describes the jurisdiction for which a particular tax is applied to a document.
+	        </summary>
+	        <remarks>
+	        Jurisdiction is determined by the <see cref="GetTaxRequest.DestinationAddress"/> of a <b>GetTaxRequest</b>.
+	        Multiple jurisdictions might be applied to a single <see cref="Line"/> during a tax calculation. 
+	        Details are available in the <see cref="TaxDetail"/> of the <see cref="GetTaxResult"/>.
+	        </remarks>
+	    </enum>
+	    <members name="Country">
+		    <summary>
+		    Country
+		    </summary>
+	    </members>
+	    <members name="Composite">
+		    <summary>
+		    Unspecified Jurisdiction
+		    </summary>
+	    </members>
+	    <members name="State">
+		    <summary>
+		    State
+		    </summary>
+	    </members>
+	    <members name="County">
+		    <summary>
+		    County
+		    </summary>
+	    </members>
+	    <members name="City">
+		    <summary>
+		    City
+		    </summary>
+	    </members>
+	    <members name="Special">
+		    <summary>
+		    Special Tax Jurisdiction
+		    </summary>
+	    </members>
+	</JurisdictionType>
+	<DocStatus>
+	    <enum>
+	        <summary>
+	        The document's status is returned in the <see cref="GetTaxResult"/> (except for <b>DocStatus.Any</b>)
+	        and indicates the state of the document in tax history.
+	        </summary>
+	    </enum>
+	    <members name="Temporary">
+		    <summary>
+		    A temporary document not saved (<see cref="DocumentType"/> was <b>SalesOrder</b>, <b>PurchaseOrder</b>, <b>ReturnOrder</b>)
+		    </summary>
+	    </members>
+	    <members name="Saved">
+		    <summary>
+		    A saved document (<see cref="DocumentType"/> was <b>SalesInvoice</b>, <b>PurchaseInvoice</b>, <b>ReturnInvoice</b>) 
+		    ready to be posted.
+		    </summary>
+	    </members>
+	    <members name="Posted">
+		    <summary>
+		    A posted document (not committed). See <see cref="TaxSvc.PostTax"/> for information on posting a document.
+		    </summary>
+	    </members>
+	    <members name="Committed">
+		    <summary>
+		    A posted document that has been committed.  See <see cref="TaxSvc.CommitTax"/> for information on committing a document.
+		    </summary>
+	    </members>
+	    <members name="Cancelled">
+		    <summary>
+		    A committed document that has been cancelled.  See <see cref="TaxSvc.CancelTax"/> for information on cancelling a document.
+		    </summary>
+	    </members>
+	    <members name="Adjusted">
+		    <summary>
+		    A document that has been adjusted through See <see cref="TaxSvc.AdjustTax"/> call.
+		    </summary>
+	    </members>
+	    <members name="Any">
+		    <summary>
+		    Any status (used for searching)
+		    </summary>
+	    </members>
+	</DocStatus>
+	<TaxType>
+	    <enum>
+	        <summary>
+	        A Tax Type. See <see cref="TaxDetail"/>.
+	        </summary>
+	    </enum>
+      <members name="None">
+        <summary>
+          None
+        </summary>
+      </members>
+	    <members name="Sales">
+		    <summary>
+		    Sales tax
+		    </summary>
+	    </members>
+	    <members name="Use">
+		    <summary>
+		    Use tax
+		    </summary>
+	    </members>
+	    <members name="ConsumerUse">
+		    <summary>
+		    Consumer Use tax
+		    </summary>
+	    </members>
+	    <members name="Output">
+		    <summary>
+          VAT/GST Output tax
+        </summary>
+	    </members>
+	    <members name="Input">
+		    <summary>
+         VAT/GST Input tax
+        </summary>
+	    </members>
+	    <members name="Nonrecoverable">
+		    <summary>
+          VAT/GST Nonrecoverable Input tax
+        </summary>
+	    </members>
+	    <members name="Fee">
+		    <summary>
+		    PIFs (Public Improvement Fees) and RSFs (Retail Sales Fees)
+		    </summary>
+	    </members>
+	    <members name="Rental">
+		    <summary>
+		    Rental tax
+		    </summary>
+	    </members>
+	</TaxType>
+    <BoundaryLevel>
+	    <enum>
+	        <summary>
+	        Jurisdiction boundary precision level found for address.  This depends on the accuracy of the address
+	        as well as the precision level of the state provided jurisdiction boundaries. 
+	        See <see cref="TaxLine"/>.
+	        </summary>
+	    </enum>
+	    <members name="Address">
+		    <summary>
+		    Street address precision
+		    </summary>
+	    </members>
+	    <members name="Zip9">
+		    <summary>
+		    9-digit zip precision
+		    </summary>
+	    </members>
+	    <members name="Zip5">
+	        <summary>
+	        5-digit zip precision
+	        </summary>
+	    </members>
+	</BoundaryLevel>
+	<Collection>
+	    <members name="Add">
+		    <summary>
+		    Add a new object to the collection.
+		    </summary>
+		    <param name="item">The object to add.</param>
+	    </members>
+	    <members name="this">
+		    <summary>
+		    Provides array-like access to the collection. Read-only. Default member.
+		    </summary>
+	    </members>
+	</Collection>
+	<TaxOverrideType>
+	    <enum>
+	        <summary>
+	        Identifies the type of tax override.
+	        </summary>
+	    </enum>
+    <members name="AccruedTaxAmount">
+      <summary>
+        The AccruedTaxAmount can be used only at line level. 
+      </summary>
+    </members>
+	    <members name="None">
+		    <summary>
+		    Default
+		    </summary>
+	    </members>
+	    <members name="TaxAmount">
+		    <summary>
+		    The TaxAmount overrides the total tax for the document.
+		    </summary>
+	    </members>
+	    <members name="Exemption">
+	        <summary>
+	        Exemption certificates are overridden making the document taxable.
+	        </summary>
+	    </members>
+	    <members name="TaxDate">
+	        <summary>
+	        The TaxDate overrides the DocDate as the effective date used for tax calculation.
+	        </summary>
+	    </members>
+    
+	</TaxOverrideType>
+	<ServiceMode>
+	    <enum>
+	        <summary>
+	        This is only supported by AvaLocal servers.  
+It provides the ability to controls whether tax is calculated locally or remotely when using an AvaLocal server.  The default is Automatic which calculates locally unless remote is necessary for non-local addresses.
+	        See <see cref="GetTaxRequest"/>.
+	        </summary>
+	    </enum>
+	    <members name="Automatic">
+		    <summary>
+		    Automated handling by local and/or remote server.
+		    </summary>
+	    </members>
+	    <members name="Local">
+		    <summary>
+		     AvaLocal server only.  Lines requiring remote will not be calculated.
+		    </summary>
+	    </members>
+	    <members name="Remote">
+	        <summary>
+	        All lines are calculated by AvaTax remote server.
+	        </summary>
+	    </members>
+	</ServiceMode>
+	<TaxOverride>
+	    <class>
+	        <summary>
+	        TaxOverride <see cref="GetTaxRequest"/> and <see cref="Line"/>
+	        </summary>
+	        <remarks>
+	        </remarks>
+	    </class>
+	    <members name="TaxOverrideType">
+		    <summary>
+		    Type of TaxOverride.
+		    </summary>
+	    </members>
+	    <members name="TaxAmount">
+		    <summary>
+		    The TaxAmount overrides the total tax for the document.
+		    </summary>
+	    </members>
+	    <members name="TaxDate">
+		    <summary>
+		    The TaxDate overrides the DocDate as the effective date used for tax calculation.
+		    </summary>
+	    </members>
+    
+	    <members name="Reason">
+		    <summary>
+		    Reason for applying TaxOverride
+		    </summary>
+	    </members>
+	</TaxOverride>
+	<ApplyPaymentRequest>
+	    <class>
+	        <summary>
+	        Input for <see cref="TaxSvc.ApplyPayment"/> indicating the document that should be applied for payment.  
+	        </summary>
+	        <remarks>
+		    <para>
+		    The request must specify all of <see cref="ApplyPaymentRequest.CompanyCode"/>,  and 
+		    <see cref="ApplyPaymentRequest.DocType"/> in order to uniquely identify the document.
+		    </para>
+	        <seealso cref="ApplyPaymentResult"/>
+	        </remarks>
+	    </class>	    
+	    <members name="DocCode">
+		    <summary>
+		    Document Code - the internal reference code used by the client application.  This is used for operations such as Post and GetTaxHistory. <see cref="DocCode"/>
+		    </summary>
+	    </members>
+	    <members name="PaymentDate">
+		    <summary>
+		    Indicates the date payment was applied to this invoice.
+		    </summary>
+	    </members>
+	</ApplyPaymentRequest>
+	<ApplyPaymentResult>
+	    <class>
+	        <summary>
+	        Result data returned from <see cref="TaxSvc.ApplyPayment"/>.
+	        </summary>
+	        <remarks>
+	        <seealso cref="ApplyPaymentRequest"/>
+	        </remarks>
+	    </class>
+	</ApplyPaymentResult>
+	<AccountingMethod>
+	    <enum>
+	        <summary>
+		    This is the accounting applied to the line.
+		    </summary>
+	    </enum>
+	    <members name="Accrual">
+		    <summary>
+		    Accrual basis (default).
+		    </summary>
+	    </members>
+	    <members name="Cash">
+		    <summary>
+		     Cash basis.
+		    </summary>
+	    </members>
+	</AccountingMethod>
+	<TaxSummary>
+		<class>
+			<summary>
+				Summary of TaxDetails for the entire document.
+			</summary>
+			<remarks>
+			</remarks>
+		</class>
+		<members name="TaxDetail">
+			<summary>
+				TaxDetail contain the total taxable, non-taxable, exemption, and tax for that jurisdiction.
+			</summary>
+		</members>
+	</TaxSummary>
+	<TaxRequests>
+		<class>
+			<summary>
+				Collection of <see cref="GetTaxRequest"/> objects.
+			</summary>
+			<remarks>
+			</remarks>
+		</class>
+	</TaxRequests>
+</adapter>

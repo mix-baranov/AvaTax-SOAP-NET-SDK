@@ -1,0 +1,63 @@
+<project SchemaVersion="1.3">
+    <assemblies>
+        <assembly location=".\bin\Avalara.AvaTax.Adapter.dll" documentation=".\bin\Avalara.AvaTax.Adapter.xml" />
+    </assemblies>
+    <namespaces>
+        <namespace name="Avalara.AvaTax.Adapter">The namespace that contains the base classes and common classes used by the Address Service and the Tax Service.</namespace>
+        <namespace name="Avalara.AvaTax.Adapter.AddressService">The namespace with all the necessary classes for interacting with the Address Validation functionality of the service.  The AddressSvc class is the starting point when using this namespace.</namespace>
+        <namespace name="Avalara.AvaTax.Adapter.AvaCert2Service">The namespace with all the necessary classes for interacting with the AvaCert functionality of the service.  The AvaCert2Svc class is the starting point when using this namespace.</namespace>
+        <namespace name="Avalara.AvaTax.Adapter.TaxService">The namespace with all the necessary classes for interacting with the Tax Calculation functionality of the service, including getting taxes for a document, posting and committing the document, canceling a document, searching the tax history, and retrieving reconciliation information.  The TaxSvc class is the starting point when using this namespace.</namespace>
+    </namespaces>
+    <documenters>
+        <documenter name="JavaDoc">
+            <property name="OutputDirectory" value=".\doc\" />
+        </documenter>
+        <documenter name="LaTeX">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="TextFileFullName" value="Documentation.tex" />
+            <property name="TexFileBaseName" value="Documentation" />
+            <property name="LatexCompiler" value="latex" />
+            <property name="TexFileFullPath" value=".\doc\Documentation.tex" />
+        </documenter>
+        <documenter name="LinearHtml">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+        </documenter>
+        <documenter name="MSDN">
+            <property name="OutputDirectory" value=".\ndoc\" />
+            <property name="HtmlHelpName" value="Avalara.AvaTax.Adapter" />
+            <property name="Title" value="Avalara AvaTax On-Demand Documentation" />
+            <property name="ShowVisualBasic" value="True" />
+            <property name="SdkLinksOnWeb" value="True" />
+            <property name="IncludeFavorites" value="True" />
+            <property name="RootPageTOCName" value="Overview" />
+            <property name="RootPageFileName" value=".\doc\overview.html" />
+            <property name="FooterHtml" value="&lt;p&gt;&#xD;&#xA;&lt;b&gt;AVALARA CONFIDENTIAL&lt;/b&gt;&lt;br/&gt;&#xD;&#xA;&amp;copy; 2004 - 2011 Avalara, Inc.  All rights reserved.&lt;br/&gt;&#xD;&#xA;&lt;/p&gt;" />
+            <property name="FilesToInclude" value=".\doc\overview.html|.\doc\configuration.html|.\doc\updates.html" />
+            <property name="SkipNamespacesWithoutSummaries" value="True" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
+            <property name="CopyrightText" value="© 2004 - 2011 Avalara, Inc.  All rights reserved." />
+            <property name="CleanIntermediates" value="True" />
+        </documenter>
+        <documenter name="MSDN 2003">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="HtmlHelpName" value="Avalara.AvaTax.Adapter" />
+            <property name="Title" value="AvaTax Adapter Class Library" />
+            <property name="DocumentProtected" value="False" />
+            <property name="SkipNamespacesWithoutSummaries" value="True" />
+            <property name="CopyrightText" value="Copyright © 2005 Advantage Solutions, Inc.  All Rights Reserved" />
+            <property name="FeedbackEmailAddress" value="sdkfeedback@avalara.com" />
+            <property name="Preliminary" value="True" />
+            <property name="IncludeDefaultThreadSafety" value="False" />
+            <property name="CleanIntermediates" value="True" />
+        </documenter>
+        <documenter name="VS.NET 2003">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="HtmlHelpName" value="Documentation" />
+            <property name="Title" value="An NDoc documented library" />
+        </documenter>
+        <documenter name="XML">
+            <property name="OutputFile" value=".\doc\doc.xml" />
+        </documenter>
+    </documenters>
+</project>

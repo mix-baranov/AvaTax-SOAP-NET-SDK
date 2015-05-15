@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressSample", "AddressSample.csproj", "{6AB017AD-DA9F-42DA-80FB-F6C32DC31D71}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6AB017AD-DA9F-42DA-80FB-F6C32DC31D71}.Debug.ActiveCfg = Debug|.NET
+		{6AB017AD-DA9F-42DA-80FB-F6C32DC31D71}.Debug.Build.0 = Debug|.NET
+		{6AB017AD-DA9F-42DA-80FB-F6C32DC31D71}.Release.ActiveCfg = Release|.NET
+		{6AB017AD-DA9F-42DA-80FB-F6C32DC31D71}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

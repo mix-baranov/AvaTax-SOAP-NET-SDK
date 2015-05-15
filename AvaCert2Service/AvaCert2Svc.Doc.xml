@@ -1,0 +1,1303 @@
+﻿<adapter>
+  <common>
+    <!-- common members used in more than one class -->
+    <members name="Constructor">
+      <summary>
+        Initializes a new instance of the class.
+      </summary>
+    </members>
+    <members name="InternalConstructor">
+      <summary>
+        Initializes a new instance of the class. Not creatable outside the assembly.
+      </summary>
+    </members>
+    <members name="Finalize">
+      <summary>
+        Ensures that resources are freed and other cleanup operations are performed when
+        the garbage collector reclaims the object.
+      </summary>
+    </members>
+    <members name="Ping">
+      <summary>
+        Verifies connectivity to the web service
+        and returns version information about the service.
+      </summary>
+      <param name="message">For future use</param>
+      <remarks>
+        This replaces TestConnection and is available on every service.
+      </remarks>
+    </members>
+    <members name="IsAuthorized">
+      <summary>
+        Checks authentication of and authorization to one or more operations on the service.
+      </summary>
+      <param name="operations">A comma-delimited list of operation names.</param>
+      <example>
+        IsAuthorized("CustomerSave,CertificateRequestInitiate")
+      </example>
+      <remarks>
+        This operation allows pre-authorization checking of any or all operations.
+        It will return a comma delimited set of operation names which will be all or a subset
+        of the requested operation names.  For security, it will never return operation names
+        other than those requested, i.e. protects against phishing.
+      </remarks>
+    </members>
+  </common>
+
+  <AvaCert2Svc>
+    <class>
+      <summary>
+        Proxy interface for the Avalara AvaCert2 Web Service.
+      </summary>
+      <remarks>
+        Requires a configuration file at creation time named Avalara.Adapter.AvaTax.dll.config in the same directory as the assembly.
+        The values in the file will be loaded as the default configuration information.  The data can be queried
+        and overridden through <see cref="Avalara.AvaTax.Adapter.ServiceConfig"/> object accesses through this class's Configuration member.
+      </remarks>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim adapter As AvaCert2Svc
+          adapter = new AvaCert2Svc
+          Debug.Print adapter.Configuration.Url                            'output default Url
+          adapter.Configuration.Url = "http://www.avalara.com/services/"   'override the default Url
+          adapter.Configuration.Security.Timeout = 500                     'override the default security timeout
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc adapter = new AvaCert2Svc();
+          Console.WriteLn(adapter.Configuration.Url);                       //output default Url
+          adapter.Configuration.Url = "http://www.avalara.com/services/";   //override the default Url
+          adapter.Configuration.Security.Timeout = 500;                     //override the default security timeout
+        </code>
+      </example>
+    </class>
+    <members name="CustomerSave">
+      <summary>
+        Adds or updates an exempt customer record in AvaCert and returns the result of operation in a <see cref="CustomerSaveResult"/> object.
+      </summary>
+      <param name="customerSaveRequest">
+        A <see cref="CustomerSaveRequest"/> object containing customer data to be added.
+      </param>
+      <returns>
+        A <see cref="CustomerSaveResult"/> object containing result of the customer add operation.
+      </returns>
+      <remarks>
+        The <b>CustomerSaveRequest</b> object includes a <see cref="Customer"/> property that includes all the details of the customer.
+      </remarks>
+    </members>  
+    <members name="CertificateRequestInitiate">
+      <summary>
+        Initiates the request for an exemption certificate with AvaCert. It can also add or update the exempt customer record. And returns the result of operation in a <see cref="CertificateRequestInitiateResult"/> object.
+      </summary>
+      <param name="certificateRequestInitiateRequest">
+        A <see cref="CertificateRequestInitiateRequest"/> object containing exemption certificate data to be initiated.
+      </param>
+      <returns>
+        A <see cref="CertificateRequestInitiateResult"/> object containing result of the initiate ExemptCert Request operation.
+      </returns>
+      <remarks>
+        The <b>CertificateRequestInitiateRequest</b> object includes ExemptCert details. 
+      </remarks>
+    </members>
+    <members name="CertificateGet">
+      <summary>
+        This operation retrieves all certificates from vCert for a particular customer.
+      </summary>
+      <param name="certificateGetRequest">
+        A <see cref="CertificateGetRequest"/> object containing customer code and date range to fetch certificates.
+      </param>
+      <returns>
+        A <see cref="CertificateGetResult"/> object containing result of the certificate get operation.
+      </returns>
+    </members>
+    <members name="CertificateRequestGet">
+      <summary>
+        This operation retrieves all certificate requests from vCert for a particular customer.
+      </summary>
+      <param name="certificateRequestGetRequest">
+        A <see cref="CertificateRequestGetRequest"/> object containing company code, customer code, and date range to fetch certificate requests.
+      </param>
+      <returns>
+        A <see cref="CertificateRequestGetResult"/> object containing result of the certificate request get operation.
+      </returns>
+    </members>
+    <members name="CertificateImageGet">
+      <summary>
+        This operation retrieves certificate image from vCert for a particular customer.
+      </summary>
+      <param name="certificateImageGetRequest">
+        A <see cref="CertificateImageGetRequest"/> object containing company code and avacert id to fetch certificate image.
+      </param>
+      <returns>
+        A <see cref="CertificateImageGetResult"/> object containing result of the certificate image get operation.
+      </returns>
+    </members>
+  </AvaCert2Svc>
+
+  <Customer>
+    <class>
+      <summary>
+        Contains customer data. Can be passed to <see cref="AvaCert2Svc.CustomerSave"/> using <see cref="CustomerSaveRequest"/>.
+      </summary>
+    </class>
+    <members name="CustomerCode">
+      <summary>
+        Customer identification code from client system.
+      </summary>
+    </members>
+    <members name="NewCustomerCode">
+      <summary>
+        NewCustomerCode is used to update the CustomerCode.
+      </summary>
+    </members>
+    <members name="ParentCustomerCode">
+      <summary>
+        Unique identifier for the Parent Customer record. 
+      </summary>
+    </members>
+    <members name="Type">
+      <summary>
+        Customer type code
+      </summary>
+    </members>
+    <members name="BusinessName">
+      <summary>
+        Business or organization name
+      </summary>
+    </members>
+    <members name="Attn">
+      <summary>
+        Name of the person to use in correspondence for the Customer record.
+      </summary>
+    </members>
+    <members name="Address1">
+      <summary>
+        Address1 of the Customer
+      </summary>
+    </members>
+    <members name="Address2">
+      <summary>
+        Address2 of the Customer
+      </summary>
+    </members>
+    <members name="City">
+      <summary>
+        City of the Customer
+      </summary>
+    </members>
+    <members name="State">
+      <summary>
+        State or province of the Customer
+      </summary>
+    </members>
+    <members name="Zip">
+      <summary>
+        ZIP or PostalCode of the Customer
+      </summary>
+    </members>
+    <members name="Country">
+      <summary>
+        ISO 2-character country code
+      </summary>
+    </members>
+    <members name="Phone">
+      <summary>
+        Phone number
+      </summary>
+    </members>
+    <members name="Fax">
+      <summary>
+        Fax number
+      </summary>
+    </members>
+    <members name="Email">
+      <summary>
+        Email address
+      </summary>
+    </members>
+  </Customer>
+
+  <CustomerSaveRequest>
+    <class>
+      <summary>
+        Input for <see cref="AvaCert2Svc.CustomerSave"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CustomerSaveRequest
+          Dim oCustomer As Customer
+          Dim oResult As CustomerSaveResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CustomerSaveRequest
+          Set oCustomer = New Customer
+
+          oCustomer.Address1 = "900 Winslow Way"
+          oCustomer.City = "Bainbridge Island"
+          oCustomer.State = "WA"
+          oCustomer.PostalCode = "98110"
+          .
+          .
+          .
+          oRequest.Customer = oCustomer
+          oRequest.CompanyCode = "Default"
+
+          Set oResult = oSvc.CustomerSave(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          Customer customer = new Customer();
+          customer.Address1 = "900 Winslow Way";
+          customer.State = "WA";
+          customer.PostalCode = "98110";
+          .
+          .
+          .
+
+          CustomerSaveRequest request = new CustomerSaveRequest();
+          request.Customer = customer;
+          request.CompanyCode = "Default";
+          
+          CustomerSaveResult result = svc.CustomerSave(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="CompanyCode">
+      <summary>
+        Company Code of the company to which the customer belongs.
+      </summary>
+    </members>
+    <members name="Customer">
+      <summary>
+        The customer to add.
+      </summary>
+    </members>
+  </CustomerSaveRequest>
+
+  <CustomerSaveResult>
+    <class>
+      <summary>
+        Contains the customer save operation result returned by <see cref="AvaCert2Svc.CustomerSave"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CustomerSaveRequest
+          Dim oCustomer As Customer
+          Dim oResult As CustomerSaveResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CustomerSaveRequest
+          Set oCustomer = New Customer
+
+          oCustomer.Address1 = "900 Winslow Way"
+          oCustomer.City = "Bainbridge Island"
+          oCustomer.State = "WA"
+          oCustomer.PostalCode = "98110"
+          .
+          .
+          .
+          oRequest.Customer = oCustomer
+          oRequest.CompanyCode = "Default"
+
+          Set oResult = oSvc.CustomerSave(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          Customer customer = new Customer();
+          customer.Address1 = "900 Winslow Way";
+          customer.State = "WA";
+          customer.PostalCode = "98110";
+          .
+          .
+          .
+
+          CustomerSaveRequest request = new CustomerSaveRequest();
+          request.Customer = customer;
+          request.CompanyCode = "Default";
+
+          CustomerSaveResult result = svc.CustomerSave(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class> 
+  </CustomerSaveResult>
+  
+  <CertificateRequestInitiateRequest>
+    <class>
+      <summary>
+        Input for <see cref="AvaCert2Svc.CertificateRequestInitiate"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateRequestInitiateRequest
+          Dim oResult As CertificateRequestInitiateResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateRequestInitiateRequest
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = request.Customer.CustomerCode
+          oRequest.CommunicationMode = CommunicationMode_EMAIL
+          oRequest.CustomMessage = "Test"
+          .
+          .
+
+          Set oResult = oSvc.CertificateRequestInitiate(oRequest)
+          Debug.Print oResult.TrackingCode
+          Debug.Print oResult.WizardLaunchUrl
+        </code>
+        <code>
+				  [C#]
+				  AvaCert2Svc svc = new AvaCert2Svc();
+				  CertificateRequestInitiateRequest request = new CertificateRequestInitiateRequest();          
+				  request.CompanyCode = "Default";
+				  request.CustomerCode = request.Customer.CustomerCode;
+				  request.CommunicationMode = CommunicationMode.EMAIL;
+				  request.CustomMessage = "Test";
+				  .
+				  .
+				  .
+				  CertificateRequestInitiateResult result = svc.CertificateRequestInitiate(request);
+				  Console.WriteLn(result.TrackingCode);
+				  Console.WriteLn(result.WizardLaunchUrl);
+        </code>
+      </example>
+    </class>
+    <members name="CompanyCode">
+      <summary>
+        Company Code of the company to which the customer belongs.
+      </summary>
+    </members>
+    <members name="CustomerCode">
+      <summary>
+        Customer identification code from client system.
+      </summary>
+    </members>
+    <members name="CommunicationMode">
+      <summary>
+        CommunicationMode indicates the mode to use for communicating with the customer like Email, Mail, or Fax.
+      </summary>
+    </members>
+    <members name="SourceLocationCode">
+      <summary>
+        SourceLocationCode is the Source LocationCode for the request. If provided; the code must be one that exists for the Company.
+      </summary>
+    </members>
+    <members name="CustomMessage">
+      <summary>
+        Custom message to be used for the request.
+      </summary>
+    </members>
+    <members name="Type">
+      <summary>
+        Type indicates the type of the request to be initiated.
+      </summary>
+    </members>
+    <members name="LetterTemplate">
+      <summary>
+        The name of the Letter Template to use for the correspondence.
+      </summary>
+    </members>
+    <members name="IncludeCoverPage">
+      <summary>
+        Whether or not a fax cover sheet with a barcode will be attached to the correspondence. If null, the default is used (false).
+      </summary>
+    </members>
+    <members name="CloseReason">
+      <summary>
+        Reason for closing the Request.
+      </summary>
+    </members>
+    <members name="RequestId">
+      <summary>
+        Unique identifier for the Request record.
+      </summary>
+    </members>
+  </CertificateRequestInitiateRequest>
+
+  <CertificateRequestInitiateResult>
+    <class>
+      <summary>
+        Contains a TrackingCode returned by <see cref="AvaCert2Svc.CertificateRequestInitiate"/>
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateRequestInitiateRequest
+          Dim oResult As CertificateRequestInitiateResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateRequestInitiateRequest
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = request.Customer.CustomerCode
+          oRequest.CommunicationMode = CommunicationMode_EMAIL
+          oRequest.CustomMessage = "Test"
+          .
+          .
+          .
+
+          Set oResult = oSvc.CertificateRequestInitiate(oRequest)
+          Debug.Print oResult.TrackingCode
+          Debug.Print oResult.WizardLaunchUrl
+        </code>
+        <code>
+				  [C#]
+				  AvaCert2Svc svc = new AvaCert2Svc();
+				  CertificateRequestInitiateRequest request = new CertificateRequestInitiateRequest();          
+				  request.CompanyCode = "Default";
+				  request.CustomerCode = request.Customer.CustomerCode;
+				  request.CommunicationMode = CommunicationMode.EMAIL;
+				  request.CustomMessage = "Test";
+				  .
+				  .
+				  .
+				  CertificateRequestInitiateResult result = svc.CertificateRequestInitiate(request);
+				  Console.WriteLn(result.TrackingCode);
+				  Console.WriteLn(result.WizardLaunchUrl);
+        </code>
+      </example>
+    </class>
+    <members name="TrackingCode">
+      <summary>
+        TrackingCode indicates the unique Tracking Code of the Request.
+      </summary>
+    </members>
+    <members name="WizardLaunchUrl">
+      <summary>
+        WizardLaunchUrl indicates the unique tracking Url for the Request, that is used to launch the wizard.
+      </summary>
+      <remarks>
+        An important requirement here is that the vendor application needs to store this WizardLaunchUrl locally in their system.  
+        Once a request is initiated with vCert, successive requests will fail and it won’t be possible to retrieve the WizardLaunchUrl.  
+        So, it is a strong requirement that the URL should be saved locally after the first call.
+      </remarks>
+    </members>
+    <members name="RequestId">
+      <summary>
+        Unique identifier for the Request record.
+      </summary>
+    </members>
+    <members name="CustomerCode">
+      <summary>
+        Customer identification code from client system.
+      </summary>
+    </members>
+  </CertificateRequestInitiateResult>
+
+  <Certificate>
+    <class>
+      <summary>
+        Contains exemption certificate data. Is part of the <see cref="Avalara.AvaTax.Adapter.AvaCert2Service.CertificateGetResult"/> result came from
+        the <see cref="Avalara.AvaTax.Adapter.AvaCert2Service.AvaCert2Svc.CertificateGet"/>.
+      </summary>
+    </class>
+    <members name="AvaCertId">
+      <summary>
+        Unique identifier for the Certificate record.
+      </summary>
+    </members>
+    <members name="CertificateJurisdictions">
+      <summary>
+        CertificateJurisdictions contains the details of Jurisdiction.
+      </summary>
+    </members>
+    <members name="CustomerCodes">
+      <summary>
+        Customer identification codes for the customer associated with the Certificate record.
+      </summary>
+    </members>
+    <members name="SourceLocationName">
+      <summary>
+        Source location display name for the Certificate record (the client location responsible for tracking the certificate).
+      </summary>
+    </members>
+    <members name="SourceLocationCode">
+      <summary>
+        Source location code for the Certificate record (the client location responsible for tracking the certificate).
+      </summary>
+    </members>
+    <members name="CertificateStatus">
+      <summary>
+        Status for the Certificate record.
+      </summary>
+    </members>
+    <members name="ReviewStatus">
+      <summary>
+        Review status for the Certificate record.
+      </summary>
+    </members>
+    <members name="RejectionReasonCode">
+      <summary>
+        Reason for rejection of a certificate when ReviewStatus of the Certificate record is REJECTED.
+      </summary>
+    </members>
+    <members name="RejectionReasonDetailCode">
+      <summary>
+        Details about the reason for rejection of a certificate when ReviewStatus of the Certificate record is REJECTED.
+      </summary>
+    </members>
+    <members name="RejectionReasonCustomText">
+      <summary>
+        Custom Reason or details about a reason for rejection of a certificate provided by the user when ReviewStatus of the Certificate record is REJECTED.
+      </summary>
+    </members>
+    <members name="CreatedDate">
+      <summary>
+        Creation date of the Certificate record.
+      </summary>
+    </members>
+    <members name="LastModifyDate">
+      <summary>
+        Last modification date of the Certificate record.
+      </summary>
+    </members>
+    <members name="DocReceivedDate">
+      <summary>
+        Date of the most recently received image content for the Certificate record (usually via fax).
+      </summary>
+    </members>
+    <members name="BusinessName">
+      <summary>
+        Exempt customer business name for the Certificate record.
+      </summary>
+    </members>
+    <members name="Address1">
+      <summary>
+        Exempt customer address1 field for the Certificate record.
+      </summary>
+    </members>
+    <members name="Address2">
+      <summary>
+        Exempt customer address2 field for the Certificate record.
+      </summary>
+    </members>
+    <members name="City">
+      <summary>
+        Exempt customer city address field for the Certificate record.
+      </summary>
+    </members>
+    <members name="State">
+      <summary>
+        Exempt customer state address field for the Certificate record.
+      </summary>
+    </members>
+    <members name="Country">
+      <summary>
+        Exempt customer country address field for the Certificate record.
+      </summary>
+    </members>
+    <members name="Zip">
+      <summary>
+        Exempt customer US zip or zip+4 code (or CA postal code) address field for the Certificate record.
+      </summary>
+    </members>
+    <members name="Phone">
+      <summary>
+        Exempt customer phone number field for the Certificate record.
+      </summary>
+    </members>
+    <members name="Email">
+      <summary>
+        Exempt customer email address field for the Certificate record.
+      </summary>
+    </members>
+    <members name="SignerName">
+      <summary>
+        Exempt customer signer name field for the Certificate record.
+      </summary>
+    </members>
+    <members name="SignerTitle">
+      <summary>
+        Exempt customer signer title field for the Certificate record.
+      </summary>
+    </members>
+    <members name="SignedDate">
+      <summary>
+        Effective date (or the actual signature date) of the Certificate record.
+      </summary>
+    </members>
+    <members name="BusinessDescription">
+      <summary>
+        Exempt customer business description field for the Certificate record.
+      </summary>
+    </members>
+    <members name="SellerPropertyDescription">
+      <summary>
+        Seller property description the exempt customer selected for the Certificate record.
+      </summary>
+    </members>
+    <members name="CertificateUsage">
+      <summary>
+        Usage type for the Certificate record.
+      </summary>
+    </members>
+    <members name="IsPartialExemption">
+      <summary>
+        Whether the Certificate record is considered "partially exempt".
+      </summary>
+    </members>
+    <members name="ExemptReasonCode">
+      <summary>
+        Client-specified exemption reason code for the Certificate record.
+      </summary>
+    </members>
+    <members name="ExemptFormName">
+      <summary>
+        Name of the state-issued form for the Certificate record; either a system-defined code name or a client-specified custom name.
+      </summary>
+    </members>
+    <members name="Custom1">
+      <summary>
+        (Optional) Client-specified value for custom Certificate field 1, if enabled.
+      </summary>
+    </members>
+    <members name="Custom2">
+      <summary>
+        (Optional) Client-specified value for custom Certificate field 2, if enabled.
+      </summary>
+    </members>
+    <members name="Custom3">
+      <summary>
+        (Optional) Client-specified value for custom Certificate field 3, if enabled.
+      </summary>
+    </members>
+    <members name="PageCount">
+      <summary>
+        Number of pages in the Certificate record.
+      </summary>
+    </members>
+  </Certificate>
+  
+  <Certificates>
+    <class>
+      <summary>
+        A collection of zero or more <see cref="Certificate"/> objects.
+      </summary>
+    </class>
+  </Certificates>
+  
+  <CertificateRequest>
+    <class>
+      <summary>
+        Contains exemption certificate request data. Is part of the <see cref="Avalara.AvaTax.Adapter.AvaCert2Service.CertificateRequestGetResult"/> result came from
+        the <see cref="Avalara.AvaTax.Adapter.AvaCert2Service.AvaCert2Svc.CertificateRequestGet"/>.
+      </summary>
+    </class>
+    <members name="RequestId">
+      <summary>
+        Unique identifier for the certificate request record.
+      </summary>
+    </members>
+    <members name="TrackingCode">
+      <summary>
+        Unique Tracking Code for the certificate request record.
+      </summary>
+    </members>
+    <members name="SourceLocationCode">
+      <summary>
+        Source location code for the certificate record (the client location responsible for tracking the certificate).
+      </summary>
+    </members>
+    <members name="RequestDate">
+      <summary>
+        Request date of the certificate request record.
+      </summary>
+    </members>
+    <members name="CustomerCode">
+      <summary>
+        Customer identification code for the customer associated with the certificate request record.
+      </summary>
+    </members>
+    <members name="CreatorName">
+      <summary>
+        CreatorName the certificate request record.
+      </summary>
+    </members>
+    <members name="LastModifyDate">
+      <summary>
+        Last modification date of the certificate request record.
+      </summary>
+    </members>
+    <members name="RequestStatus">
+      <summary>
+        Request status for the certificate request record.
+      </summary>
+    </members>
+    <members name="RequestStage">
+      <summary>
+        Request stage for the certificate request record.
+      </summary>
+    </members>
+    <members name="CommunicationMode">
+      <summary>
+        CommunicationMode for the certificate request record.
+      </summary>
+    </members>
+  </CertificateRequest>
+  
+  <CertificateRequests>
+    <class>
+      <summary>
+        A collection of zero or more <see cref="CertificateRequest"/> objects.
+      </summary>
+    </class>
+  </CertificateRequests>
+
+  <CertificateJurisdiction>
+    <class>
+      <summary>
+        Contains jurisdiction data.
+      </summary>
+    </class>
+    <members name="Jurisdiction">
+      <summary>
+        Jurisdiction code for the Jurisdiction record.
+      </summary>
+    </members>
+    <members name="Country">
+      <summary>
+        Country code for the Jurisdiction record (ISO-3166-1-alpha-2 Country Code).
+      </summary>
+    </members>
+    <members name="ExpiryDate">
+      <summary>
+        Expiration date for the Jurisdiction record.
+      </summary>
+    </members>
+    <members name="DoesNotExpire">
+      <summary>
+        Whether the Jurisdiction can expire; a Boolean flag with the following semantics:
+        true: the Jurisdiction record never expires (regardless of ExpiryDate)
+        false: the Jurisdiction record expires based on ExpiryDate
+      </summary>
+    </members>
+    <members name="PermitNumbers">
+      <summary>
+        The exempt customer permit number(s) for the Jurisdiction record (a comma separated list if more than a single permit number exists for the Jurisdiction record).
+      </summary>
+    </members>
+  </CertificateJurisdiction>
+
+  <CertificateJurisdictions>
+    <class>
+      <summary>
+        A collection of zero or more <see cref="CertificateJurisdiction"/> objects.
+      </summary>
+    </class>
+  </CertificateJurisdictions>
+
+  <CertificateGetRequest>
+    <class>
+      <summary>
+        Input for <see cref="AvaCert2Svc.CertificateGet"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateGetRequest
+          Dim oResult As CertificateGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = "CustomerCode"
+          oRequest.ModFromDate = DateAdd("d", -1, Date)
+          oRequest.ModToDate = Date
+
+          Set oResult = oSvc.CertificateGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateGetRequest request = new CertificateGetRequest();
+          request.CompanyCode = "Default";
+          request.CustomerCode = "CustomerCode";
+          request.ModFromDate = DateTime.Now.AddDays(-1);
+          request.ModToDate = DateTime.Now;
+
+          CertificateGetResult result = svc.CertificateGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="CompanyCode">
+      <summary>
+        The company code associated with a certificate record.
+      </summary>
+    </members>
+    <members name="CustomerCode">
+      <summary>
+        The customer code associated with a certificate record.
+      </summary>
+    </members>
+    <members name="ModFromDate">
+      <summary>
+        The date from which the certificates needs to be fetched.
+      </summary>
+    </members>
+    <members name="ModToDate">
+      <summary>
+        The date to which the certificates needs to be fetched.
+      </summary>
+    </members>
+  </CertificateGetRequest>
+
+  <CertificateGetResult>
+    <class>
+      <summary>
+        Contains the get exemption certificates operation result returned by <see cref="AvaCert2Svc.CertificateGet"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateGetRequest
+          Dim oResult As CertificateGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = "CustomerCode"
+          oRequest.FromDate = DateAdd("d", -1, Date)
+          oRequest.ToDate = Date
+
+          Set oResult = oSvc.CertificateGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateGetRequest request = new CertificateGetRequest();
+          request.CompanyCode = "Default";
+          request.CustomerCode = "CustomerCode";
+          request.FromDate = DateTime.Now.AddDays(-1);
+          request.ToDate = DateTime.Now;
+
+          CertificateGetResult result = svc.CertificateGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="Certificates">
+      <summary>
+        Certificates contains collection of exemption certificate records.
+      </summary>
+    </members>
+  </CertificateGetResult>
+
+  <CertificateRequestGetRequest>
+    <class>
+      <summary>
+        Input for <see cref="AvaCert2Svc.CertificateRequestGet"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateRequestGetRequest
+          Dim oResult As CertificateRequestGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateRequestGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = "CustomerCode"
+          oRequest.ModFromDate = DateAdd("d", -1, Date)
+          oRequest.ModToDate = Date
+
+          Set oResult = oSvc.CertificateRequestGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateRequestGetRequest request = new CertificateRequestGetRequest();
+          request.CompanyCode = "Default";
+          request.CustomerCode = "CustomerCode";
+          request.ModFromDate = DateTime.Now.AddDays(-1);
+          request.ModToDate = DateTime.Now;
+
+          CertificateRequestGetResult result = svc.CertificateRequestGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="CompanyCode">
+      <summary>
+        The company code associated with a certificate record.
+      </summary>
+    </members>
+    <members name="CustomerCode">
+      <summary>
+        The customer code associated with a certificate record.
+      </summary>
+    </members>
+    <members name="RequestStatus">
+      <summary>
+        Current status of the Request.
+      </summary>
+    </members>
+    <members name="ModFromDate">
+      <summary>
+        The date from which the certificates needs to be fetched.
+      </summary>
+    </members>
+    <members name="ModToDate">
+      <summary>
+        The date to which the certificates needs to be fetched.
+      </summary>
+    </members>
+  </CertificateRequestGetRequest>
+
+  <CertificateRequestGetResult>
+    <class>
+      <summary>
+        Contains the get certificate request operation result returned by <see cref="AvaCert2Svc.CertificateRequestGet"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateRequestGetRequest
+          Dim oResult As CertificateRequestGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateRequestGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.CustomerCode = "CustomerCode"
+          oRequest.FromDate = DateAdd("d", -1, Date)
+          oRequest.ToDate = Date
+
+          Set oResult = oSvc.CertificateRequestGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateRequestGetRequest request = new CertificateRequestGetRequest();
+          request.CompanyCode = "Default";
+          request.CustomerCode = "CustomerCode";
+          request.FromDate = DateTime.Now.AddDays(-1);
+          request.ToDate = DateTime.Now;
+
+          CertificateRequestGetResult result = svc.CertificateRequestGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="CertificateRequests">
+      <summary>
+        CertificateRequests contains collection of certificate requests.
+      </summary>
+    </members>
+  </CertificateRequestGetResult>
+
+  <CertificateImageGetRequest>
+    <class>
+      <summary>
+        Input for <see cref="AvaCert2Svc.CertificateImageGet"/>.
+      </summary>
+      <example>
+        <code>
+          [Visual Basic 6]
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateImageGetRequest
+          Dim oResult As CertificateImageGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateImageGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.AvaCertId = "AvaCertId"
+          oRequest.Format = FormatType_PNG
+          oRequest.PageNumber = 1
+
+          Set oResult = oSvc.CertificateImageGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateImageGetRequest request = new CertificateImageGetRequest();
+          request.CompanyCode = "Default";
+          request.AvaCertId = "AvaCertId";
+          request.Format = FormatType.PNG;
+          request.PageNumber = 1;
+
+          CertificateImageGetResult result = svc.CertificateImageGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="CompanyCode">
+      <summary>
+        The company code associated with a certificate record.
+      </summary>
+    </members>
+    <members name="AvaCertId">
+      <summary>
+        Unique identifier for the Certificate record.
+      </summary>
+    </members>
+    <members name="Format">
+      <summary>
+        Format in which the image needs to be exported.
+      </summary>
+    </members>
+    <members name="PageNumber">
+      <summary>
+        Page number of the certificate image.
+      </summary>
+    </members>
+  </CertificateImageGetRequest>
+
+  <CertificateImageGetResult>
+    <class>
+      <summary>
+        Contains the get certificate image operation result returned by <see cref="AvaCert2Svc.CertificateImageGet"/>.
+      </summary>
+      <example>
+        <code>
+          Dim oSvc As AvaCert2Svc
+          Dim oRequest As CertificateImageGetRequest
+          Dim oResult As CertificateImageGetResult
+
+          Set oSvc = New AvaCert2Svc
+          Set oRequest = New CertificateImageGetRequest
+
+          oRequest.CompanyCode = "Default"
+          oRequest.AvaCertId = "AvaCertId"
+          oRequest.Format = FormatType_PNG
+          oRequest.PageNumber = 1
+
+          Set oResult = oSvc.CertificateImageGet(oRequest)
+          Debug.Print oResult.ResultCode
+        </code>
+        <code>
+          [C#]
+          AvaCert2Svc svc = new AvaCert2Svc();
+          CertificateImageGetRequest request = new CertificateImageGetRequest();
+          request.CompanyCode = "Default";
+          request.AvaCertId = "AvaCertId";
+          request.Format = FormatType.PNG;
+          request.PageNumber = 1;
+
+          CertificateImageGetResult result = svc.CertificateImageGet(request);
+          Console.WriteLn(result.ResultCode);
+        </code>
+      </example>
+    </class>
+    <members name="AvaCertId">
+      <summary>
+        Unique identifier for the Certificate record.
+      </summary>
+    </members>
+    <members name="Image">
+      <summary>
+        Certificate image.
+      </summary>
+    </members>
+  </CertificateImageGetResult>
+  
+  
+  <CommunicationMode>
+    <enum>
+      <summary>
+        CommunicationMode indicates the mode to use for communicating with the customer.
+      </summary>
+    </enum>
+    <members name="NULL">
+      <summary>
+        The value has not been set.
+      </summary>
+    </members>
+    <members name="EMAIL">
+      <summary>
+        Email address
+      </summary>
+    </members>
+    <members name="MAIL">
+      <summary>
+        Mail address
+      </summary>
+    </members>
+    <members name="FAX">
+      <summary>
+        Fax number
+      </summary>
+    </members>
+  </CommunicationMode>
+  
+  <RequestType>
+    <enum>
+      <summary>
+        RequestType indicates the type of the request to be initiated.
+      </summary>
+    </enum>
+    <members name="STANDARD">
+      <summary>
+        Standard sends correspondences and follow ups related to the Request to the associated Customer.
+      </summary>
+    </members>
+    <members name="DIRECT">
+      <summary>
+        Direct does not send any correspondence or follow ups related to the Request to the associated Customer.
+      </summary>
+    </members>
+  </RequestType>
+
+  <CertificateStatus>
+    <enum>
+      <summary>
+        CertificateStatus indicates the status for the Certificate record.
+      </summary>
+    </enum>
+    <members name="ACTIVE">
+      <summary>
+        The certificate is active with images received.
+      </summary>
+    </members>
+    <members name="VOID">
+      <summary>
+        The certificate has been voided from active use.
+      </summary>
+    </members>
+    <members name="INCOMPLETE">
+      <summary>
+        The certificate does not yet have all of its images received.
+      </summary>
+    </members>
+  </CertificateStatus>
+
+  <ReviewStatus>
+    <enum>
+      <summary>
+        ReviewStatus indicates the review status for the Certificate record.
+      </summary>
+    </enum>
+    <members name="PENDING">
+      <summary>
+        The certificate has not yet been reviewed.
+      </summary>
+    </members>
+    <members name="ACCEPTED">
+      <summary>
+        The certificate was accepted during review.
+      </summary>
+    </members>
+    <members name="REJECTED">
+      <summary>
+        The certificate was rejected during review.
+      </summary>
+    </members>
+  </ReviewStatus> 
+
+  <CertificateUsage>
+    <enum>
+      <summary>
+        CertificateUsage indicates the usage type for the Certificate record.
+      </summary>
+    </enum>
+    <members name="BLANKET">
+      <summary>
+        The certificate may be used multiple times.
+      </summary>
+    </members>
+    <members name="SINGLE">
+      <summary>
+        The certificate may only be used for a single transaction.
+      </summary>
+    </members>
+    <members name="NULL">
+      <summary>
+        The value has not been set.
+      </summary>
+    </members>
+  </CertificateUsage>
+
+  <FormatType>
+    <enum>
+      <summary>
+        FormatType is the format in which the image needs to be exported.
+      </summary>
+    </enum>
+    <members name="NULL">
+      <summary>
+        The value has not been set.
+      </summary>
+    </members>
+    <members name="PNG">
+      <summary>
+        PNG is a bitmapped binary image in the 1-bit PNG format (default value).
+      </summary>
+    </members>
+    <members name="PDF">
+      <summary>
+        PDF is a document in Portable document format with images of every page in the certificate.
+      </summary>
+    </members>
+  </FormatType>
+
+  <CertificateRequestStatus>
+    <enum>
+      <summary>
+        CertificateStatus indicates the current status of the Request associated with a Request record to include in the response.
+      </summary>
+    </enum>
+    <members name="ALL">
+      <summary>
+        Request of any status.
+      </summary>
+    </members>
+    <members name="OPEN">
+      <summary>
+        Request has been initiated and is currently open.
+      </summary>
+    </members>
+    <members name="CLOSED">
+      <summary>
+        Request has been closed, either manually or automatically.
+      </summary>
+    </members>
+  </CertificateRequestStatus>
+
+  <CertificateRequestStage>
+    <enum>
+      <summary>
+        CertificateStatus indicates the current stage of the Request.
+      </summary>
+    </enum>
+    <members name="REQUESTINITIATED">
+      <summary>
+        Request has been initiated; correspondence has been sent to the associated Customer.
+      </summary>
+    </members>
+    <members name="CUSTOMERRESPONDED">
+      <summary>
+        Customer has responded to the correspondence.
+      </summary>
+    </members>
+    <members name="CERTIFICATERECEIVED">
+      <summary>
+        Customer has provided a Certificate.
+      </summary>
+    </members>
+  </CertificateRequestStage>
+</adapter>

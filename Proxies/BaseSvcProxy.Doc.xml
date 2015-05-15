@@ -1,0 +1,40 @@
+<adapter>
+	<proxy>
+	    <BaseAddress>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.AddressService.Address"/> class in the <see cref="Avalara.AvaTax.Adapter.AddressService"/> namespace.
+	        </summary>
+	    </BaseAddress>
+	    <Message>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.Message"/> class in the <see cref="Avalara.AvaTax.Adapter"/> namespace.
+	        </summary>
+	    </Message>
+	    <SeverityLevel>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.SeverityLevel"/> class in the <see cref="Avalara.AvaTax.Adapter"/> namespace.
+	        </summary>
+	    </SeverityLevel>
+	    <BaseResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.BaseResult"/> class in the <see cref="Avalara.AvaTax.Adapter"/> namespace.
+	        </summary>
+	    </BaseResult>
+	    <PingResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.PingResult"/> class in the <see cref="Avalara.AvaTax.Adapter"/> namespace.
+	        </summary>
+	    </PingResult>
+	    <IsAuthorizedResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.IsAuthorizedResult"/> class in the <see cref="Avalara.AvaTax.Adapter"/> namespace.
+	        </summary>
+	    </IsAuthorizedResult>
+	</proxy>
+</adapter>

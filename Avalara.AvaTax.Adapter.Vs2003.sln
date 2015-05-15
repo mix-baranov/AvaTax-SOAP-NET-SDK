@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avalara.AvaTax.Adapter.Vs2003", "Avalara.AvaTax.Adapter.Vs2003.csproj", "{279284E6-C1CB-46BA-86F4-4FA2DA82E560}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Installer\Setup\Setup.vdproj", "{D2859A75-59F5-431D-92ED-EC1366B7D743}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Redistributable", "Installer\Redistributable\Redistributable.vdproj", "{8709BA8E-728A-445A-BA8D-316C23E2AEB2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Avalara.AvaTax.Adapter.Vs2003", "..\..\..\Test\Adapter\Test.Avalara.AvaTax.Adapter.Vs2003.csproj", "{1D8D3289-9665-4A1C-9CB2-F0CC8B72521C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{279284E6-C1CB-46BA-86F4-4FA2DA82E560}.Debug.ActiveCfg = Debug|.NET
+		{279284E6-C1CB-46BA-86F4-4FA2DA82E560}.Debug.Build.0 = Debug|.NET
+		{279284E6-C1CB-46BA-86F4-4FA2DA82E560}.Release.ActiveCfg = Release|.NET
+		{279284E6-C1CB-46BA-86F4-4FA2DA82E560}.Release.Build.0 = Release|.NET
+		{D2859A75-59F5-431D-92ED-EC1366B7D743}.Debug.ActiveCfg = Release
+		{D2859A75-59F5-431D-92ED-EC1366B7D743}.Release.ActiveCfg = Release
+		{8709BA8E-728A-445A-BA8D-316C23E2AEB2}.Debug.ActiveCfg = Release
+		{8709BA8E-728A-445A-BA8D-316C23E2AEB2}.Release.ActiveCfg = Release
+		{1D8D3289-9665-4A1C-9CB2-F0CC8B72521C}.Debug.ActiveCfg = Debug|.NET
+		{1D8D3289-9665-4A1C-9CB2-F0CC8B72521C}.Debug.Build.0 = Debug|.NET
+		{1D8D3289-9665-4A1C-9CB2-F0CC8B72521C}.Release.ActiveCfg = Release|.NET
+		{1D8D3289-9665-4A1C-9CB2-F0CC8B72521C}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

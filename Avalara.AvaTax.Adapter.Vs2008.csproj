@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1D8A9F5D-75D6-4C2C-A41B-4583B07E5B0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Avalara.AvaTax.Adapter</RootNamespace>
+    <AssemblyName>Avalara.AvaTax.Adapter</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Adapter.ico</ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Avalara.AvaTax.Adapter.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Vendor\avalara\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Avalara.AvaTax.Adapter.xml</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Vendor\avalara\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Avalara.AvaTax.Adapter.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Common\Configuration\XmlSerializerSectionHandler.cs">
+      <Link>XmlSerializerSectionHandler.cs</Link>
+    </Compile>
+    <Compile Include="AdapterConfigException.cs" />
+    <Compile Include="AddressService\AddressSvc.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AvaCert2Service\AvaCert2Svc.cs" />
+    <Compile Include="AvaLogger.cs" />
+    <Compile Include="AvaTaxException.cs" />
+    <Compile Include="BaseCollection.cs" />
+    <Compile Include="BaseRequest.cs" />
+    <Compile Include="BaseResult.cs" />
+    <Compile Include="BaseSvc.cs" />
+    <Compile Include="ExceptionManager.cs" />
+    <Compile Include="LogService\LogSvc.cs" />
+    <Compile Include="Perf.cs" />
+    <Compile Include="PerformanceTimer.cs" />
+    <Compile Include="Proxies\AddressSvcProxy\AddressSvcProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Proxies\BaseSvcProxy.cs" />
+    <Compile Include="Proxies\AvaCert2SvcProxy\AvaCert2SvcProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Proxies\TaxSvcProxy\TaxSvcProxy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RequestSecurity.cs" />
+    <Compile Include="ServiceConfig.cs" />
+    <Compile Include="TaxService\TaxSvc.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Adapter.ico" />
+    <Content Include="AddressService\AddressSvc.Doc.xml" />
+    <Content Include="AvaCert2Service\AvaCert2Svc.Doc.xml" />
+    <Content Include="Avalara.AvaTax.Adapter.Doc.xml" />
+    <Content Include="Proxies\AddressSvcProxy\AddressSvcProxy.Doc.xml" />
+    <Content Include="Proxies\BaseSvcProxy.Doc.xml" />
+    <Content Include="Proxies\AvaCert2SvcProxy\AvaCert2SvcProxy.Doc.xml" />
+    <Content Include="Proxies\TaxSvcProxy\TaxSvcProxy.Doc.xml" />
+    <Content Include="TaxService\TaxSvc.Doc.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Avalara.AvaTax.Adapter.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

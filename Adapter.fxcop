@@ -1,0 +1,1207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FxCopProject Version="1.312" Name="My FxCop Project">
+ <ProjectOptions>
+  <SharedProject>False</SharedProject>
+  <Stylesheet Apply="False">c:\program files\microsoft fxcop 1.312\Xml\FxCopReport.Xsl</Stylesheet>
+  <SaveMessages>
+   <Project Status="Active, Excluded" NewOnly="False" />
+   <Report Status="Active" NewOnly="False" />
+  </SaveMessages>
+  <ProjectFile Compress="True" DefaultTargetCheck="True" DefaultRuleCheck="True" SaveByRuleGroup="" Deterministic="True" />
+  <PermitAnalysis>True</PermitAnalysis>
+  <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
+  <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
+  <SourceLookup>True</SourceLookup>
+  <AnalysisExceptionsThreshold>100</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>10</RuleExceptionsThreshold>
+  <Spelling Locale="en-us" />
+  <VersionAware>False</VersionAware>
+  <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
+  <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
+ </ProjectOptions>
+ <Targets>
+  <AssemblyReferenceDirectories>
+   <Directory>C:\Program Files\Microsoft WSE\v2.0\</Directory>
+   <Directory>C:\Projects\AvaTax\src\Adapter\bin\Debug\</Directory>
+   <Directory>C:\Projects\AvaTax\vendor\bin\</Directory>
+  </AssemblyReferenceDirectories>
+  <Target Name="C:\Projects\1.4\AvaTax\src\Adapter\bin\Avalara.AvaTax.Adapter.dll" Analyze="True" AnalyzeAllChildren="False">
+   <Modules AnalyzeAllChildren="False">
+    <Module Name="avalara.avatax.adapter.dll" Analyze="True" AnalyzeAllChildren="False">
+     <Namespaces AnalyzeAllChildren="False">
+      <Namespace Name="Avalara.AvaTax.Adapter" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="Avalara.AvaTax.Adapter.AddressService" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="Avalara.AvaTax.Adapter.TaxService" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="Avalara.AvaTax.Common.Configuration" Analyze="True" AnalyzeAllChildren="True" />
+     </Namespaces>
+     <Resources AnalyzeAllChildren="True" />
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <RuleFiles>
+   <RuleFile Name="$(FxCopDir)\Rules\DesignRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\GlobalizationRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\InteroperabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\MobilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\NamingRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PerformanceRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\PortabilityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\SecurityRules.dll" Enabled="True" AllRulesEnabled="True" />
+   <RuleFile Name="$(FxCopDir)\Rules\UsageRules.dll" Enabled="True" AllRulesEnabled="True" />
+  </RuleFiles>
+  <Groups />
+  <Settings />
+ </Rules>
+ <FxCopReport Version="1.312">
+  <Targets>
+   <Target Name="C:\Projects\1.4\AvaTax\src\Adapter\bin\Avalara.AvaTax.Adapter.dll">
+    <Modules>
+     <Module Name="avalara.avatax.adapter.dll">
+      <Namespaces>
+       <Namespace Name="Avalara.AvaTax.Adapter">
+        <Types>
+         <Type Name="AvaTaxException">
+          <Messages>
+           <Message TypeName="ComVisibleTypesShouldBeCreatable" Category="Microsoft.Interoperability" CheckId="CA1409" Created="2005-04-28 14:34:28Z">
+            <Issue>
+             <Item>AvaTaxException</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2005-04-28 14:34:28Z">
+            <Issue>
+             <Item>protected AvaTaxException(SerializationInfo, StreamingContext)</Item>
+            </Issue>
+            <Issue>
+             <Item>public AvaTaxException()</Item>
+            </Issue>
+            <Issue>
+             <Item>public AvaTaxException(String)</Item>
+            </Issue>
+            <Issue>
+             <Item>public AvaTaxException(String, Exception)</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Created="2005-04-28 14:34:28Z">
+            <Issue Level="Error">
+             <Item>AvaTaxException</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Web.Services.Protocols.SoapException)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapException)</Item>
+               <Item>
+
+AvaTaxException..ctor(SoapException)
+Exception.set_HelpLink(String):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapException)</Item>
+               <Item>
+
+AvaTaxException..ctor(SoapException)
+Exception.set_Source(String):Void</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapException)</Item>
+               <Item>_refersTo</Item>
+               <Item>reference type</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name=".ctor(System.Web.Services.Protocols.SoapHeaderException)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapHeaderException)</Item>
+               <Item>
+
+AvaTaxException..ctor(SoapHeaderException)
+Exception.set_HelpLink(String):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapHeaderException)</Item>
+               <Item>
+
+AvaTaxException..ctor(SoapHeaderException)
+Exception.set_Source(String):Void</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AvaTaxException..ctor(SoapHeaderException)</Item>
+               <Item>_refersTo</Item>
+               <Item>reference type</Item>
+               <Item>null</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="BaseSvc">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>BaseSvc..ctor()</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Dispose():System.Void">
+            <Messages>
+             <Message TypeName="DisposeMethodsShouldCallSuppressFinalize" Category="Microsoft.Performance" CheckId="CA1816" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>BaseSvc.Dispose():Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>BaseSvc.Dispose():Void</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ServiceName">
+            <Accessors>
+             <Accessor Name="get_ServiceName():System.String">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>BaseSvc.get_ServiceName():String</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="SetRequestProperties():System.Void">
+            <Messages>
+             <Message Id="System.String.ToLower" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>BaseSvc.SetRequestProperties():Void</Item>
+               <Item>System.String.ToLower</Item>
+               <Item>System.String.ToLower(System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>BaseSvc.SetRequestProperties():Void</Item>
+               <Item>System.String.ToLower</Item>
+               <Item>System.String.ToLower(System.Globalization.CultureInfo)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="SetUserToken():System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>BaseSvc.SetUserToken():Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ExceptionManager">
+          <Messages>
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2005-04-28 14:34:28Z">
+            <Issue>
+             <Item>Avalara.AvaTax.Adapter.ExceptionManager</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="Perf">
+          <Members>
+           <Member Name="ElapsedHours():System.Double">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.ElapsedHours():Double</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ElapsedHours(System.Int32):System.Double">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.ElapsedHours(Int32):Double</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ElapsedMinutes():System.Double">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.ElapsedMinutes():Double</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ElapsedMinutes(System.Int32):System.Double">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.ElapsedMinutes(Int32):Double</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ElapsedTimeSpan():System.TimeSpan">
+            <Messages>
+             <Message Id="System.ApplicationException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.ElapsedTimeSpan():TimeSpan</Item>
+               <Item>1</Item>
+               <Item>ApplicationException..ctor(String)</Item>
+               <Item>An attempt was made to determine the time elapsed without first stopping the performance timekeeper. Call the Stop method prior to accessing this member.</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2005-04-28 14:34:28Z">
+              <Issue Name="TooGeneric">
+               <Item>Perf.ElapsedTimeSpan():TimeSpan</Item>
+               <Item>System.ApplicationException</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Started">
+            <Accessors>
+             <Accessor Name="get_Started():System.DateTime">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>Perf.get_Started():DateTime</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="Stop():System.Void">
+            <Messages>
+             <Message Id="System.ApplicationException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Perf.Stop():Void</Item>
+               <Item>1</Item>
+               <Item>ApplicationException..ctor(String)</Item>
+               <Item>An attempt was made to stop the performance timekeeper that was not running. Call the Start method prior to calling Stop method.</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2005-04-28 14:34:28Z">
+              <Issue Name="TooGeneric">
+               <Item>Perf.Stop():Void</Item>
+               <Item>System.ApplicationException</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Stopped">
+            <Accessors>
+             <Accessor Name="get_Stopped():System.DateTime">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>Perf.get_Stopped():DateTime</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Profile">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Profile..ctor()</Item>
+               <Item>System.String.Format(System.String,System.Object,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ReadOnlyArrayList">
+          <Members>
+           <Member Name="Add(System.Object):System.Void">
+            <Messages>
+             <Message TypeName="DoNotDecreaseInheritedMemberVisibility" Category="Microsoft.Usage" CheckId="CA2222" Created="2005-04-28 17:14:07Z">
+              <Issue>
+               <Item>ReadOnlyArrayList.Add(Object):Void</Item>
+               <Item>Avalara.AvaTax.Adapter.BaseArrayList</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Clear():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 17:14:07Z">
+              <Issue>
+               <Item>ReadOnlyArrayList.Clear():Void</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotDecreaseInheritedMemberVisibility" Category="Microsoft.Usage" CheckId="CA2222" Created="2005-04-28 17:14:07Z">
+              <Issue>
+               <Item>ReadOnlyArrayList.Clear():Void</Item>
+               <Item>Avalara.AvaTax.Adapter.BaseArrayList</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="RequestSecurity">
+          <Members>
+           <Member Name="Account">
+            <Accessors>
+             <Accessor Name="set_Account(System.String):System.Void">
+              <Messages>
+               <Message Id="System.ArgumentException.#ctor(System.String,System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>RequestSecurity.set_Account(String):Void</Item>
+                 <Item>1</Item>
+                 <Item>ArgumentException..ctor(String, String)</Item>
+                 <Item>Account cannot be an empty string</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="License">
+            <Accessors>
+             <Accessor Name="set_License(System.String):System.Void">
+              <Messages>
+               <Message Id="System.ArgumentException.#ctor(System.String,System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>RequestSecurity.set_License(String):Void</Item>
+                 <Item>1</Item>
+                 <Item>ArgumentException..ctor(String, String)</Item>
+                 <Item>Url cannot be an empty string</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="SetEncryptedAccount(System.String):System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>RequestSecurity.SetEncryptedAccount(String):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="SetEncryptedKey(System.String):System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>RequestSecurity.SetEncryptedKey(String):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Timeout">
+            <Accessors>
+             <Accessor Name="set_Timeout(System.Int32):System.Void">
+              <Messages>
+               <Message Id="System.ArgumentException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+                <Issue>
+                 <Item>RequestSecurity.set_Timeout(Int32):Void</Item>
+                 <Item>1</Item>
+                 <Item>ArgumentException..ctor(String)</Item>
+                 <Item>Value cannot be zero or a negative number.</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ServiceConfig">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>ServiceConfig..ctor()</Item>
+               <Item>_traceSoap</Item>
+               <Item>boolean</Item>
+               <Item>false</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RequestTimeout">
+            <Accessors>
+             <Accessor Name="set_RequestTimeout(System.Int32):System.Void">
+              <Messages>
+               <Message TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208" Created="2005-04-28 14:34:28Z">
+                <Issue Name="OneArgumentShouldBeParameterName">
+                 <Item>System.ArgumentOutOfRangeException</Item>
+                 <Item>ArgumentOutOfRangeException..ctor(String)</Item>
+                 <Item>Expected value between 1 and 3600</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Utilities">
+          <Messages>
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2005-04-28 14:34:28Z">
+            <Issue>
+             <Item>Avalara.AvaTax.Adapter.Utilities</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="SetUpLogging():System.Void">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Utilities.SetUpLogging():Void</Item>
+               <Item>System.Object</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="VerifyDate(System.String):System.Void">
+            <Messages>
+             <Message Id="System.DateTime.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Utilities.VerifyDate(String):Void</Item>
+               <Item>System.DateTime.Parse(System.String)</Item>
+               <Item>System.DateTime.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Avalara.AvaTax.Adapter.AddressService">
+        <Types>
+         <Type Name="Address">
+          <Members>
+           <Member Name="Clone():Avalara.AvaTax.Adapter.AddressService.Address">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Address.Clone():Address</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Equals(System.Object):System.Boolean">
+            <Messages>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+              <Issue>
+               <Item>Address.Equals(Object):Boolean</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Addresses">
+          <Members>
+           <Member Name="Add(Avalara.AvaTax.Adapter.AddressService.Address):System.Void">
+            <Messages>
+             <Message Id="System.ArgumentNullException.#ctor(System.String,System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Addresses.Add(Address):Void</Item>
+               <Item>2</Item>
+               <Item>ArgumentNullException..ctor(String, String)</Item>
+               <Item>Cannot add a null address to the collection.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Find(System.String):Avalara.AvaTax.Adapter.AddressService.Address">
+            <Messages>
+             <Message Id="System.String.Compare(System.String,System.String,System.Boolean)" TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Addresses.Find(String):Address</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean)</Item>
+               <Item>System.String.Compare(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="AddressSvc">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc..ctor()</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc..ctor()</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc..ctor()</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Finalize():System.Void">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Finalize():Void</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="IsAuthorized(System.String):Avalara.AvaTax.Adapter.IsAuthorizedResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.IsAuthorized(String):IsAuthorizedResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.IsAuthorized(String):IsAuthorizedResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Ping(System.String):Avalara.AvaTax.Adapter.PingResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Ping(String):PingResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Ping(String):PingResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Validate(Avalara.AvaTax.Adapter.AddressService.ValidateRequest):Avalara.AvaTax.Adapter.AddressService.ValidateResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Validate(ValidateRequest):ValidateResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Validate(ValidateRequest):ValidateResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Double.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>AddressSvc.Validate(ValidateRequest):ValidateResult</Item>
+               <Item>System.Double.ToString</Item>
+               <Item>System.Double.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Avalara.AvaTax.Adapter.TaxService">
+        <Types>
+         <Type Name="GetTaxRequest">
+          <Members>
+           <Member Name="SetAddressCode(Avalara.AvaTax.Adapter.AddressService.Address):System.Void">
+            <Messages>
+             <Message Id="this" TypeName="AvoidUnusedParameters" Category="Microsoft.Performance" CheckId="CA1801" Created="2005-04-28 14:34:28Z" FixCategory="NonBreaking">
+              <Issue Name="MarkAsStatic">
+               <Item>GetTaxRequest.SetAddressCode(Address):Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>GetTaxRequest.SetAddressCode(Address):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Line">
+          <Members>
+           <Member Name="SetAddressCode(Avalara.AvaTax.Adapter.AddressService.Address):System.Void">
+            <Messages>
+             <Message Id="this" TypeName="AvoidUnusedParameters" Category="Microsoft.Performance" CheckId="CA1801" Created="2005-04-28 14:34:28Z" FixCategory="NonBreaking">
+              <Issue Name="MarkAsStatic">
+               <Item>Line.SetAddressCode(Address):Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Line.SetAddressCode(Address):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Lines">
+          <Members>
+           <Member Name="Add(Avalara.AvaTax.Adapter.TaxService.Line):System.Void">
+            <Messages>
+             <Message Id="System.ArgumentNullException.#ctor(System.String,System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>Lines.Add(Line):Void</Item>
+               <Item>2</Item>
+               <Item>ArgumentNullException..ctor(String, String)</Item>
+               <Item>Cannot add a null line to the collection.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TaxSvc">
+          <Members>
+           <Member Name=".ctor()">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc..ctor()</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc..ctor()</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc..ctor()</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="CancelTax(Avalara.AvaTax.Adapter.TaxService.CancelTaxRequest):Avalara.AvaTax.Adapter.TaxService.CancelTaxResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.CancelTax(CancelTaxRequest):CancelTaxResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.CancelTax(CancelTaxRequest):CancelTaxResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="CommitTax(Avalara.AvaTax.Adapter.TaxService.CommitTaxRequest):Avalara.AvaTax.Adapter.TaxService.CommitTaxResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.CommitTax(CommitTaxRequest):CommitTaxResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.CommitTax(CommitTaxRequest):CommitTaxResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Finalize():System.Void">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.Finalize():Void</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetTax(Avalara.AvaTax.Adapter.TaxService.GetTaxRequest):Avalara.AvaTax.Adapter.TaxService.GetTaxResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Double.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.Double.ToString</Item>
+               <Item>System.Double.ToString(System.IFormatProvider)</Item>
+              </Issue>
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.Double.ToString</Item>
+               <Item>System.Double.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+              <Issue>
+               <Item>TaxSvc.GetTax(GetTaxRequest):GetTaxResult</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetTaxHistory(Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryRequest):Avalara.AvaTax.Adapter.TaxService.GetTaxHistoryResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTaxHistory(GetTaxHistoryRequest):GetTaxHistoryResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.GetTaxHistory(GetTaxHistoryRequest):GetTaxHistoryResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="IsAuthorized(System.String):Avalara.AvaTax.Adapter.IsAuthorizedResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.IsAuthorized(String):IsAuthorizedResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.IsAuthorized(String):IsAuthorizedResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Ping(System.String):Avalara.AvaTax.Adapter.PingResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.Ping(String):PingResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.Ping(String):PingResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="PostTax(Avalara.AvaTax.Adapter.TaxService.PostTaxRequest):Avalara.AvaTax.Adapter.TaxService.PostTaxResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.PostTax(PostTaxRequest):PostTaxResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.PostTax(PostTaxRequest):PostTaxResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReconcileTaxHistory(Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryRequest):Avalara.AvaTax.Adapter.TaxService.ReconcileTaxHistoryResult">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.ReconcileTaxHistory(ReconcileTaxHistoryRequest):ReconcileTaxHistoryResult</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>TaxSvc.ReconcileTaxHistory(ReconcileTaxHistoryRequest):ReconcileTaxHistoryResult</Item>
+               <Item>System.Exception</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TaxType">
+          <Messages>
+           <Message TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008" Created="2005-04-28 14:34:28Z" FixCategory="NonBreaking">
+            <Issue Name="NotFlagsNoZeroValue">
+             <Item>TaxType</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Avalara.AvaTax.Common.Configuration">
+        <Types>
+         <Type Name="XmlSerializerSectionHandler">
+          <Members>
+           <Member Name="Create(System.Object,System.Object,System.Xml.XmlNode):System.Object">
+            <Messages>
+             <Message TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>XmlSerializerSectionHandler.Create(Object, Object, XmlNode):Object</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.Xml.XmlNode" TypeName="MembersShouldNotExposeCertainConcreteTypes" Category="Microsoft.Design" CheckId="CA1059" Created="2005-04-28 14:34:28Z">
+              <Issue Name="System.Xml.XmlNode">
+               <Item>XmlSerializerSectionHandler.Create(Object, Object, XmlNode):Object</Item>
+               <Item>System.Xml.XmlNode</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>XmlSerializerSectionHandler.Create(Object, Object, XmlNode):Object</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="CreateFromXmlFile(System.String,System.String):System.Object">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>XmlSerializerSectionHandler.CreateFromXmlFile(String, String):Object</Item>
+               <Item>System.Object</Item>
+              </Issue>
+              <Issue>
+               <Item>XmlSerializerSectionHandler.CreateFromXmlFile(String, String):Object</Item>
+               <Item>System.Object</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>XmlSerializerSectionHandler.CreateFromXmlFile(String, String):Object</Item>
+               <Item>System.String.Format(System.String,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2005-04-28 14:34:28Z">
+              <Issue>
+               <Item>XmlSerializerSectionHandler.CreateFromXmlFile(String, String):Object</Item>
+               <Item>System.String.Format(System.String,System.Object,System.Object)</Item>
+               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Name>Avoid uncalled private code</Name>
+    <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the FxCop team.</Description>
+    <Resolution Name="Default">'{0}' appears to have no upstream public or protected callers.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Performance/AvoidUncalledPrivateCode.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812">
+    <Name>Avoid uninstantiated internal classes</Name>
+    <Description>An internal class was detected that is apparently never instantiated. This rule does not attempt to detect late-bound creation and will generate false positives if instances of a type are only created in this way (for example, by means of Activator.CreateInstance or by passing the type as an argument to a TypeConverter constructor).</Description>
+    <Resolution Name="Default">'{0}' is an internal class that is apparently never instantiated. If so, remove the code from the assembly. If this class is intended to contain only static methods, consider adding a private constructor to prevent the compiler from generating a default constructor.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Performance/AvoidUninstantiatedInternalClasses.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="AvoidUnusedParameters" Category="Microsoft.Performance" CheckId="CA1801">
+    <Name>Avoid unused parameters</Name>
+    <Description>Avoid declaring parameters that are not used in the method body. Unused parameters incur maintenance and performance costs. Sometimes a violation of this rule can point to an implementation bug in the method (i.e. the parameter should actually have been used in the method body). Exclude warnings of this rule if the parameter has to exist because of backward compatibility.</Description>
+    <Resolution Name="MarkAsStatic">The 'this' parameter (or 'Me' in VB) of {0} is never used. Mark the method as static (or Shared in VB) or use 'this'/Me in the method body.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Performance/AvoidUnusedParameters.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="CatchNonClsCompliantExceptionsInGeneralHandlers" Category="Microsoft.Security" CheckId="CA2102">
+    <Name>Catch non-CLSCompliant exceptions in general handlers</Name>
+    <Description>Exception handlers which are truly intended to catch all exceptions should handle non-CLSCompliant exceptions if there is a possibility one can be raised. If possible, catch handlers should only catch specific exceptions or exception base types. In circumstances where a handler is required to catch all exceptions (e.g., when a try block wraps arbitrary plug-in code), the handler should also include a generic catch handler (in C#, catch{ ... }) to handle non-CLSCompliant exceptions. It is possible to raise non-CLSCompliant exceptions by modifying and recompiling IL.</Description>
+    <Resolution Name="Default">{0} contains a catch(Exception) handler that is not matched with a generic catch clause (catch{{}} in C#, catch(System::Object*){{}} in mc++) for non-CLSCompliant exception. Eliminate the catch(Exception) clause by catching a specific set of Exceptions or add a generic catch (catch() in C#) that duplicates the code contained within the catch(Exception) handler.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Security/CatchNonClsCompliantExceptionsInGeneralHandlers.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="80">Error</MessageLevel>
+    <File Name="SecurityRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="ComVisibleTypesShouldBeCreatable" Category="Microsoft.Interoperability" CheckId="CA1409">
+    <Name>Com visible types should be creatable</Name>
+    <Description>Types with no public default constructor are not COM-creatable. COM does not support parameterized object construction. A type was detected with a public parameterized constructor but no public default constructor. This type is not creatable by COM. If there is an alternate method for creating and passing object instances to COM clients (through a method on another type, for example), this might not be a problem.</Description>
+    <Resolution Name="Default">Provide a public default constructor for '{0}' if it should be COM-creatable or mark the type as ComVisible(false).</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Interoperability/ComVisibleTypesShouldBeCreatable.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="90">Error</MessageLevel>
+    <File Name="InteroperabilityRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DisposeMethodsShouldCallSuppressFinalize" Category="Microsoft.Performance" CheckId="CA1816">
+    <Name>Dispose methods should call SuppressFinalize</Name>
+    <Description>Call GC.SuppressFinalize to suppress finalization of your instance once Dispose has been called. Objects that implement IDisposable should call SuppressFinalize from the IDisposable.Dispose method to prevent the garbage collector from calling Object.Finalize on an object that does not require it.</Description>
+    <Resolution Name="Default">Change {0} to call GC.SuppressFinalize.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Performance/DisposeMethodsShouldCallSuppressFinalize.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
+    <Name>Do not call overridable methods in constructors</Name>
+    <Description>Virtual methods defined on the class should not be called from constructors. If a derived class has overridden the method, the derived class version will be called (before the derived class constructor is called).</Description>
+    <Resolution Name="Default">'{0}' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: {1}</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/DoNotCallOverridableMethodsInConstructors.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Name>Do not catch Exceptions or SystemExceptions</Name>
+    <Description>You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</Description>
+    <Resolution Name="Default">Modify '{0}' to catch a more specific exception than '{1}' or rethrow the exception.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Design/DoNotCatchGeneralExceptionTypes.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">CriticalError</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotDecreaseInheritedMemberVisibility" Category="Microsoft.Usage" CheckId="CA2222">
+    <Name>Do not decrease inherited member visibility</Name>
+    <Description>It is incorrect to override a public method from an inherited class with a private implementation, unless the type is sealed or the method is marked final. It is considered bad form to hide a method signature halfway down an inheritance tree.</Description>
+    <Resolution Name="Default">Make {0} non-private, mark it as final, or seal its declaring type. This method was originally defined in base class '{1}'.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/DoNotDecreaseInheritedMemberVisibility.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotInitializeUnnecessarily" Category="Microsoft.Performance" CheckId="CA1805">
+    <Name>Do not initialize unnecessarily</Name>
+    <Description>Do not make initializations that have already been done by the runtime.</Description>
+    <Resolution Name="Default">{0} initializes field '{1}', a {2}, to {3}. Remove this initialization, as it will be done automatically by the runtime.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Performance/DoNotInitializeUnnecessarily.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="90">Warning</MessageLevel>
+    <File Name="PerformanceRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303">
+    <Name>Do not pass literals as localized parameters</Name>
+    <Description>String literals that are embedded in source code are difficult to localize. Avoid passing string literals as arguments in circumstances where a localized string is generally expected. Most localized applications, for example, should localize string arguments that are passed to exception constructors. When creating an Exception instance, therefore, a string argument retrieved from a string table is more appropriate than a string literal.</Description>
+    <Resolution Name="Default">{0} passes a literal as parameter {1} of a call to {2}. Retrieve the following string argument from a resource table instead: '{3}'</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Globalization/DoNotPassLiteralsAsLocalizedParameters.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="GlobalizationRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
+    <Name>Do not raise reserved exception types</Name>
+    <Description>User code should not create and raise exceptions of certain types that are reserved by the runtime or which are of a too general exception type. Exception types that are too general include Exception, SystemException, and ApplicationException. Exception types that are reserved by the runtime include ThreadAbortException, OutOfMemoryException, ExecutionEngineException, and IndexOutOfRangeException.</Description>
+    <Resolution Name="TooGeneric">{0} creates an exception of type '{1}', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/DoNotRaiseReservedExceptionTypes.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008">
+    <Name>Enums should have zero value</Name>
+    <Description>An Enum should have a zero value. If the Enum is decorated with the Flags attribute, it should have a member named 'None' with a value of zero that represents the empty state. For a Flags attributed Enum, a zero-valued member should indicate that no values have been set in the Enum. Using a zero-valued member for other purposes is contrary to the use of the Flags attribute in that the AND and OR operators are useless with the member.</Description>
+    <Resolution Name="NotFlagsNoZeroValue">Add a member to '{0}' that has a value of zero with a suggested name of 'None'.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Design/EnumsShouldHaveZeroValue.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">CriticalError</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032">
+    <Name>Implement standard exception constructors</Name>
+    <Description>Multiple constructors are required to correctly implement a custom exception. Missing constructors can make your exception unusable in certain scenarios. For example, the serialization constructor is required for handling exceptions in XML Web services.</Description>
+    <Resolution Name="Default">Add the following constructor to this class: {0}</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Design/ImplementStandardExceptionConstructors.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208">
+    <Name>Instantiate argument exceptions correctly</Name>
+    <Description>String arguments passed to constructors of ArgumentException and its derived types should be correct. Types derived from ArgumentException have inconsistent constructor overloads with respect to the message and paramName parameters as compared to ArgumentException.</Description>
+    <Resolution Name="OneArgumentShouldBeParameterName">Calls to {0}'s constructor '{1}' should contain one of the method's parameter names instead of '{2}'.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/InstantiateArgumentExceptionsCorrectly.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="99">CriticalError</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237">
+    <Name>Mark ISerializable types with serializable</Name>
+    <Description>The System.Runtime.Serialization.ISerializable interface allows the type to customize its serialization, while the Serializable attribute enables the common language runtime to recognize the type as being serializable.</Description>
+    <Resolution Name="Default">Add [Serializable] to type '{0}'.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/MarkISerializableTypesWithSerializable.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error, Warning</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="MembersShouldNotExposeCertainConcreteTypes" Category="Microsoft.Design" CheckId="CA1059">
+    <Name>Members should not expose certain concrete types</Name>
+    <Description>Members should not expose certain concrete types.</Description>
+    <Resolution Name="System.Xml.XmlNode">Modify member '{0}' so that it no longer exposes the concrete type {1}. Use IXPathNavigable to represent Xml data sources.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Design/MembersShouldNotExposeCertainConcreteTypes.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="75">Error</MessageLevel>
+    <File Name="DesignRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+    <Name>Rethrow to preserve stack details</Name>
+    <Description>Use the IL rethrow instruction to preserve original stack details when re-raising a caught exception.</Description>
+    <Resolution Name="Default">{0} rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Usage/RethrowToPreserveStackDetails.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="UsageRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="SpecifyCultureInfo" Category="Microsoft.Globalization" CheckId="CA1304">
+    <Name>Specify CultureInfo</Name>
+    <Description>If an overload exists that takes a System.Globalization.CultureInfo argument, it should always be called in favor of an overload that does not. The CultureInfo type contains culture-specific information required for performing numeric and string operations, such as casing, formatting, and string comparisons. In scenarios where conversion and parsing behavior should never change between cultures, specify CultureInfo.InvariantCulture.</Description>
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide a CultureInfo. This should be replaced with a call to {2}.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Globalization/SpecifyCultureInfo.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="GlobalizationRules.dll" Version="1.312.0.0" />
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Name>Specify IFormatProvider</Name>
+    <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the common language runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture.</Description>
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide an IFormatProvider. This should be replaced with a call to {2}.</Resolution>
+    <Owner />
+    <Url>http://www.gotdotnet.com/team/fxcop/docs/rules.aspx?version=1.312&amp;&amp;url=/Globalization/SpecifyIFormatProvider.html</Url>
+    <Email>askfxcop@microsoft.com</Email>
+    <MessageLevel Certainty="95">Error</MessageLevel>
+    <File Name="GlobalizationRules.dll" Version="1.312.0.0" />
+   </Rule>
+  </Rules>
+ </FxCopReport>
+</FxCopProject>

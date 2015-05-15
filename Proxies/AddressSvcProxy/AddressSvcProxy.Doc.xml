@@ -1,0 +1,23 @@
+<adapter>
+	<proxy>
+	    <AddressSvcProxy>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.AddressService.AddressSvc"/> class in the <see cref="Avalara.AvaTax.Adapter.AddressService"/> namespace.
+	        </summary>
+	    </AddressSvcProxy>
+	    <ValidAddress>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.AddressService.ValidAddress"/> class in the <see cref="Avalara.AvaTax.Adapter.AddressService"/> namespace.
+	        </summary>
+	    </ValidAddress>
+	    <ValidateResult>
+	        <summary>
+	        Used by the adapter to communicate with AvaTax. Not intended for external use.
+	        See the <see cref="Avalara.AvaTax.Adapter.AddressService.ValidateResult"/> class in the <see cref="Avalara.AvaTax.Adapter.AddressService"/> namespace.
+	        </summary>
+	    </ValidateResult>
+	 
+	</proxy>
+</adapter>
