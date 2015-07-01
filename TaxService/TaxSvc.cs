@@ -1637,6 +1637,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		bool _commit;
         string _businessIdentificationNo;
         string _posLaneCode;
+        bool _isSellerImporterOfRecord; // added for 15.4
 
 		//added for 5.0
 		//bool _isTotalTaxOverriden;
@@ -1961,7 +1962,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			{				
 				_commit = value;
 			}
-		}
+		}        
 		
 		//Update Note : Added for 5.0
 		/// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxRequest/members[@name="TaxOverride"]/*' />
@@ -2091,7 +2092,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
                     _posLaneCode = value.Trim();
                 }
             }
-        }
+        }             
 
         [DispId(57)]
         public string sDocDate
@@ -2167,6 +2168,22 @@ namespace Avalara.AvaTax.Adapter.TaxService
 
             }
         }
+
+        //Update Note : Added for 15.4
+        /// <include file='TaxSvc.Doc.xml' path='adapter/GetTaxRequest/members[@name="IsSellerImporterOfRecord"]/*' />
+        [DispId(59)]
+        public bool IsSellerImporterOfRecord
+        {
+            get
+            {
+                return _isSellerImporterOfRecord;
+            }
+            set
+            {
+                _isSellerImporterOfRecord = value;
+            }
+        }
+
         #region Internal Members
 
 		/// <summary>
@@ -2318,6 +2335,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			//_totalTaxOverride = SvcResult.TotalTaxOverride;
 			//_isTotalTaxOverriden = SvcResult.IsTotalTaxOverriden;
             _posLaneCode = SvcResult.PosLaneCode;
+            _isSellerImporterOfRecord = SvcResult.IsSellerImporterOfRecord;
 
 			//Update Note : Added for 5.0
 			//bool hasTaxOverride=false;		
@@ -2415,6 +2433,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 			//SvcRequest.TotalTaxOverride = TotalTaxOverride;
 			//SvcRequest.IsTotalTaxOverriden = IsTotalTaxOverriden;
             SvcRequest.PosLaneCode = PosLaneCode;
+            SvcRequest.IsSellerImporterOfRecord = IsSellerImporterOfRecord;
 			
 			//Update Note : Added for 5.0	
 			if(TaxOverride != null && TaxOverride.TaxOverrideType != TaxOverrideType.None)

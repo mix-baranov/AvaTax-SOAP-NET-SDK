@@ -395,6 +395,9 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
         /// <remarks/>
         public string PosLaneCode;
 
+        /// <remarks/>
+        public bool IsSellerImporterOfRecord;
+
 	}
     
 	/// <include file='TaxSvcProxy.Doc.xml' path='adapter/proxy/ReconcileTaxHistoryRequest/*' />

@@ -15,7 +15,7 @@ using Avalara.AvaTax.Adapter.Proxies.AccountSvcProxy;
 namespace Avalara.AvaTax.Adapter.AccountService
 {
     /// <include file='AccountSvc.Doc.xml' path='adapter/AccountSvc/class/*' />
-	[Guid("671C83F8-CAFD-4d9e-A82D-15D5C11CA59C")]
+	[Guid("671C83F8-CAFD-4d9e-A82D-18D8C11CA59C")]
 	[ComVisible(true)]
 	public class AccountSvc : BaseSvc, IDisposable
 	{
