@@ -1021,7 +1021,7 @@ namespace Avalara.AvaTax.Adapter.Proxies.TaxSvcProxy
 		public string TaxCode;
         
 		/// <remarks/>
-		public Double Qty;
+		public decimal Qty;
         
 		/// <remarks/>
 		public Decimal Amount;

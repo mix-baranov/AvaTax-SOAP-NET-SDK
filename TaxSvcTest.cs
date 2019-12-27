@@ -133,7 +133,7 @@ namespace Test.Avalara.AvaTax.Adapter
         }
 
        //  TaxSvcWrapper.AddLine(taxRequest, "1", "SKU-001", "", 1m, 0m);
-        public Line CreateDefaultGetTaxRequestLineForTaxOverRide(string no, string itemCode, string taxCode, double qty, decimal amount)
+        public Line CreateDefaultGetTaxRequestLineForTaxOverRide(string no, string itemCode, string taxCode, decimal qty, decimal amount)
         {
             Line line = new Line();
             line.No = no;
@@ -195,7 +195,7 @@ namespace Test.Avalara.AvaTax.Adapter
 			line.No = lineNo.ToString();
 			line.Amount = 15.00m * lineNo;
 			line.Discounted = discounted;
-			line.Qty = 1 * (double)lineNo;
+			line.Qty = 1 * (decimal)lineNo;
 			line.ItemCode = "20000"; // Clothing
 			line.Ref1 = "Reference Field 1";
 			line.Ref2 = "Reference Field 2";

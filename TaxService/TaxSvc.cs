@@ -420,7 +420,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 		string _no;
 		string _itemCode;
 		string _taxCode;
-		Double _qty;
+		decimal _qty;
 		Decimal _amount;
 		bool _discounted;
 		string _revAcct;
@@ -557,7 +557,7 @@ namespace Avalara.AvaTax.Adapter.TaxService
 
 		/// <include file='TaxSvc.Doc.xml' path='adapter/Line/members[@name="Qty"]/*' />
 		[DispId(26)]
-		public Double Qty
+		public decimal Qty
 		{
 			get
 			{			
